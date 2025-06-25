@@ -1,0 +1,149 @@
+<!-- Home -->
+<div class="mb-2">
+  <a href="{% url 'home' %}" class="folder-button {% if request.path == '/' %}active{% endif %}">
+    🏠 Home
+  </a>
+</div>
+
+<!-- 🌐 HTML -->
+<div class="mb-2">
+  <button class="folder-button d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#htmlFolder" aria-expanded="{% if request.path == '/html/' %}true{% else %}false{% endif %}">
+    🌐 HTML
+    <span class="rotate-icon">▶</span>
+  </button>
+  <div class="collapse subfolder-links {% if request.path == '/html/' %}show{% endif %}" id="htmlFolder">
+    <a href="{% url 'html' %}" class="{% if request.path == '/html/' %}active{% endif %}">HTML</a>
+  </div>
+</div>
+
+<!-- 🎨 CSS -->
+<div class="mb-2">
+  <button class="folder-button d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#cssFolder" aria-expanded="{% if request.path == '/css/' %}true{% else %}false{% endif %}">
+    🎨 CSS
+    <span class="rotate-icon">▶</span>
+  </button>
+  <div class="collapse subfolder-links {% if request.path == '/css/' %}show{% endif %}" id="cssFolder">
+    <a href="{% url 'css' %}" class="{% if request.path == '/css/' %}active{% endif %}">CSS</a>
+  </div>
+</div>
+
+<!-- 💠 Bootstrap -->
+<div class="mb-2">
+  <button class="folder-button d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#bootstrapFolder" aria-expanded="{% if request.path == '/bootstrap/' %}true{% else %}false{% endif %}">
+    💠 Bootstrap
+    <span class="rotate-icon">▶</span>
+  </button>
+  <div class="collapse subfolder-links {% if request.path == '/bootstrap/' %}show{% endif %}" id="bootstrapFolder">
+    <a href="{% url 'bootstrap' %}" class="{% if request.path == '/bootstrap/' %}active{% endif %}">Bootstrap</a>
+  </div>
+</div>
+
+<!-- 🐍 Python Basic -->
+<div class="mb-2">
+  <button class="folder-button d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#pythonBasicFolder" aria-expanded="{% if request.path == '/python_basic/' %}true{% else %}false{% endif %}">
+    🐍 Python Basic
+    <span class="rotate-icon">▶</span>
+  </button>
+  <div class="collapse subfolder-links {% if request.path == '/python_basic/' %}show{% endif %}" id="pythonBasicFolder">
+    <a href="{% url 'python_basic' %}" class="{% if request.path == '/python_basic/' %}active{% endif %}">Python Basic</a>
+    <!-- Inside the collapsible sidebar section -->
+
+    <li>
+      <a href="{% url 'di_tu_fun' %}" class="{% if request.path == '/di-tu-fun/' %}active-link{% endif %}">
+        📘 Dictionary, Tuple, Functions
+      </a>
+    </li>
+
+  </div>
+</div>
+
+<!-- 🧠 Python Advanced -->
+<div class="mb-2">
+  <button class="folder-button d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#pythonAdvancedFolder" aria-expanded="{% if request.path == '/python_advanced/' %}true{% else %}false{% endif %}">
+    🧠 Python Advanced
+    <span class="rotate-icon">▶</span>
+  </button>
+  <div class="collapse subfolder-links {% if request.path == '/python_advanced/' %}show{% endif %}" id="pythonAdvancedFolder">
+    <a href="{% url 'python_advanced' %}" class="{% if request.path == '/python_advanced/' %}active{% endif %}">Python Advanced</a>
+    <a href="{% url 'error_handling_examples' %}" class="{% if request.path == '/error-handling/' %}active{% endif %}">Error Handling</a>
+
+  </div>
+</div>
+
+<!-- 🚀 Intro to Django -->
+<div class="mb-2">
+  <button class="folder-button d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#introDjangoFolder" aria-expanded="{% if request.path == '/introduction_to_django/' %}true{% else %}false{% endif %}">
+    🚀 Django Intro
+    <span class="rotate-icon">▶</span>
+  </button>
+  <div class="collapse subfolder-links {% if request.path == '/introduction_to_django/' %}show{% endif %}" id="introDjangoFolder">
+    <a href="{% url 'introduction_to_django' %}" class="{% if request.path == '/introduction_to_django/' %}active{% endif %}">Django Ecosystem</a>
+
+  </div>
+</div>
+
+<!-- 🔁 Views & URLs -->
+<div class="mb-2">
+  <button class="folder-button d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#viewsUrlsFolder" aria-expanded="{% if request.path == '/django_views_routing_urls/' %}true{% else %}false{% endif %}">
+    🔁 Views & URLs
+    <span class="rotate-icon">▶</span>
+  </button>
+  <div class="collapse subfolder-links {% if request.path == '/django_views_routing_urls/' %}show{% endif %}" id="viewsUrlsFolder">
+    <a href="{% url 'django_views_routing_urls' %}" class="{% if request.path == '/django_views_routing_urls/' %}active{% endif %}">Routing</a>
+  </div>
+</div>
+
+<!-- 🧩 Templates -->
+<div class="mb-2">
+  <button class="folder-button d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#templatesFolder" aria-expanded="{% if request.path == '/django_and_templates/' %}true{% else %}false{% endif %}">
+    🧩 Templates
+    <span class="rotate-icon">▶</span>
+  </button>
+  <div class="collapse subfolder-links {% if request.path == '/django_and_templates/' %}show{% endif %}" id="templatesFolder">
+    <a href="{% url 'django_and_templates' %}" class="{% if request.path == '/django_and_templates/' %}active{% endif %}">Templates</a>
+  </div>
+</div>
+
+<!-- 🗂️ Models & DB -->
+<div class="mb-2">
+  <button class="folder-button d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#modelsFolder" aria-expanded="{% if request.path == '/django_models_databases/' %}true{% else %}false{% endif %}">
+    🗂️ Models & DB
+    <span class="rotate-icon">▶</span>
+  </button>
+  <div class="collapse subfolder-links {% if request.path == '/django_models_databases/' %}show{% endif %}" id="modelsFolder">
+    <a href="{% url 'django_models_databases' %}" class="{% if request.path == '/django_models_databases/' %}active{% endif %}">Models</a>
+  </div>
+</div>
+
+<!-- 🔐 Admin Portal -->
+<div class="mb-2">
+  <button class="folder-button d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#adminFolder" aria-expanded="{% if request.path == '/django_admin_portal/' %}true{% else %}false{% endif %}">
+    🔐 Admin
+    <span class="rotate-icon">▶</span>
+  </button>
+  <div class="collapse subfolder-links {% if request.path == '/django_admin_portal/' %}show{% endif %}" id="adminFolder">
+    <a href="{% url 'django_admin_portal' %}" class="{% if request.path == '/django_admin_portal/' %}active{% endif %}">Admin Portal</a>
+  </div>
+</div>
+
+<!-- 📝 Forms -->
+<div class="mb-2">
+  <button class="folder-button d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#formsFolder" aria-expanded="{% if request.path == '/django_forms/' %}true{% else %}false{% endif %}">
+    📝 Forms
+    <span class="rotate-icon">▶</span>
+  </button>
+  <div class="collapse subfolder-links {% if request.path == '/django_forms/' %}show{% endif %}" id="formsFolder">
+    <a href="{% url 'django_forms' %}" class="{% if request.path == '/django_forms/' %}active{% endif %}">Django Forms</a>
+  </div>
+</div>
+
+<!-- 🧱 Class Views -->
+<div class="mb-2">
+  <button class="folder-button d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#cbvFolder" aria-expanded="{% if request.path == '/django_class_based_views/' %}true{% else %}false{% endif %}">
+    🧱 Class Views
+    <span class="rotate-icon">▶</span>
+  </button>
+  <div class="collapse subfolder-links {% if request.path == '/django_class_based_views/' %}show{% endif %}" id="cbvFolder">
+    <a href="{% url 'django_class_based_views' %}" class="{% if request.path == '/django_class_based_views/' %}active{% endif %}">Class Views</a>
+  </div>
+</div>

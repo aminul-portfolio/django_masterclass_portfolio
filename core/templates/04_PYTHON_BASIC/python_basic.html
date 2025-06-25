@@ -1,0 +1,157 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="text-center mb-5">
+    <h1 class="display-4 fw-bold text-primary">Python Basics: Numbers, Strings, and Lists</h1>
+    <p class="fs-5 text-muted"><strong>Explore the foundational elements of Python including numbers, string operations, and lists with real-world examples.</strong></p>
+  </div>
+
+  <ul class="nav nav-tabs mb-4" id="contentTabs" role="tablist">
+    <li class="nav-item">
+      <button class="nav-link active" id="examples-tab" data-bs-toggle="tab" data-bs-target="#examples" type="button" role="tab">
+        Examples <span class="badge bg-secondary ms-1" id="exampleCount">0</span>
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" id="quiz-tab" data-bs-toggle="tab" data-bs-target="#quiz" type="button" role="tab">
+        Quiz <span class="badge bg-info ms-1" id="quizCountText">6</span>
+      </button>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="examples" role="tabpanel">
+      <div class="row row-cols-1 row-cols-md-2 g-4" id="exampleCards">
+
+        <!-- Numbers Example 1 -->
+        <div class="col">
+          <div class="card shadow h-100">
+            <div class="card-header bg-primary text-white fw-bold">1️⃣ Basic Arithmetic</div>
+            <div class="card-body">
+              <pre class="bg-light p-3 rounded"><code class="language-python"><span class="text-success">print</span>(<span class="text-info">2</span> + <span class="text-info">3</span>)
+<span class="text-success">print</span>(<span class="text-info">10</span> / <span class="text-info">2</span>)</code></pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function Used:</strong> Arithmetic operators: +, /</li>
+                <li>📘 <strong>What You Learn:</strong> Python can act like a basic calculator.</li>
+                <li>♻️ <strong>Reusability:</strong> Used in financial apps, statistics, and AI calculations.</li>
+                <li>💬 <strong>Inline Comments:</strong> Addition and division between integers.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Numbers Example 2 -->
+        <div class="col">
+          <div class="card shadow h-100">
+            <div class="card-header bg-success text-white fw-bold">2️⃣ Variable Assignment</div>
+            <div class="card-body">
+              <pre class="bg-light p-3 rounded"><code class="language-python"><span class="text-primary">a</span> = <span class="text-info">5</span>
+<span class="text-primary">a</span> = <span class="text-primary">a</span> + <span class="text-info">3</span>
+<span class="text-success">print</span>(<span class="text-primary">a</span>)</code></pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function Used:</strong> Variable assignment and arithmetic</li>
+                <li>📘 <strong>What You Learn:</strong> Reassigning variables using existing values.</li>
+                <li>♻️ <strong>Reusability:</strong> Common in loops, counters, and accumulation logic.</li>
+                <li>💬 <strong>Inline Comments:</strong> Assign and update a variable with new value.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Strings Example 1 -->
+        <div class="col">
+          <div class="card shadow h-100">
+            <div class="card-header bg-danger text-white fw-bold">3️⃣ String Creation and Print</div>
+            <div class="card-body">
+              <pre class="bg-light p-3 rounded"><code class="language-python"><span class="text-success">print</span>(<span class="text-secondary">"Hello, World!"</span>)
+<span class="text-success">print</span>(<span class="text-secondary">'Python is fun.'</span>)</code></pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function Used:</strong> <code>print()</code></li>
+                <li>📘 <strong>What You Learn:</strong> Create strings with quotes and print them.</li>
+                <li>♻️ <strong>Reusability:</strong> Used in logs, UI messages, and formatting outputs.</li>
+                <li>💬 <strong>Inline Comments:</strong> Strings can be defined with single or double quotes.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Strings Example 2 -->
+        <div class="col">
+          <div class="card shadow h-100">
+            <div class="card-header bg-warning text-white fw-bold">4️⃣ String Indexing</div>
+            <div class="card-body">
+              <pre class="bg-light p-3 rounded"><code class="language-python"><span class="text-primary">s</span> = <span class="text-secondary">"Python"</span>
+<span class="text-success">print</span>(<span class="text-primary">s</span>[<span class="text-info">0</span>])
+<span class="text-success">print</span>(<span class="text-primary">s</span>[<span class="text-info">-1</span>])</code></pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function Used:</strong> Indexing with <code>[]</code></li>
+                <li>📘 <strong>What You Learn:</strong> Access characters by position from a string.</li>
+                <li>♻️ <strong>Reusability:</strong> Needed in parsing, validation, and substring checks.</li>
+                <li>💬 <strong>Inline Comments:</strong> Use indexes to grab letters from a string.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lists Example 1 -->
+        <div class="col">
+          <div class="card shadow h-100">
+            <div class="card-header bg-info text-white fw-bold">5️⃣ Creating a List</div>
+            <div class="card-body">
+              <pre class="bg-light p-3 rounded"><code class="language-python"><span class="text-primary">my_list</span> = [<span class="text-info">1</span>, <span class="text-info">2</span>, <span class="text-info">3</span>, <span class="text-info">4</span>]
+<span class="text-success">print</span>(<span class="text-success">len</span>(<span class="text-primary">my_list</span>))</code></pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function Used:</strong> <code>len()</code>, list brackets <code>[]</code></li>
+                <li>📘 <strong>What You Learn:</strong> Create lists and measure their length.</li>
+                <li>♻️ <strong>Reusability:</strong> Lists are core to data analysis, loops, and APIs.</li>
+                <li>💬 <strong>Inline Comments:</strong> Store multiple values and get their count.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lists Example 2 -->
+        <div class="col">
+          <div class="card shadow h-100">
+            <div class="card-header bg-secondary text-white fw-bold">6️⃣ List Append and Pop</div>
+            <div class="card-body">
+              <pre class="bg-light p-3 rounded"><code class="language-python"><span class="text-primary">my_list</span> = [<span class="text-info">10</span>, <span class="text-info">20</span>]
+<span class="text-primary">my_list</span>.<span class="text-warning">append</span>(<span class="text-info">30</span>)
+<span class="text-primary">my_list</span>.<span class="text-warning">pop</span>()
+<span class="text-success">print</span>(<span class="text-primary">my_list</span>)</code></pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function Used:</strong> <code>.append()</code>, <code>.pop()</code></li>
+                <li>📘 <strong>What You Learn:</strong> Modify lists by adding and removing items.</li>
+                <li>♻️ <strong>Reusability:</strong> Useful in queues, stacks, and dynamic lists.</li>
+                <li>💬 <strong>Inline Comments:</strong> Append adds to end, pop removes last.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+        {% include 'includes/comment_form.html' %}
+    </div>
+
+    <div class="tab-pane fade" id="quiz" role="tabpanel">
+      <div id="quizBox" class="mt-4"></div>
+      <div id="quizSummary" class="mt-4"></div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<audio id="correctSound" src="{% static 'sounds/correct.mp3' %}"></audio>
+<audio id="wrongSound" src="{% static 'sounds/wrong.mp3' %}"></audio>
+<script src="{% static 'js/quiz_engine.js' %}"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    loadQuizData("python_basic");
+    document.getElementById("exampleCount").textContent = document.querySelectorAll(".card").length;
+  });
+</script>
+{% endblock %}

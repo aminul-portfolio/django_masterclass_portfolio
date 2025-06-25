@@ -1,0 +1,369 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+  <h1 class="display-4 fw-bold text-primary text-center">Admin Form Validation for Year Field</h1>
+  <p class="fs-5 text-muted text-center"><strong>Use Django's ModelForm and clean_<field> method to enforce year-based validation logic inside the Admin portal.</strong></p>
+
+  <!-- Nav Tabs -->
+   <ul class="nav nav-tabs mb-4" id="tabNavigation" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="examples-tab" data-bs-toggle="tab" data-bs-target="#examples" type="button" role="tab">
+        Examples <span class="badge bg-secondary" id="exampleCount">0</span>
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="quiz-tab" data-bs-toggle="tab" data-bs-target="#quiz" type="button" role="tab">
+        Quiz <span class="badge bg-info" id="quizCountText">10</span>
+      </button>
+    </li>
+  </ul>
+
+
+  <div class="tab-content" id="tabContent">
+  <!-- ✅ Examples Tab -->
+    <div class="tab-pane fade show active" id="examples" role="tabpanel">
+        <div class="row row-cols-1  g-4" id="exampleCards">
+
+        <!-- Example 1 -->
+            <div class="col">
+          <div class="card mb-4 ">
+            <div class="card-header bg-primary text-white fw-bold">1️⃣ Admin Form Validation for Year Field</div>
+            <div class="card-body">
+    <pre class="bg-light p-3 rounded position-relative"><code class="language-python">from django.core.exceptions import ValidationError
+    from django import forms
+    from cars.models import Car
+
+    class CarForm(forms.ModelForm):
+        class Meta:
+            model = Car
+            fields = '__all__'
+
+        def clean_year(self):
+            year = self.cleaned_data['year']
+            if year < 1990 or year > 2050:
+                raise ValidationError("Year must be between 1990 and 2050.")
+            return year
+
+    class CarAdmin(admin.ModelAdmin):
+        form = CarForm
+        list_display = ['brand', 'year']
+        list_filter = ['year']
+        search_fields = ['brand']
+
+    admin.site.register(Car, CarAdmin)</code>
+      <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">📋 Copy</button>
+    </pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function/Class Used:</strong> ModelForm, clean_<field>, ValidationError</li>
+                <li>📘 <strong>What You Learn:</strong> Field-level validation within Django Admin</li>
+                <li>♻️ <strong>Reusability:</strong> Secure data for time-sensitive records like invoices, booking, ETL runs</li>
+                <li>💬 <strong>Inline Comments:</strong> Restricting bad inputs from Admin itself</li>
+                <li>📌 <strong>Related Topics:</strong> Form validation, security in admin, FinTech record compliance</li>
+              </ul>
+            </div>
+          </div>
+</div>
+          <!-- Example 2 -->
+                <div class="col">
+          <div class="card mb-4 ">
+            <div class="card-header bg-secondary text-white fw-bold">2️⃣ Custom Admin Action – Batch Set Year to Current</div>
+            <div class="card-body">
+    <pre class="bg-light p-3 rounded position-relative"><code class="language-python">from datetime import datetime
+
+    def set_current_year(modeladmin, request, queryset):
+        updated = queryset.update(year=datetime.now().year)
+        modeladmin.message_user(request, f"{updated} cars updated to current year.")
+
+    set_current_year.short_description = "Set selected cars' year to current year"
+
+    class CarAdmin(admin.ModelAdmin):
+        actions = [set_current_year]</code>
+      <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">📋 Copy</button>
+    </pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function/Class Used:</strong> actions, message_user, update()</li>
+                <li>📘 <strong>What You Learn:</strong> Batch operations in Django Admin</li>
+                <li>♻️ <strong>Reusability:</strong> Monthly billing updates, access log renewals</li>
+                <li>💬 <strong>Inline Comments:</strong> Adds operational shortcuts to Admin</li>
+                <li>📌 <strong>Related Topics:</strong> Django batch operations, ETL update jobs, Snowflake sync</li>
+              </ul>
+            </div>
+          </div>
+</div>
+          <!-- Example 3 -->
+                    <div class="col">
+          <div class="card mb-4 ">
+            <div class="card-header bg-success text-white fw-bold">3️⃣ Admin Filter for Vintage vs Modern Cars</div>
+            <div class="card-body">
+    <pre class="bg-light p-3 rounded position-relative"><code class="language-python">class YearCategoryFilter(admin.SimpleListFilter):
+        title = 'Car Age Category'
+        parameter_name = 'age'
+
+        def lookups(self, request, model_admin):
+            return [('vintage', 'Before 2000'), ('modern', '2000 and after')]
+
+        def queryset(self, request, queryset):
+            if self.value() == 'vintage':
+                return queryset.filter(year__lt=2000)
+            elif self.value() == 'modern':
+                return queryset.filter(year__gte=2000)
+
+    class CarAdmin(admin.ModelAdmin):
+        list_filter = (YearCategoryFilter,)</code>
+      <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">📋 Copy</button>
+    </pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function/Class Used:</strong> SimpleListFilter, queryset, lookups</li>
+                <li>📘 <strong>What You Learn:</strong> Custom admin filters to segment data</li>
+                <li>♻️ <strong>Reusability:</strong> Classify billing plans, client tiers, cloud storage age</li>
+                <li>💬 <strong>Inline Comments:</strong> Enables cleaner filtering UX for Admins</li>
+                <li>📌 <strong>Related Topics:</strong> Dashboards, cohort analysis, filter logic</li>
+              </ul>
+            </div>
+          </div>
+                        </div>
+                    <!-- Example 4 -->
+               <div class="col">
+          <div class="card mb-4">
+            <div class="card-header bg-warning text-white fw-bold">4️⃣ Admin Inline Example for Car Owner Model</div>
+            <div class="card-body position-relative">
+    <pre class="bg-light p-3 rounded"><code class="language-python"># models.py
+    class Owner(models.Model):
+        name = models.CharField(max_length=100)
+
+    class Car(models.Model):
+        brand = models.CharField(max_length=30)
+        year = models.IntegerField()
+        owner = models.ForeignKey(Owner, on_delete=models.CASCADE)
+
+    # admin.py
+    class CarInline(admin.TabularInline):
+        model = Car
+        extra = 1
+
+    class OwnerAdmin(admin.ModelAdmin):
+        inlines = [CarInline]
+
+    admin.site.register(Owner, OwnerAdmin)</code></pre>
+              <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">📋 Copy</button>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function/Class Used:</strong> TabularInline, ForeignKey, ModelAdmin</li>
+                <li>📘 <strong>What You Learn:</strong> One-to-many management from a single admin panel</li>
+                <li>♻️ <strong>Reusability:</strong> Ideal for managing user accounts, cloud assets per client</li>
+                <li>💬 <strong>Inline Comments:</strong> Better productivity for relational entries</li>
+                <li>📌 <strong>Related Topics:</strong> Relational DBs, user-account linkages, SaaS records</li>
+              </ul>
+            </div>
+          </div>
+</div>
+          <!-- Example 5 -->
+             <div class="col">
+          <div class="card mb-4">
+            <div class="card-header bg-danger text-white fw-bold">5️⃣ Admin ReadOnly Fields & Ordering</div>
+            <div class="card-body position-relative">
+    <pre class="bg-light p-3 rounded"><code class="language-python">class CarAdmin(admin.ModelAdmin):
+        readonly_fields = ['year']
+        ordering = ['brand']</code></pre>
+              <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">📋 Copy</button>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function/Class Used:</strong> readonly_fields, ordering</li>
+                <li>📘 <strong>What You Learn:</strong> Prevent edits and enforce UI-friendly sorting</li>
+                <li>♻️ <strong>Reusability:</strong> Immutable IDs, timestamps, locked billing data</li>
+                <li>💬 <strong>Inline Comments:</strong> Enhances safety and admin usability</li>
+                <li>📌 <strong>Related Topics:</strong> Admin UX, billing platforms, versioning dashboards</li>
+              </ul>
+            </div>
+          </div>
+                 </div>
+                 <!-- Example 6 -->
+              <div class="col">
+          <div class="card mb-4">
+            <div class="card-header bg-warning text-white fw-bold">6️⃣ Admin Chart Integration (Car Count by Year)</div>
+            <div class="card-body position-relative">
+              <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+                📋 Copy
+              </button>
+    <pre class="bg-light p-3 rounded"><code class="language-python">from django.db.models import Count
+    from django.urls import path
+    from django.template.response import TemplateResponse
+
+    class CarAdmin(admin.ModelAdmin):
+        change_list_template = "admin/cars/car_charts.html"
+
+        def changelist_view(self, request, extra_context=None):
+            data = Car.objects.values('year').annotate(count=Count('id')).order_by('year')
+            chart_data = [ {'year': d['year'], 'count': d['count']} for d in data ]
+            extra_context = extra_context or {"chart_data": chart_data}
+            return super().changelist_view(request, extra_context=extra_context)</code></pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function/Class Used:</strong> Count(), custom change_list_template</li>
+                <li>📘 <strong>What You Learn:</strong> Embedding visual analytics into Django Admin</li>
+                <li>♻️ <strong>Reusability:</strong> Business dashboards, fleet reports, hospital trends</li>
+                <li>💬 <strong>Inline Comments:</strong> Adds real-time analytics to the admin site</li>
+                <li>📌 <strong>Related Topics:</strong> Chart.js, Matplotlib, reporting UI, BI tools</li>
+              </ul>
+            </div>
+          </div>
+</div>
+          <!-- Example 7 -->
+              <div class="col">
+          <div class="card mb-4">
+            <div class="card-header bg-info text-white fw-bold">7️⃣ Export to CSV Button in Admin</div>
+            <div class="card-body position-relative">
+              <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+                📋 Copy
+              </button>
+    <pre class="bg-light p-3 rounded"><code class="language-python">import csv
+    from django.http import HttpResponse
+
+    def export_cars(modeladmin, request, queryset):
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename=cars.csv'
+        writer = csv.writer(response)
+        writer.writerow(['Brand', 'Year'])
+
+        for car in queryset:
+            writer.writerow([car.brand, car.year])
+
+        return response
+
+    export_cars.short_description = "Export Selected Cars to CSV"
+
+    class CarAdmin(admin.ModelAdmin):
+        actions = [export_cars]</code></pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function/Class Used:</strong> HttpResponse, csv.writer, actions</li>
+                <li>📘 <strong>What You Learn:</strong> Add custom export logic to any admin model</li>
+                <li>♻️ <strong>Reusability:</strong> Export patient records, invoice logs, audit trails</li>
+                <li>💬 <strong>Inline Comments:</strong> Click-based CSV generation</li>
+                <li>📌 <strong>Related Topics:</strong> Data pipelines, external syncing, Excel reporting</li>
+              </ul>
+            </div>
+          </div>
+                  </div>
+                   <!-- Example 8 -->
+             <div class="col">
+          <div class="card mb-4">
+            <div class="card-header bg-warning text-white fw-bold">8️⃣ Auto-populating Slug Field from Brand
+              <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+                📋 Copy
+              </button>
+            </div>
+            <div class="card-body">
+    <pre class="bg-light p-3 rounded"><code class="language-python">from django.utils.text import slugify
+
+    class Car(models.Model):
+        brand = models.CharField(max_length=100)
+        slug = models.SlugField(unique=True, blank=True)
+
+        def save(self, *args, **kwargs):
+            if not self.slug:
+                self.slug = slugify(self.brand)
+            super().save(*args, **kwargs)</code></pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function/Class Used:</strong> SlugField, slugify(), save() override</li>
+                <li>📘 <strong>What You Learn:</strong> Generate slugs programmatically for clean URLs</li>
+                <li>♻️ <strong>Reusability:</strong> For SEO pages, reports, URLs in blogs/products</li>
+                <li>💬 <strong>Inline Comments:</strong> One-time slug creation on first save</li>
+                <li>📌 <strong>Related Topics:</strong> URL routing, blog entries, public links</li>
+              </ul>
+            </div>
+          </div>
+</div>
+          <!-- Example 9 -->
+               <div class="col">
+          <div class="card mb-4">
+            <div class="card-header bg-danger text-white fw-bold">9️⃣ Conditional Coloring in Admin List Display
+              <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+                📋 Copy
+              </button>
+            </div>
+            <div class="card-body">
+    <pre class="bg-light p-3 rounded"><code class="language-python">from django.utils.html import format_html
+
+    class CarAdmin(admin.ModelAdmin):
+        list_display = ['brand', 'year', 'highlight_year']
+
+        def highlight_year(self, obj):
+            if obj.year < 2000:
+                return format_html('&lt;span style="color:red;"&gt;{}&lt;/span&gt;', obj.year)
+            return obj.year
+        highlight_year.short_description = 'Year Status'</code></pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function/Class Used:</strong> format_html, list_display</li>
+                <li>📘 <strong>What You Learn:</strong> Dynamically color fields in admin lists</li>
+                <li>♻️ <strong>Reusability:</strong> Flag outdated records, risky statuses</li>
+                <li>💬 <strong>Inline Comments:</strong> Easy visual flags for admin actions</li>
+                <li>📌 <strong>Related Topics:</strong> Red flag UI, alert indicators, data monitoring</li>
+              </ul>
+            </div>
+          </div>
+</div>
+          <!-- Example 10 -->
+              <div class="col">
+          <div class="card mb-4">
+            <div class="card-header bg-dark text-white fw-bold">🔟 Admin Auto-Logging Edits (Audit Simulation)
+              <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+                📋 Copy
+              </button>
+            </div>
+            <div class="card-body">
+    <pre class="bg-light p-3 rounded"><code class="language-python">from django.db.models.signals import post_save
+    from django.dispatch import receiver
+    from cars.models import Car
+    import logging
+
+    logger = logging.getLogger(__name__)
+
+    @receiver(post_save, sender=Car)
+    def log_car_edit(sender, instance, created, **kwargs):
+        action = "Created" if created else "Updated"
+        logger.info(f"[{action}] Car: {instance.brand} ({instance.year})")</code></pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function/Class Used:</strong> signals, post_save, logging</li>
+                <li>📘 <strong>What You Learn:</strong> Track every change for audit/debugging</li>
+                <li>♻️ <strong>Reusability:</strong> Patient updates, ETL failures, admin changes</li>
+                <li>💬 <strong>Inline Comments:</strong> Enables backtracking of CRUD actions</li>
+                <li>📌 <strong>Related Topics:</strong> Audit trails, Snowflake sync logs, access records</li>
+              </ul>
+            </div>
+          </div>
+             </div>
+        </div>
+       {% include 'includes/comment_form.html' %}
+   </div>
+
+  <!-- ✅ Quiz Tab -->
+  <div class="tab-pane fade" id="quiz" role="tabpanel">
+    <div id="quizBox" class="p-3 bg-white rounded shadow"></div>
+    <div id="quizSummary" class="mt-4"></div>
+  </div>
+</div>
+
+
+
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    loadQuizData("admin_form_validation");
+
+    // Target cards only inside the Examples section
+    const exampleContainer = document.getElementById("exampleCards");
+    if (exampleContainer) {
+      const count = exampleContainer.querySelectorAll(".card").length;
+      document.getElementById("exampleCount").textContent = count;
+    }
+  });
+</script>
+
+<audio id="correctSound" src="{% static 'sounds/correct.mp3' %}"></audio>
+<audio id="wrongSound" src="{% static 'sounds/wrong.mp3' %}"></audio>
+<script src="{% static 'js/quiz_engine.js' %}"></script>
+<script src="{% static 'js/copy.js' %}"></script>
+{% endblock %}

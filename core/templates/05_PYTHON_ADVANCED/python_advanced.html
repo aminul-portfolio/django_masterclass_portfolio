@@ -1,0 +1,239 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+  <div class="text-center mb-5">
+    <h1 class="display-4 fw-bold text-primary">Python Advanced: OOP Examples</h1>
+    <p class="fs-5 text-muted"><strong>Explore real-world Object-Oriented Programming use cases using Python classes, inheritance, methods, and special functions.</strong></p>
+  </div>
+
+  <ul class="nav nav-tabs mb-4" id="contentTabs">
+    <li class="nav-item">
+      <button class="nav-link active" id="exampleTab" data-bs-toggle="tab" data-bs-target="#examples">
+        Examples <span class="badge bg-primary ms-1" id="exampleCount">0</span>
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" id="quizTab" data-bs-toggle="tab" data-bs-target="#quiz">
+        Quiz <span class="badge bg-success ms-1" id="quizCountText">10</span>
+      </button>
+    </li>
+  </ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade show active" id="examples">
+        <div class="row" id="exampleCards">
+
+            <div class="col">
+              <div class="card shadow h-100">
+                <div class="card-header bg-primary text-white fw-bold">Basic Class Initialization (Agent)</div>
+                <div class="card-body">
+                  <pre class="bg-light p-2 rounded">
+            <code class="language-python">
+            <span class="text-primary">class</span> Agent:
+                <span class="text-warning">def</span> <span class="text-success">__init__</span>(<span class="text-primary">self</span>, real_name):
+                    <span class="text-primary">self</span>.real_name = real_name
+
+            <span class="text-primary">agent</span> = Agent(<span class="text-secondary">"Alice"</span>)
+            <span class="text-success">print</span>(agent.real_name)
+            </code>
+                  </pre>
+                  <ul class="list-unstyled mt-3">
+                    <li>🔹 <strong>Function/Class Used:</strong> <code>class</code>, <code>__init__</code>, <code>self</code></li>
+                    <li>📘 <strong>What You Learn:</strong> Basic class creation, instance initialization</li>
+                    <li>♻️ <strong>Reusability:</strong> Foundation for creating custom object types</li>
+                    <li>💬 <strong>Inline Comments:</strong> Uses constructor method to define attributes</li>
+                    <li>📌 <strong>Related Topics:</strong> Object creation, instantiation</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card shadow h-100">
+                <div class="card-header bg-success text-white fw-bold">Circle Class with Area Calculation</div>
+                <div class="card-body">
+                  <pre class="bg-light p-3 rounded">
+            <code class="language-python">
+            <span class="text-primary">class</span> Circle:
+                pi = 3.14
+
+                <span class="text-warning">def</span> <span class="text-success">__init__</span>(<span class="text-primary">self</span>, radius=1):
+                    <span class="text-primary">self</span>.radius = radius
+
+                <span class="text-warning">def</span> area(<span class="text-primary">self</span>):
+                    <span class="text-primary">return</span> <span class="text-primary">self</span>.radius ** 2 * Circle.pi
+            </code>
+                  </pre>
+                  <ul class="list-unstyled mt-3">
+                    <li>🔹 <strong>Function/Class Used:</strong> <code>class</code>, <code>__init__</code>, <code>area()</code></li>
+                    <li>📘 <strong>What You Learn:</strong> Class attributes vs instance attributes</li>
+                    <li>♻️ <strong>Reusability:</strong> Adaptable to any shape calculation or formula engine</li>
+                    <li>💬 <strong>Inline Comments:</strong> Demonstrates method and attribute structure</li>
+                    <li>📌 <strong>Related Topics:</strong> Class method, geometric formulas</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card shadow h-100">
+                <div class="card-header bg-warning text-white fw-bold">Readable Object Output with __str__</div>
+                <div class="card-body">
+                  <pre class="bg-light p-3 rounded">
+            <code class="language-python">
+            <span class="text-primary">class</span> Book:
+                <span class="text-warning">def</span> <span class="text-success">__init__</span>(<span class="text-primary">self</span>, title, author):
+                    <span class="text-primary">self</span>.title = title
+                    <span class="text-primary">self</span>.author = author
+
+                <span class="text-warning">def</span> <span class="text-success">__str__</span>(<span class="text-primary">self</span>):
+                    <span class="text-primary">return</span> <span class="text-secondary">f"{self.title} by {self.author}"</span>
+            </code>
+                  </pre>
+                  <ul class="list-unstyled mt-3">
+                    <li>🔹 <strong>Function/Class Used:</strong> <code>__str__</code></li>
+                    <li>📘 <strong>What You Learn:</strong> String representation of objects</li>
+                    <li>♻️ <strong>Reusability:</strong> Printable user-friendly outputs for class instances</li>
+                    <li>💬 <strong>Inline Comments:</strong> Makes objects readable when printed</li>
+                    <li>📌 <strong>Related Topics:</strong> Magic methods</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card shadow h-100">
+                <div class="card-header bg-danger text-white fw-bold">Shared Class Attribute Example (Dog)</div>
+                <div class="card-body">
+                  <pre class="bg-light p-3 rounded"><code class="language-python">
+            <span class="text-primary">class</span> Dog:
+                species = <span class="text-secondary">"mammal"</span>
+
+                <span class="text-warning">def</span> <span class="text-success">__init__</span>(<span class="text-primary">self</span>, name):
+                    <span class="text-primary">self</span>.name = name
+            </code></pre>
+                  <ul class="list-unstyled mt-3">
+                    <li>🔹 <strong>Function/Class Used:</strong> <code>class</code>, <code>__init__</code>, <code>species</code></li>
+                    <li>📘 <strong>What You Learn:</strong> Shared class attributes</li>
+                    <li>♻️ <strong>Reusability:</strong> Works well in animal modeling systems</li>
+                    <li>💬 <strong>Inline Comments:</strong> Shows both class and instance variables</li>
+                    <li>📌 <strong>Related Topics:</strong> Inheritance, object modeling</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card shadow h-100">
+                <div class="card-header bg-info text-white fw-bold">Employee Bonus Method</div>
+                <div class="card-body">
+                  <pre class="bg-light p-3 rounded"><code class="language-python">
+            <span class="text-primary">class</span> Employee:
+                <span class="text-warning">def</span> <span class="text-success">__init__</span>(<span class="text-primary">self</span>, name, salary):
+                    <span class="text-primary">self</span>.name = name
+                    <span class="text-primary">self</span>.salary = salary
+
+                <span class="text-warning">def</span> bonus(<span class="text-primary">self</span>):
+                    <span class="text-primary">return</span> <span class="text-primary">self</span>.salary * 0.10
+            </code></pre>
+                  <ul class="list-unstyled mt-3">
+                    <li>🔹 <strong>Function/Class Used:</strong> <code>__init__</code>, <code>bonus()</code></li>
+                    <li>📘 <strong>What You Learn:</strong> Encapsulation and basic behavior</li>
+                    <li>♻️ <strong>Reusability:</strong> Can be extended to payroll systems</li>
+                    <li>💬 <strong>Inline Comments:</strong> Business logic inside methods</li>
+                    <li>📌 <strong>Related Topics:</strong> Encapsulation, salary management</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+                <div class="card shadow h-100">
+                    <div class="card-header bg-secondary text-white fw-bold">Bank Account with Deposit Method</div>
+                    <div class="card-body">
+                      <pre class="bg-light p-3 rounded"><code class="language-python">
+                <span class="text-primary">class</span> BankAccount:
+                    <span class="text-warning">def</span> <span class="text-success">__init__</span>(<span class="text-primary">self</span>, balance=0):
+                        <span class="text-primary">self</span>.balance = balance
+
+                    <span class="text-warning">def</span> deposit(<span class="text-primary">self</span>, amount):
+                        <span class="text-primary">self</span>.balance += amount
+                </code></pre>
+                      <ul class="list-unstyled mt-3">
+                        <li>🔹 <strong>Function/Class Used:</strong> <code>__init__</code>, <code>deposit()</code></li>
+                        <li>📘 <strong>What You Learn:</strong> Mutating internal state</li>
+                        <li>♻️ <strong>Reusability:</strong> Great for banking apps or wallets</li>
+                        <li>💬 <strong>Inline Comments:</strong> Tracks and updates balance</li>
+                        <li>📌 <strong>Related Topics:</strong> State management, transactions</li>
+                      </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+              <div class="card shadow h-100">
+                <div class="card-header bg-dark text-white fw-bold">Static Method for Utility Calculation</div>
+                <div class="card-body">
+                  <pre class="bg-light p-3 rounded"><code class="language-python">
+            <span class="text-primary">class</span> Math:
+                @<span class="text-success">staticmethod</span>
+                <span class="text-warning">def</span> add(x, y):
+                    <span class="text-primary">return</span> x + y
+            </code></pre>
+                  <ul class="list-unstyled mt-3">
+                    <li>🔹 <strong>Function/Class Used:</strong> <code>@staticmethod</code></li>
+                    <li>📘 <strong>What You Learn:</strong> Static methods don't access instance data</li>
+                    <li>♻️ <strong>Reusability:</strong> Useful for utility or helper classes</li>
+                    <li>💬 <strong>Inline Comments:</strong> Acts like a function inside class</li>
+                    <li>📌 <strong>Related Topics:</strong> Decorators, class utilities</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="card shadow h-100">
+                <div class="card-header bg-light text-dark fw-bold">Configuration Class with Settings Dictionary</div>
+                <div class="card-body">
+      <pre class="bg-light p-3 rounded"><code class="language-python">
+<span class="text-primary">class</span> Config:
+    settings = {
+        <span class="text-secondary">"debug"</span>: <span class="text-primary">True</span>,
+        <span class="text-secondary">"theme"</span>: <span class="text-secondary">"dark"</span>
+    }
+</code></pre>
+                  <ul class="list-unstyled mt-3">
+                    <li>🔹 <strong>Function/Class Used:</strong> <code>class</code>, <code>dict</code></li>
+                    <li>📘 <strong>What You Learn:</strong> Store static configuration data</li>
+                    <li>♻️ <strong>Reusability:</strong> Central config storage pattern</li>
+                    <li>💬 <strong>Inline Comments:</strong> Keeps project settings organized</li>
+                    <li>📌 <strong>Related Topics:</strong> Global settings, constants</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+        </div>
+        {% include 'includes/comment_form.html' %}
+    </div>
+
+    <div class="tab-pane fade" id="quiz">
+      <div id="quizBox"></div>
+      <div id="quizSummary" class="mt-4"></div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    loadQuizData("oop_8_examples");
+    document.getElementById("exampleCount").textContent = document.querySelectorAll(".card").length;
+  });
+</script>
+<audio id="correctSound" src="{% static 'sounds/correct.mp3' %}"></audio>
+<audio id="wrongSound" src="{% static 'sounds/wrong.mp3' %}"></audio>
+<script src="{% static 'js/quiz_engine.js' %}"></script>
+{% endblock %}

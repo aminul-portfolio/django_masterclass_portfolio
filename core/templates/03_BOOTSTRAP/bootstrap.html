@@ -1,0 +1,155 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+  <div class="text-center mb-5">
+    <h1 class="display-4 fw-bold text-primary">CSS + Bootstrap Integration</h1>
+    <p class="fs-5 text-muted"><strong>Explore core Bootstrap components using clean CSS structure, responsive layout, and reusable classes.</strong></p>
+  </div>
+
+  <ul class="nav nav-tabs mb-4" id="exampleTab" role="tablist">
+    <li class="nav-item">
+      <button class="nav-link active" id="example-tab" data-bs-toggle="tab" data-bs-target="#examples" type="button" role="tab">Examples <span class="badge bg-secondary" id="exampleCount">6</span></button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" id="quiz-tab" data-bs-toggle="tab" data-bs-target="#quiz" type="button" role="tab">Quiz <span class="badge bg-info" id="quizCountText"></span></button>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="examples" role="tabpanel">
+      <div class="row row-cols-1 row-cols-md-2 g-4" id="exampleCards">
+
+        {% comment %} Example 1 {% endcomment %}
+        <div class="col">
+          <div class="card shadow h-100">
+            <div class="card-header bg-primary text-white fw-bold">1️⃣ Bootstrap Buttons</div>
+            <div class="card-body">
+              <pre class="bg-light p-3 rounded"><code class="language-html">&lt;button class="btn btn-success"&gt;Success&lt;/button&gt;
+&lt;button class="btn btn-danger"&gt;Danger&lt;/button&gt;</code></pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function Used:</strong> <code>btn btn-*</code> Bootstrap classes</li>
+                <li>📘 <strong>What You Learn:</strong> Creating styled buttons quickly with contextual meaning.</li>
+                <li>♻️ <strong>Reusability:</strong> Use consistent button styles across apps without custom CSS.</li>
+                <li>💬 <strong>Inline Comments:</strong> Combine <code>btn</code> with context (e.g. <code>btn-danger</code>).</li>
+                <li>📎 <strong>Related Topics:</strong> Bootstrap buttons, utilities</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} Example 2 {% endcomment %}
+        <div class="col">
+          <div class="card shadow h-100">
+            <div class="card-header bg-success text-white fw-bold">2️⃣ Navbar Structure</div>
+            <div class="card-body">
+              <pre class="bg-light p-3 rounded"><code class="language-html">&lt;nav class="navbar navbar-dark bg-dark"&gt;
+  &lt;a class="navbar-brand" href="#"&gt;Brand&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function Used:</strong> <code>navbar navbar-dark</code>, <code>bg-dark</code></li>
+                <li>📘 <strong>What You Learn:</strong> Building responsive headers with branding.</li>
+                <li>♻️ <strong>Reusability:</strong> Navbar layouts apply to multipage web apps.</li>
+                <li>💬 <strong>Inline Comments:</strong> Customize brand, toggle, links easily.</li>
+                <li>📎 <strong>Related Topics:</strong> Navbar collapse, routing</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} Example 3 {% endcomment %}
+        <div class="col">
+          <div class="card shadow h-100">
+            <div class="card-header bg-danger text-white fw-bold">3️⃣ Bootstrap Grid</div>
+            <div class="card-body">
+              <pre class="bg-light p-3 rounded"><code class="language-html">&lt;div class="row"&gt;
+  &lt;div class="col-sm-2"&gt;2/12&lt;/div&gt;
+  &lt;div class="col-sm-10"&gt;10/12&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function Used:</strong> <code>row</code>, <code>col-sm-*</code> grid classes</li>
+                <li>📘 <strong>What You Learn:</strong> Responsive layout control with column widths.</li>
+                <li>♻️ <strong>Reusability:</strong> Design dashboard-style pages or forms.</li>
+                <li>💬 <strong>Inline Comments:</strong> Match column sum to 12 for structure.</li>
+                <li>📎 <strong>Related Topics:</strong> Bootstrap 5 grid system</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} Example 4 {% endcomment %}
+        <div class="col">
+          <div class="card shadow h-100">
+            <div class="card-header bg-info text-white fw-bold">4️⃣ Disabled Navbar Link</div>
+            <div class="card-body">
+              <pre class="bg-light p-3 rounded"><code class="language-html">&lt;a class="nav-link disabled"&gt;Disabled&lt;/a&gt;</code></pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function Used:</strong> <code>nav-link disabled</code></li>
+                <li>📘 <strong>What You Learn:</strong> Prevent user interaction on specific links.</li>
+                <li>♻️ <strong>Reusability:</strong> Useful for access control, WIP features.</li>
+                <li>💬 <strong>Inline Comments:</strong> Adds <code>pointer-events: none</code>, faded style.</li>
+                <li>📎 <strong>Related Topics:</strong> navs, access roles</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} Example 5 {% endcomment %}
+        <div class="col">
+          <div class="card shadow h-100">
+            <div class="card-header bg-secondary text-white fw-bold">5️⃣ Link-style Button</div>
+            <div class="card-body">
+              <pre class="bg-light p-3 rounded"><code class="language-html">&lt;button class="btn btn-link"&gt;Click Here&lt;/button&gt;</code></pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function Used:</strong> <code>btn btn-link</code></li>
+                <li>📘 <strong>What You Learn:</strong> Use button as anchor lookalike.</li>
+                <li>♻️ <strong>Reusability:</strong> Combine button behavior with link appearance.</li>
+                <li>💬 <strong>Inline Comments:</strong> Clean for minimalist UIs.</li>
+                <li>📎 <strong>Related Topics:</strong> accessibility, button styling</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {% comment %} Example 6 {% endcomment %}
+        <div class="col">
+          <div class="card shadow h-100">
+            <div class="card-header bg-dark text-white fw-bold">6️⃣ Responsive Toggle Button</div>
+            <div class="card-body">
+              <pre class="bg-light p-3 rounded"><code class="language-html">&lt;button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"&gt;
+  &lt;span class="navbar-toggler-icon"&gt;&lt;/span&gt;
+&lt;/button&gt;</code></pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function Used:</strong> <code>navbar-toggler</code>, <code>data-bs-toggle</code></li>
+                <li>📘 <strong>What You Learn:</strong> Control navbar visibility on small screens.</li>
+                <li>♻️ <strong>Reusability:</strong> Used in responsive menus or modals.</li>
+                <li>💬 <strong>Inline Comments:</strong> Requires paired collapse target.</li>
+                <li>📎 <strong>Related Topics:</strong> JavaScript toggling, accessibility</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+        {% include 'includes/comment_form.html' %}
+    </div>
+
+    <div class="tab-pane fade" id="quiz" role="tabpanel">
+      <div id="quizBox"></div>
+      <div id="quizSummary" class="mt-4"></div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<audio id="correctSound" src="{% static 'sounds/correct.mp3' %}"></audio>
+<audio id="wrongSound" src="{% static 'sounds/wrong.mp3' %}"></audio>
+<script src="{% static 'js/quiz_engine.js' %}"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    loadQuizData("css_bootstrap");
+    document.getElementById("exampleCount").textContent = document.querySelectorAll(".card").length;
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold text-primary">CSS Fundamentals & HTML Styling</h1>
+        <p class="fs-5 text-muted"><strong>Understand how CSS interacts with HTML to control layout, font, color, spacing, and structure.</strong></p>
+    </div>
+
+    <ul class="nav nav-tabs mb-4" id="htmlTabs">
+        <li class="nav-item">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#examples">Examples <span class="badge bg-primary" id="exampleCount">0</span></button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#quiz">Quiz <span class="badge bg-success" id="quizCountText">6</span></button>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="examples">
+            <div class="row row-cols-1 row-cols-md-2 g-4" id="exampleCards">
+
+<div class="col">
+  <div class="card h-100 shadow">
+    <div class="card-header bg-primary text-white fw-bold">1️⃣ Linking External CSS</div>
+    <div class="card-body">
+      <pre class="bg-light p-3 rounded"><code class="language-html">&lt;head&gt;
+  &lt;link rel="stylesheet" href="styling.css"&gt;
+&lt;/head&gt;</code></pre>
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function/Class Used:</strong> &lt;link&gt; tag</li>
+        <li>📘 <strong>What You Learn:</strong> How to apply external CSS styles to HTML pages.</li>
+        <li>♻️ <strong>Reusability Insight:</strong> External stylesheets make it easy to update design across pages.</li>
+        <li>💬 <strong>Inline Comments:</strong> Ensure the path to the CSS file is correct.</li>
+        <li>📎 <strong>Related Topics:</strong> internal style, inline style, href</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col">
+  <div class="card h-100 shadow">
+    <div class="card-header bg-success text-white fw-bold">2️⃣ Styling Elements with Class</div>
+    <div class="card-body">
+      <pre class="bg-light p-3 rounded"><code class="language-html">&lt;div class="box"&gt;Styled Content&lt;/div&gt;</code></pre>
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function/Class Used:</strong> class attribute</li>
+        <li>📘 <strong>What You Learn:</strong> Applying CSS rules using class selectors.</li>
+        <li>♻️ <strong>Reusability Insight:</strong> Classes allow consistent styling across multiple elements.</li>
+        <li>💬 <strong>Inline Comments:</strong> Classes should be semantic and reusable.</li>
+        <li>📎 <strong>Related Topics:</strong> .class selector, DRY CSS</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col">
+  <div class="card h-100 shadow">
+    <div class="card-header bg-info text-white fw-bold">3️⃣ Using ID Selectors</div>
+    <div class="card-body">
+      <pre class="bg-light p-3 rounded"><code class="language-html">&lt;div id="header"&gt;Site Header&lt;/div&gt;</code></pre>
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function/Class Used:</strong> id attribute</li>
+        <li>📘 <strong>What You Learn:</strong> Styling unique HTML elements.</li>
+        <li>♻️ <strong>Reusability Insight:</strong> IDs are best used for single-use components.</li>
+        <li>💬 <strong>Inline Comments:</strong> Avoid reusing the same ID across multiple elements.</li>
+        <li>📎 <strong>Related Topics:</strong> #id selector, specificity</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col">
+  <div class="card h-100 shadow">
+    <div class="card-header bg-danger text-white fw-bold">4️⃣ Font and Text Styling</div>
+    <div class="card-body">
+      <pre class="bg-light p-3 rounded"><code class="language-html">&lt;h1 style="font-family: Arial; font-size: 24px;"&gt;Hello&lt;/h1&gt;</code></pre>
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function/Class Used:</strong> style attribute, font-family</li>
+        <li>📘 <strong>What You Learn:</strong> Inline styling to control text appearance.</li>
+        <li>♻️ <strong>Reusability Insight:</strong> Use CSS files instead of inline for better maintainability.</li>
+        <li>💬 <strong>Inline Comments:</strong> Avoid inline styling in large-scale projects.</li>
+        <li>📎 <strong>Related Topics:</strong> text-align, font-size, CSS hierarchy</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col">
+  <div class="card h-100 shadow">
+    <div class="card-header bg-warning text-white fw-bold">5️⃣ CSS Box Model Example</div>
+    <div class="card-body">
+      <pre class="bg-light p-3 rounded"><code class="language-html">&lt;div class="box"&gt;
+  CENTRAL
+&lt;/div&gt;</code></pre>
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function/Class Used:</strong> margin, padding, border</li>
+        <li>📘 <strong>What You Learn:</strong> Understanding how the box model works.</li>
+        <li>♻️ <strong>Reusability Insight:</strong> Essential for layout and spacing.</li>
+        <li>💬 <strong>Inline Comments:</strong> Adjust spacing using CSS not inline styles.</li>
+        <li>📎 <strong>Related Topics:</strong> display, width, height</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col">
+  <div class="card h-100 shadow">
+    <div class="card-header bg-secondary text-white fw-bold">6️⃣ Nested Elements</div>
+    <div class="card-body">
+      <pre class="bg-light p-3 rounded"><code class="language-html">&lt;div&gt;
+  Outer Div
+  &lt;span&gt;Inline text&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function/Class Used:</strong> &lt;div&gt;, &lt;span&gt;</li>
+        <li>📘 <strong>What You Learn:</strong> Differentiating block vs inline elements.</li>
+        <li>♻️ <strong>Reusability Insight:</strong> Helps structure layouts and group styles.</li>
+        <li>💬 <strong>Inline Comments:</strong> Use span for inline styling within block containers.</li>
+        <li>📎 <strong>Related Topics:</strong> block, inline, semantic HTML</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+            </div>
+            {% include 'includes/comment_form.html' %}
+        </div>
+
+        <div class="tab-pane fade" id="quiz">
+            <div id="quizBox"></div>
+            <div id="quizSummary" class="mt-4"></div>
+        </div>
+    </div>
+</div>
+<audio id="correctSound" src="{% static 'sounds/correct.mp3' %}" preload="auto"></audio>
+<audio id="wrongSound" src="{% static 'sounds/wrong.mp3' %}" preload="auto"></audio>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/quiz_engine.js' %}"></script>
+<script>
+    loadQuizData("css");
+    document.getElementById("exampleCount").innerText = document.querySelectorAll("#exampleCards .card").length;
+</script>
+{% endblock %}

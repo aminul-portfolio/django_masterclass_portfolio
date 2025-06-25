@@ -1,0 +1,363 @@
+<!-- django_forms.html -->
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+  <h1 class="display-4 fw-bold text-primary text-center mb-4">Django Forms - Real World Examples</h1>
+
+  <ul class="nav nav-tabs mb-4" id="formTabs" role="tablist">
+    <li class="nav-item">
+      <button class="nav-link active" id="examples-tab" data-bs-toggle="tab" data-bs-target="#examples" type="button" role="tab">Examples <span class="badge bg-secondary" id="exampleCount">0</span></button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" id="quiz-tab" data-bs-toggle="tab" data-bs-target="#quiz" type="button" role="tab">Quiz <span class="badge bg-secondary" id="quizCountText">10</span></button>
+    </li>
+  </ul>
+
+  <div class="tab-content" id="formTabContent">
+    <div class="tab-pane fade show active" id="examples" role="tabpanel">
+      <div id="exampleCards">
+
+        <!-- Example 1 -->
+        <div class="card">
+  <div class="card-header bg-primary text-white fw-bold">🔸 Example 1: Saving Django Form Data to Snowflake Table</div>
+  <div class="card-body">
+    <pre class="bg-light p-3 rounded"><code class="language-python">import snowflake.connector
+
+def save_review_to_snowflake(form_data):
+    conn = snowflake.connector.connect(
+        user='your_user',
+        password='your_pass',
+        account='your_account_id'
+    )
+    cursor = conn.cursor()
+    cursor.execute("USE DATABASE your_db;")
+    cursor.execute("USE SCHEMA your_schema;")
+
+    insert_query = f"""
+        INSERT INTO reviews_table(first_name, last_name, stars)
+        VALUES (%s, %s, %s)
+    """
+    cursor.execute(insert_query, (form_data['first_name'], form_data['last_name'], form_data['stars']))
+    conn.commit()
+    cursor.close()
+    conn.close()</code></pre>
+    <ul class="list-unstyled mt-3">
+      <li>🔹 <strong>Function/Class Used:</strong> <code>snowflake.connector.connect()</code>, <code>cursor.execute()</code></li>
+      <li>📘 <strong>What You Learn:</strong> Send Django form data directly to a Snowflake table</li>
+      <li>♻️ <strong>Reusability:</strong> Reusable in dashboards, cloud data pipelines, CRM tools</li>
+      <li>💬 <strong>Inline Comments:</strong> Pushes structured data securely to Snowflake warehouse</li>
+      <li>📌 <strong>Related Topics:</strong> Snowflake integration, ETL design, B2B SaaS form handling</li>
+    </ul>
+  </div>
+</div>
+
+
+        <!-- Example 2 -->
+        <div class="card">
+  <div class="card-header bg-info text-white fw-bold">🔸 Example 2: Validating Form Input Against Snowflake Table</div>
+  <div class="card-body">
+    <pre class="bg-light p-3 rounded"><code class="language-python">def is_duplicate_review(email):
+    conn = snowflake.connector.connect(
+        user='your_user',
+        password='your_pass',
+        account='your_account_id'
+    )
+    cursor = conn.cursor()
+    cursor.execute("USE DATABASE your_db;")
+    cursor.execute("USE SCHEMA your_schema;")
+
+    query = f"SELECT COUNT(*) FROM reviews_table WHERE email = %s"
+    cursor.execute(query, (email,))
+    result = cursor.fetchone()[0]
+    return result &gt; 0</code></pre>
+    <ul class="list-unstyled mt-3">
+      <li>🔹 <strong>Function/Class Used:</strong> <code>cursor.fetchone()</code>, <code>SELECT COUNT(*)</code></li>
+      <li>📘 <strong>What You Learn:</strong> Perform server-side validation using Snowflake records</li>
+      <li>♻️ <strong>Reusability:</strong> Useful in fraud prevention, duplicate form checks, cloud apps</li>
+      <li>💬 <strong>Inline Comments:</strong> Validates user input against real-time Snowflake data</li>
+      <li>📌 <strong>Related Topics:</strong> Form validation, data integrity, cloud database checks</li>
+    </ul>
+  </div>
+</div>
+
+       <div class="card">
+  <div class="card-header bg-warning text-dark fw-bold">🔸 Example 3: ModelForm with Custom Labels and Error Messages</div>
+  <div class="card-body">
+    <pre class="bg-light p-3 rounded"><code class="language-python"># forms.py
+class ReviewForm(ModelForm):
+    class Meta:
+        model = Review
+        fields = "__all__"
+        labels = {
+            'first_name': "First Name",
+            'last_name': "Last Name",
+            'stars': "Rating"
+        }
+        error_messages = {
+            'stars': {
+                'min_value': "Yo! Minimum value must be 1",
+                'max_value': "Yo! Max value is 5"
+            }
+        }</code></pre>
+    <ul class="list-unstyled mt-3">
+      <li>🔹 <strong>Function/Class Used:</strong> ModelForm, Meta, error_messages</li>
+      <li>📘 <strong>What You Learn:</strong> Customize form labels and error messages within form class</li>
+      <li>♻️ <strong>Reusability:</strong> Perfect for any input form needing user-friendly UX</li>
+      <li>💬 <strong>Inline Comments:</strong> Allows form-level personalization for improved usability</li>
+      <li>📌 <strong>Related Topics:</strong> Form UX, Django validators, user feedback design</li>
+    </ul>
+  </div>
+</div>
+
+
+        <!-- Example 4 -->
+<div class="card">
+  <div class="card-header bg-success text-white fw-bold">🔸 Example 4: Looping Over Fields in Template with Custom Styling</div>
+  <div class="card-body">
+    <pre class="bg-light p-3 rounded"><code class="language-html">&lt;form method="POST"&gt;
+    {% csrf_token %}
+    {% for field in form %}
+        &lt;div class='myform'&gt;
+            {{ field.label_tag }} {{ field }} {{ field.errors }}
+        &lt;/div&gt;
+    {% endfor %}
+    &lt;input type="submit"&gt;
+&lt;/form&gt;</code></pre>
+    <ul class="list-unstyled mt-3">
+      <li>🔹 <strong>Function/Class Used:</strong> for loop, label_tag, field.errors</li>
+      <li>📘 <strong>What You Learn:</strong> How to manually render and style form fields in a loop</li>
+      <li>♻️ <strong>Reusability:</strong> Useful in surveys, step-based forms, and styled inputs</li>
+      <li>💬 <strong>Inline Comments:</strong> Enhances control over form layout and field-level errors</li>
+      <li>📌 <strong>Related Topics:</strong> Django form rendering, Bootstrap layout, validation styling</li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="card">
+  <div class="card-header bg-danger text-white fw-bold">🔸 Example 05: Using Template Inheritance for Form Pages</div>
+  <div class="card-body">
+    <pre class="bg-light p-3 rounded"><code class="language-html">
+&#123;&#37; extends "base.html" &#37;&#125;<br>
+&#123;&#37; block content &#37;&#125;<br>
+&nbsp;&nbsp;<form method="POST"><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#123;&#37; csrf_token &#37;&#125;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&#123;&#123; form.as_p &#125;&#125;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit"><br>
+&nbsp;&nbsp;</form><br>
+&#123;&#37; endblock &#37;&#125;
+</code></pre>
+
+
+    <ul class="list-unstyled mt-3">
+      <li>🔹 <strong>Function/Class Used:</strong> Template inheritance, <code>as_p</code>, <code>&#123;&#37; block content &#37;&#125;</code></li>
+      <li>📘 <strong>What You Learn:</strong> Use a shared base layout to simplify form page creation</li>
+      <li>♻️ <strong>Reusability:</strong> Centralized layout makes it easy to maintain consistency</li>
+      <li>💬 <strong>Inline Comments:</strong> Keeps form logic and layout clean, DRY and modular</li>
+      <li>📌 <strong>Related Topics:</strong> Template blocks, inheritance, DRY design pattern</li>
+    </ul>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header bg-warning text-dark fw-bold">🔸 Example 06: Overriding <code>clean()</code> Method for Custom Field Validation</div>
+  <div class="card-body">
+    <pre class="bg-light p-3 rounded"><code class="language-python">
+# forms.py
+from django import forms
+from .models import Review
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = "__all__"
+
+    def clean_stars(self):
+        stars = self.cleaned_data.get('stars')
+        if stars &lt; 3:
+            raise forms.ValidationError("Minimum 3 stars required for approval")
+        return stars
+</code></pre>
+
+    <ul class="list-unstyled mt-3">
+      <li>🔹 <strong>Function/Class Used:</strong> <code>clean_stars()</code>, <code>ValidationError</code></li>
+      <li>📘 <strong>What You Learn:</strong> Add custom logic-based validation in forms for specific fields</li>
+      <li>♻️ <strong>Reusability:</strong> Apply to limit values for ratings, thresholds in finance, or review inputs</li>
+      <li>💬 <strong>Inline Comments:</strong> Blocks submissions unless stars meet minimum requirement</li>
+      <li>📌 <strong>Related Topics:</strong> Business logic in forms, admin validation, user input control</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header bg-info text-white fw-bold">🔸 Example 07: Snowflake — Logging Form Submissions into Snowflake Table</div>
+  <div class="card-body">
+    <pre class="bg-light p-3 rounded"><code class="language-python">
+# utils/snowflake_writer.py
+import snowflake.connector
+
+def log_review_to_snowflake(first_name, last_name, stars):
+    conn = snowflake.connector.connect(
+        user='<your_user>',
+        password='<your_password>',
+        account='<your_account>',
+        warehouse='<your_warehouse>',
+        database='<your_database>',
+        schema='<your_schema>'
+    )
+    cursor = conn.cursor()
+    cursor.execute(
+        "INSERT INTO REVIEWS_LOG (FIRST_NAME, LAST_NAME, STARS) VALUES (%s, %s, %s)",
+        (first_name, last_name, stars)
+    )
+    cursor.close()
+    conn.close()
+</code></pre>
+
+    <ul class="list-unstyled mt-3">
+      <li>🔹 <strong>Function/Class Used:</strong> <code>snowflake.connector</code>, <code>cursor.execute()</code></li>
+      <li>📘 <strong>What You Learn:</strong> How to push form submission data into a Snowflake table</li>
+      <li>♻️ <strong>Reusability:</strong> Great for real-time data pipelines, analytics, ETL logs</li>
+      <li>💬 <strong>Inline Comments:</strong> Captures user input to cloud database instantly</li>
+      <li>📌 <strong>Related Topics:</strong> Cloud integration, logging, auditing, data engineering</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header bg-info text-white fw-bold">🔸 Example 08: Snowflake — Retrieve Form-Based Analytics</div>
+  <div class="card-body">
+    <pre class="bg-light p-3 rounded"><code class="language-python">
+# views.py
+import snowflake.connector
+from django.shortcuts import render
+
+def top_reviews(request):
+    conn = snowflake.connector.connect(
+        user='...',
+        password='...',
+        account='...',
+        warehouse='...',
+        database='...',
+        schema='...'
+    )
+    cursor = conn.cursor()
+    cursor.execute("SELECT FIRST_NAME, STARS FROM REVIEWS_LOG WHERE STARS = 5")
+    results = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return render(request, 'cars/top_reviews.html', {'results': results})
+</code></pre>
+
+    <ul class="list-unstyled mt-3">
+      <li>🔹 <strong>Function/Class Used:</strong> <code>fetchall()</code>, <code>render()</code></li>
+      <li>📘 <strong>What You Learn:</strong> Build dashboards using form submission data</li>
+      <li>♻️ <strong>Reusability:</strong> Can power admin reports, analytics, reward systems</li>
+      <li>💬 <strong>Inline Comments:</strong> Snowflake works as a dynamic reporting layer</li>
+      <li>📌 <strong>Related Topics:</strong> Cloud analytics, Snowflake dashboards, BI integration</li>
+    </ul>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header bg-warning text-dark fw-bold">🔸 Example 9: Conditional Form Field Visibility + Testing with Django TestCase</div>
+  <div class="card-body">
+    <pre class="bg-light p-3 rounded"><code class="language-html">
+&#123;% if user.is_authenticated %&#125;
+    &#123;&#123; form.first_name &#125;&#125;
+&#123;% else %&#125;
+    &lt;p&gt;Please log in to review&lt;/p&gt;
+&#123;% endif %&#125;
+</code></pre>
+
+    <pre class="bg-light p-3 rounded mt-3"><code class="language-python">
+# tests.py
+from django.test import TestCase
+from .forms import ReviewForm
+
+class ReviewFormTest(TestCase):
+    def test_valid_form(self):
+        data = {'first_name': 'John', 'last_name': 'Doe', 'stars': 5}
+        form = ReviewForm(data=data)
+        self.assertTrue(form.is_valid())
+</code></pre>
+
+    <ul class="list-unstyled mt-3">
+      <li>🔹 <strong>Function/Class Used:</strong> <code>TestCase</code>, <code>assertTrue()</code></li>
+      <li>📘 <strong>What You Learn:</strong> Conditionally show fields and test form logic</li>
+      <li>♻️ <strong>Reusability:</strong> Test all forms for reliability and CI/CD workflows</li>
+      <li>💬 <strong>Inline Comments:</strong> Prevent logic breaks during deployments</li>
+      <li>📌 <strong>Related Topics:</strong> Unit testing, field permissions, QA automation</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header bg-dark text-white fw-bold">🔸 Example 10: Finance — Cloud-Based Transaction Logging with Snowflake</div>
+  <div class="card-body">
+    <pre class="bg-light p-3 rounded"><code class="language-python">
+# utils/snowflake_finance.py
+import snowflake.connector
+from datetime import datetime
+
+def log_financial_transaction(user_id, stock_symbol, quantity, price):
+    conn = snowflake.connector.connect(
+        user='YOUR_USER',
+        password='YOUR_PASSWORD',
+        account='YOUR_ACCOUNT',
+        warehouse='YOUR_WAREHOUSE',
+        database='FINANCE_DB',
+        schema='TRANSACTIONS'
+    )
+    cursor = conn.cursor()
+    try:
+        total_amount = quantity * price
+        cursor.execute("""
+            INSERT INTO STOCK_TRADES_LOG
+            (USER_ID, SYMBOL, QTY, PRICE, TOTAL, TIMESTAMP)
+            VALUES (%s, %s, %s, %s, %s, %s)
+        """, (user_id, stock_symbol, quantity, price, total_amount, datetime.now()))
+    finally:
+        cursor.close()
+        conn.close()
+</code></pre>
+
+    <ul class="list-unstyled mt-3">
+      <li>🔹 <strong>Function/Class Used:</strong> <code>snowflake.connector</code>, <code>datetime.now()</code></li>
+      <li>📘 <strong>What You Learn:</strong> Log stock trade transactions into a Snowflake table</li>
+      <li>♻️ <strong>Reusability:</strong> Applies to FinTech logging, audits, and analytics pipelines</li>
+      <li>💬 <strong>Inline Comments:</strong> Tracks each trade in real-time with cloud-based sync</li>
+      <li>📌 <strong>Related Topics:</strong> Data warehousing, FinTech ETL, Snowflake pipelines</li>
+    </ul>
+  </div>
+</div>
+
+
+
+
+        <!-- More examples will be added below -->
+
+      </div>
+        {% include 'includes/comment_form.html' %}
+    </div>
+
+    <div class="tab-pane fade" id="quiz" role="tabpanel">
+      <div id="quizBox"></div>
+      <div id="quizSummary"></div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<audio id="correctSound" src="{% static 'sounds/correct.mp3' %}"></audio>
+<audio id="wrongSound" src="{% static 'sounds/wrong.mp3' %}"></audio>
+<script src="{% static 'js/quiz_engine.js' %}"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    loadQuizData("django_forms");
+    document.getElementById("exampleCount").textContent = document.querySelectorAll(".card").length;
+  });
+</script>
+{% endblock %}

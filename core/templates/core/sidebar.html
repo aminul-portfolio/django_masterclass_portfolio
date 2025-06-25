@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django Masterclass Portfolio</title>
+
+</head>
+<body>
+    <div id="sidebar">
+
+    </div>
+    <div id="main-content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+
+<!-- Section 05 -->
+<button class="sidebar-folder btn w-100 text-start d-flex align-items-center justify-content-between px-3 py-2"
+        data-bs-toggle="collapse"
+        data-bs-target="#sidebarCollapse5"
+        aria-expanded="false"
+        aria-controls="sidebarCollapse5">
+  <span class="d-flex align-items-center gap-2">
+    <span class="folder-emoji">📂</span>
+    <span class="folder-label">Intro to Django</span>
+  </span>
+  <span class="rotate-icon">▶️</span>
+</button>
+<div id="sidebarCollapse5" class="collapse {% if request.path == '/05_intro_django/' %} show{% endif %}">
+  <a class="nav-link {% if request.path == '/05_intro_django/' %}active{% endif %}" href="{% url '05_intro_django' %}">🌱 Getting Started</a>
+</div>
+
+<!-- Section 06 -->
+<button class="sidebar-folder btn w-100 text-start d-flex align-items-center justify-content-between px-3 py-2"
+        data-bs-toggle="collapse"
+        data-bs-target="#sidebarCollapse6"
+        aria-expanded="false"
+        aria-controls="sidebarCollapse6">
+  <span class="d-flex align-items-center gap-2">
+    <span class="folder-emoji">📂</span>
+    <span class="folder-label">Views, Routing & URLs</span>
+  </span>
+  <span class="rotate-icon">▶️</span>
+</button>
+<div id="sidebarCollapse6" class="collapse {% if request.path == '/06_views_urls/' %} show{% endif %}">
+  <a class="nav-link {% if request.path == '/06_views_urls/' %}active{% endif %}" href="{% url '06_views_urls' %}">🔗 URLs & Views</a>
+</div>
+
+<!-- Section 07 -->
+<button class="sidebar-folder btn w-100 text-start d-flex align-items-center justify-content-between px-3 py-2"
+        data-bs-toggle="collapse"
+        data-bs-target="#sidebarCollapse7"
+        aria-expanded="false"
+        aria-controls="sidebarCollapse7">
+  <span class="d-flex align-items-center gap-2">
+    <span class="folder-emoji">📂</span>
+    <span class="folder-label">Django Templates</span>
+  </span>
+  <span class="rotate-icon">▶️</span>
+</button>
+<div id="sidebarCollapse7" class="collapse {% if request.path == '/07_templates/' %} show{% endif %}">
+  <a class="nav-link {% if request.path == '/07_templates/' %}active{% endif %}" href="{% url '07_templates' %}">📄 Templates</a>
+</div>
+
+<!-- Section 08 -->
+<button class="sidebar-folder btn w-100 text-start d-flex align-items-center justify-content-between px-3 py-2"
+        data-bs-toggle="collapse"
+        data-bs-target="#sidebarCollapse8"
+        aria-expanded="false"
+        aria-controls="sidebarCollapse8">
+  <span class="d-flex align-items-center gap-2">
+    <span class="folder-emoji">📂</span>
+    <span class="folder-label">Models & Databases</span>
+  </span>
+  <span class="rotate-icon">▶️</span>
+</button>
+<div id="sidebarCollapse8" class="collapse {% if request.path == '/08_models/' %} show{% endif %}">
+  <a class="nav-link {% if request.path == '/08_models/' %}active{% endif %}" href="{% url '08_models' %}">🧬 Models</a>
+</div>
+
+<!-- Section 09 -->
+<button class="sidebar-folder btn w-100 text-start d-flex align-items-center justify-content-between px-3 py-2"
+        data-bs-toggle="collapse"
+        data-bs-target="#sidebarCollapse9"
+        aria-expanded="false"
+        aria-controls="sidebarCollapse9">
+  <span class="d-flex align-items-center gap-2">
+    <span class="folder-emoji">📂</span>
+    <span class="folder-label">Admin Portal</span>
+  </span>
+  <span class="rotate-icon">▶️</span>
+</button>
+<div id="sidebarCollapse9" class="collapse {% if request.path == '/09_admin_portal/' %} show{% endif %}">
+  <a class="nav-link {% if request.path == '/09_admin_portal/' %}active{% endif %}" href="{% url '09_admin_portal' %}">🛠️ Admin</a>
+</div>
+
+<!-- Section 10 -->
+<button class="sidebar-folder btn w-100 text-start d-flex align-items-center justify-content-between px-3 py-2"
+        data-bs-toggle="collapse"
+        data-bs-target="#sidebarCollapse10"
+        aria-expanded="false"
+        aria-controls="sidebarCollapse10">
+  <span class="d-flex align-items-center gap-2">
+    <span class="folder-emoji">📂</span>
+    <span class="folder-label">Forms</span>
+  </span>
+  <span class="rotate-icon">▶️</span>
+</button>
+<div id="sidebarCollapse10" class="collapse {% if request.path == '/10_forms/' %} show{% endif %}">
+  <a class="nav-link {% if request.path == '/10_forms/' %}active{% endif %}" href="{% url '10_forms' %}">📝 Forms</a>
+</div>
+
+<!-- Section 11 -->
+<button class="sidebar-folder btn w-100 text-start d-flex align-items-center justify-content-between px-3 py-2"
+        data-bs-toggle="collapse"
+        data-bs-target="#sidebarCollapse11"
+        aria-expanded="false"
+        aria-controls="sidebarCollapse11">
+  <span class="d-flex align-items-center gap-2">
+    <span class="folder-emoji">📂</span>
+    <span class="folder-label">Class-Based Views</span>
+  </span>
+  <span class="rotate-icon">▶️</span>
+</button>
+<div id="sidebarCollapse11" class="collapse {% if request.path == '/11_cbv/' %} show{% endif %}">
+  <a class="nav-link {% if request.path == '/11_cbv/' %}active{% endif %}" href="{% url '11_cbv' %}">🏛️ CBVs</a>
+</div>
+</html>

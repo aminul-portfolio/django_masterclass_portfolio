@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+    <div class="text-center mb-5">
+        <h1 class="display-4 fw-bold text-primary">HTML & CSS Essentials</h1>
+        <p class="fs-5 text-muted"><strong>Explore HTML structure and styling fundamentals through real-world examples and forms.</strong></p>
+    </div>
+
+    <ul class="nav nav-tabs mb-4" id="htmlTabs">
+        <li class="nav-item">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#examples">Examples <span class="badge bg-primary" id="exampleCount">0</span></button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#quiz">Quiz <span class="badge bg-success" id="quizCountText">10</span></button>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="examples">
+            <div class="row row-cols-1 row-cols-md-2 g-4" id="exampleCards">
+
+                <!-- Example 1 -->
+                <div class="col">
+                    <div class="card h-100 shadow">
+                        <div class="card-header bg-primary text-white fw-bold">1️⃣ Basic HTML Page</div>
+                        <div class="card-body">
+                            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;My First HTML Page&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;I love HTML5&lt;/h1&gt;
+    &lt;p&gt;because it is cool!&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                            <ul class="list-unstyled mt-3">
+                                <li>🔹 <strong>Function Used:</strong> HTML headings, paragraph</li>
+                                <li>📘 <strong>Learned:</strong> Setting up basic HTML document structure</li>
+                                <li>♻️ <strong>Reusability:</strong> Starter template for any HTML page</li>
+                                <li>💬 <strong>Comments:</strong> Focuses on document declaration, metadata, and body elements</li>
+                            </ul>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 2 -->
+                <div class="col">
+                    <div class="card h-100 shadow">
+                        <div class="card-header bg-info text-white fw-bold">2️⃣ Nested Lists</div>
+                        <div class="card-body">
+                            <pre><code>&lt;ul&gt;
+  &lt;li&gt;Salt&lt;/li&gt;
+  &lt;li&gt;Pasta&lt;/li&gt;
+  &lt;li&gt;Spaghetti
+    &lt;ul&gt;
+      &lt;li&gt;Spaghetti&lt;/li&gt;
+      &lt;li&gt;Spaghetti&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Tomatoes&lt;/li&gt;
+  &lt;li&gt;Cheese&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                            <ul class="list-unstyled mt-3">
+                                <li>🔹 <strong>Function Used:</strong> Unordered and nested lists</li>
+                                <li>📘 <strong>Learned:</strong> Organizing hierarchical data</li>
+                                <li>♻️ <strong>Reusability:</strong> Grocery list or feature list layout</li>
+                                <li>💬 <strong>Comments:</strong> Shows how lists can be nested</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 3 -->
+                <div class="col">
+                    <div class="card h-100 shadow">
+                        <div class="card-header bg-warning text-white fw-bold">3️⃣ Image & Links</div>
+                        <div class="card-body">
+                            <pre><code>&lt;img src="test.png" alt="Image not available"&gt;
+&lt;p&gt;&lt;a href="https://www.udemy.com"&gt;Udemy&lt;/a&gt;&lt;/p&gt;</code></pre>
+                            <ul class="list-unstyled mt-3">
+                                <li>🔹 <strong>Function Used:</strong> Images and hyperlinks</li>
+                                <li>📘 <strong>Learned:</strong> Linking and embedding content</li>
+                                <li>♻️ <strong>Reusability:</strong> Portfolio pages, blog posts</li>
+                                <li>💬 <strong>Comments:</strong> Essential for media-rich content</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 4 -->
+                <div class="col">
+                    <div class="card h-100 shadow">
+                        <div class="card-header bg-success text-white fw-bold">4️⃣ Form with Text Inputs</div>
+                        <div class="card-body">
+                            <pre><code>&lt;form&gt;
+  &lt;label&gt;Name:&lt;/label&gt;
+  &lt;input type="text" required&gt;
+  &lt;label&gt;Email:&lt;/label&gt;
+  &lt;input type="email" required&gt;
+  &lt;input type="submit" value="Submit"&gt;
+&lt;/form&gt;</code></pre>
+                            <ul class="list-unstyled mt-3">
+                                <li>🔹 <strong>Function Used:</strong> Form elements and validation</li>
+                                <li>📘 <strong>Learned:</strong> Collecting user input with constraints</li>
+                                <li>♻️ <strong>Reusability:</strong> Contact or order forms</li>
+                                <li>💬 <strong>Comments:</strong> Basic validation with "required" attribute</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 5 -->
+                <div class="col">
+                    <div class="card h-100 shadow">
+                        <div class="card-header bg-dark text-white fw-bold">5️⃣ Extended Form</div>
+                        <div class="card-body">
+                            <pre><code>&lt;form&gt;
+  &lt;input type="text" name="name" required&gt;
+  &lt;input type="radio" name="create_account" value="yes" required&gt;
+  &lt;select name="experience" required&gt;
+    &lt;option value="1"&gt;1&lt;/option&gt;
+  &lt;/select&gt;
+  &lt;textarea name="comments" rows="4" cols="50"&gt;&lt;/textarea&gt;
+&lt;/form&gt;</code></pre>
+                            <ul class="list-unstyled mt-3">
+                                <li>🔹 <strong>Function Used:</strong> Full form input types</li>
+                                <li>📘 <strong>Learned:</strong> Creating surveys or order forms</li>
+                                <li>♻️ <strong>Reusability:</strong> Feedback collection or user registration</li>
+                                <li>💬 <strong>Comments:</strong> Combines inputs, selects, radios, and textareas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+             {% include 'includes/comment_form.html' %}
+        </div>
+
+        <div class="tab-pane fade" id="quiz">
+            <div id="quizBox"></div>
+            <div id="quizSummary" class="mt-4"></div>
+        </div>
+    </div>
+</div>
+<audio id="correctSound" src="{% static 'sounds/correct.mp3' %}" preload="auto"></audio>
+<audio id="wrongSound" src="{% static 'sounds/wrong.mp3' %}" preload="auto"></audio>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/quiz_engine.js' %}"></script>
+<script src="{% static 'js/copy.js' %}"></script>
+<script>
+
+
+    loadQuizData("html");
+    document.getElementById("exampleCount").innerText = document.querySelectorAll("#exampleCards .card").length;
+</script>
+{% endblock %}

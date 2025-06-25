@@ -1,0 +1,292 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container py-5">
+<div class="text-center mb-5">
+    <h1 class="display-4 fw-bold text-primary">Django Views, Routing, and URLs</h1>
+    <p class="fs-5 text-muted"><strong>Explore Django's view functions, URL patterns, redirection, and JSON APIs with clean examples.</strong></p>
+</div>
+
+<ul class="nav nav-tabs mb-4" id="viewsTabs">
+    <li class="nav-item">
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#examples">Examples <span class="badge bg-primary" id="exampleCount">0</span></button>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#quiz">Quiz <span class="badge bg-success" id="quizCountText">10</span></button>
+    </li>
+</ul>
+<div class="tab-content">
+    <!-- Examples Tab -->
+    <div class="tab-pane fade show active" id="examples">
+
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+  <div class="col">
+    <div class="card shadow h-100">
+      <div class="card-header bg-dark text-white fw-bold">1️⃣ Simple View with Template</div>
+      <div class="card-body">
+        <pre class="bg-light p-3 rounded"><code class="language-python">
+<span class="text-primary">from</span> django.shortcuts <span class="text-primary">import</span> render
+
+<span class="text-comment"># Function-based view rendering a template</span>
+<span class="text-primary">def</span> simple_view(request):
+    <span class="text-primary">return</span> render(request, <span class="text-secondary">'first_app/example.html'</span>)
+        </code></pre>
+        <ul class="list-unstyled mt-3">
+          <li>🔹 <strong>Function/Class Used:</strong> <code>render()</code>, <code>simple_view()</code></li>
+          <li>📘 <strong>What You Learn:</strong> How to connect views with templates</li>
+          <li>♻️ <strong>Reusability:</strong> Standard method for rendering HTML pages</li>
+          <li>💬 <strong>Inline Comments:</strong> Basic structure of function-based views</li>
+          <li>📌 <strong>Related Topics:</strong> Templates, request-response cycle</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card shadow h-100">
+      <div class="card-header bg-primary text-white fw-bold">2️⃣ Dynamic URL Parameters with Addition</div>
+      <div class="card-body">
+        <pre class="bg-light p-3 rounded"><code class="language-python">
+<span class="text-primary">from</span> django.http <span class="text-primary">import</span> HttpResponse
+
+<span class="text-comment"># Adds two numbers passed in URL</span>
+<span class="text-primary">def</span> add_view(request, num1, num2):
+    result = num1 + num2
+    <span class="text-primary">return</span> HttpResponse(<span class="text-brown">str</span>(result))
+        </code></pre>
+        <ul class="list-unstyled mt-3">
+          <li>🔹 <strong>Function/Class Used:</strong> <code>HttpResponse</code></li>
+          <li>📘 <strong>What You Learn:</strong> Handling dynamic integer path parameters</li>
+          <li>♻️ <strong>Reusability:</strong> Used in calculators, analytics, math engines</li>
+          <li>💬 <strong>Inline Comments:</strong> Extracts parameters and returns sum</li>
+          <li>📌 <strong>Related Topics:</strong> Dynamic routing, URL converters</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card shadow h-100">
+      <div class="card-header bg-warning text-dark fw-bold">3️⃣ News View with Dictionary Lookup and 404</div>
+      <div class="card-body">
+        <pre class="bg-light p-3 rounded"><code class="language-python">
+<span class="text-primary">from</span> django.http <span class="text-primary">import</span> HttpResponse, HttpResponseNotFound
+
+articles = {
+    <span class="text-secondary">"sports"</span>: <span class="text-secondary">"Welcome to the sports page"</span>,
+    <span class="text-secondary">"finance"</span>: <span class="text-secondary">"Finance news here"</span>,
+    <span class="text-secondary">"politics"</span>: <span class="text-secondary">"Politics is in the news"</span>
+}
+
+<span class="text-comment"># Return matching topic or 404</span>
+<span class="text-primary">def</span> news_view(request, topic):
+    <span class="text-primary">try</span>:
+        headline = <span class="text-secondary">f"&lt;h1&gt;{articles[topic]}&lt;/h1&gt;"</span>
+        <span class="text-primary">return</span> HttpResponse(headline)
+    <span class="text-primary">except</span>:
+        <span class="text-primary">return</span> HttpResponseNotFound(<span class="text-secondary">"&lt;h1&gt;No article page for that topic!&lt;/h1&gt;"</span>)
+        </code></pre>
+        <ul class="list-unstyled mt-3">
+          <li>🔹 <strong>Function/Class Used:</strong> <code>HttpResponse</code>, <code>HttpResponseNotFound</code></li>
+          <li>📘 <strong>What You Learn:</strong> Dictionary lookup with error handling</li>
+          <li>♻️ <strong>Reusability:</strong> Ideal for CMS, blogs, article directories</li>
+          <li>💬 <strong>Inline Comments:</strong> Tries topic lookup and returns fallback</li>
+          <li>📌 <strong>Related Topics:</strong> Exception handling, dictionary access</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card shadow h-100">
+      <div class="card-header bg-success text-white fw-bold">4️⃣ Redirect Based on Page Number</div>
+      <div class="card-body">
+        <pre class="bg-light p-3 rounded"><code class="language-python">
+<span class="text-primary">from</span> django.http <span class="text-primary">import</span> HttpResponseRedirect
+
+pages = [<span class="text-secondary">'sports'</span>, <span class="text-secondary">'finance'</span>, <span class="text-secondary">'politics'</span>]
+
+<span class="text-comment"># Redirect numeric page to named topic</span>
+<span class="text-primary">def</span> page_num_view(request, page_number):
+    topic = pages[page_number]
+    <span class="text-primary">return</span> HttpResponseRedirect(topic)
+        </code></pre>
+        <ul class="list-unstyled mt-3">
+          <li>🔹 <strong>Function/Class Used:</strong> <code>HttpResponseRedirect</code></li>
+          <li>📘 <strong>What You Learn:</strong> Dynamic routing and redirection</li>
+          <li>♻️ <strong>Reusability:</strong> Used for pagination, category redirection</li>
+          <li>💬 <strong>Inline Comments:</strong> Uses index to redirect to actual topic</li>
+          <li>📌 <strong>Related Topics:</strong> Redirects, user navigation logic</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card shadow h-100">
+      <div class="card-header bg-info text-white fw-bold">5️⃣ Named URL Reversal with Redirect</div>
+      <div class="card-body">
+        <pre class="bg-light p-3 rounded"><code class="language-python">
+<span class="text-primary">from</span> django.urls <span class="text-primary">import</span> reverse
+<span class="text-primary">from</span> django.http <span class="text-primary">import</span> HttpResponseRedirect
+
+articles = {
+    <span class="text-secondary">"sports"</span>: <span class="text-secondary">"Welcome to the sports page"</span>,
+    <span class="text-secondary">"finance"</span>: <span class="text-secondary">"Finance news here"</span>,
+    <span class="text-secondary">"politics"</span>: <span class="text-secondary">"Politics is in the news"</span>
+}
+
+<span class="text-comment"># Redirect by using reverse() and name in URLConf</span>
+<span class="text-primary">def</span> num_page_view(request, num_page):
+    topics_list = <span class="text-brown">list</span>(articles.keys())
+    topic = topics_list[num_page]
+    <span class="text-primary">return</span> HttpResponseRedirect(reverse(<span class="text-secondary">'topic-page'</span>, args=[topic]))
+        </code></pre>
+        <ul class="list-unstyled mt-3">
+          <li>🔹 <strong>Function/Class Used:</strong> <code>reverse()</code>, <code>HttpResponseRedirect</code></li>
+          <li>📘 <strong>What You Learn:</strong> Named URLs and reversing them for redirects</li>
+          <li>♻️ <strong>Reusability:</strong> Clean and maintainable navigation logic</li>
+          <li>💬 <strong>Inline Comments:</strong> Uses reverse() for decoupled redirection</li>
+          <li>📌 <strong>Related Topics:</strong> Named URLs, DRY navigation, redirects</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card shadow h-100">
+      <div class="card-header bg-dark text-white fw-bold">6️⃣ Query String Parsing Example</div>
+      <div class="card-body">
+        <pre class="bg-light p-3 rounded"><code class="language-python">
+<span class="text-primary">def</span> search_view(request):
+    query = request.GET.get(<span class="text-secondary">'q'</span>, <span class="text-secondary">''</span>)
+    <span class="text-primary">return</span> HttpResponse(<span class="text-secondary">f"&lt;h2&gt;Search Results for: {query}&lt;/h2&gt;"</span>)
+        </code></pre>
+        <ul class="list-unstyled mt-3">
+          <li>🔹 <strong>Function/Class Used:</strong> <code>request.GET.get()</code></li>
+          <li>📘 <strong>What You Learn:</strong> Handling query strings</li>
+          <li>♻️ <strong>Reusability:</strong> Great for search bars and filters</li>
+          <li>💬 <strong>Inline Comments:</strong> Extracts query string from URL</li>
+          <li>📌 <strong>Related Topics:</strong> GET parameters, query parsing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card shadow h-100">
+      <div class="card-header bg-primary text-white fw-bold">7️⃣ JSON Response View</div>
+      <div class="card-body">
+        <pre class="bg-light p-3 rounded"><code class="language-python">
+<span class="text-primary">from</span> django.http <span class="text-primary">import</span> JsonResponse
+
+<span class="text-primary">def</span> api_data(request):
+    data = {<span class="text-secondary">'user'</span>: <span class="text-secondary">'admin'</span>, <span class="text-secondary">'auth'</span>: True}
+    <span class="text-primary">return</span> JsonResponse(data)
+        </code></pre>
+        <ul class="list-unstyled mt-3">
+          <li>🔹 <strong>Function/Class Used:</strong> <code>JsonResponse</code></li>
+          <li>📘 <strong>What You Learn:</strong> Returning JSON for APIs</li>
+          <li>♻️ <strong>Reusability:</strong> APIs, dashboards, AJAX features</li>
+          <li>💬 <strong>Inline Comments:</strong> Sends a simple dictionary as JSON</li>
+          <li>📌 <strong>Related Topics:</strong> REST, data APIs, AJAX</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card shadow h-100">
+      <div class="card-header bg-success text-white fw-bold">8️⃣ Class-Based View Example</div>
+      <div class="card-body">
+        <pre class="bg-light p-3 rounded"><code class="language-python">
+<span class="text-primary">from</span> django.views <span class="text-primary">import</span> View
+
+<span class="text-primary">class</span> HelloView(View):
+    <span class="text-primary">def</span> get(self, request):
+        <span class="text-primary">return</span> HttpResponse(<span class="text-secondary">"&lt;h1&gt;Hello from a Class-Based View&lt;/h1&gt;"</span>)
+        </code></pre>
+        <ul class="list-unstyled mt-3">
+          <li>🔹 <strong>Function/Class Used:</strong> <code>View</code>, <code>get()</code></li>
+          <li>📘 <strong>What You Learn:</strong> Basics of CBVs</li>
+          <li>♻️ <strong>Reusability:</strong> Good for REST views and scalable apps</li>
+          <li>💬 <strong>Inline Comments:</strong> Responds to GET requests in CBV</li>
+          <li>📌 <strong>Related Topics:</strong> OOP in Django, generic views</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card shadow h-100">
+      <div class="card-header bg-warning text-dark fw-bold">9️⃣ Handling POST Request Example</div>
+      <div class="card-body">
+        <pre class="bg-light p-3 rounded"><code class="language-python">
+<span class="text-primary">def</span> post_view(request):
+    <span class="text-primary">if</span> request.method == <span class="text-secondary">"POST"</span>:
+        name = request.POST.get(<span class="text-secondary">"name"</span>)
+        <span class="text-primary">return</span> HttpResponse(<span class="text-secondary">f"&lt;h3&gt;Hello, {name}!&lt;/h3&gt;"</span>)
+    <span class="text-primary">return</span> render(request, <span class="text-secondary">"form.html"</span>)
+        </code></pre>
+        <ul class="list-unstyled mt-3">
+          <li>🔹 <strong>Function/Class Used:</strong> <code>POST</code>, <code>render()</code></li>
+          <li>📘 <strong>What You Learn:</strong> Form data handling</li>
+          <li>♻️ <strong>Reusability:</strong> Sign-up, feedback forms</li>
+          <li>💬 <strong>Inline Comments:</strong> Detects POST and returns greeting</li>
+          <li>📌 <strong>Related Topics:</strong> Forms, CSRF, input validation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card shadow h-100">
+      <div class="card-header bg-info text-white fw-bold">🔟 Multiple Methods in a CBV</div>
+      <div class="card-body">
+        <pre class="bg-light p-3 rounded"><code class="language-python">
+<span class="text-primary">from</span> django.views <span class="text-primary">import</span> View
+
+<span class="text-primary">class</span> MultiMethodView(View):
+    <span class="text-primary">def</span> get(self, request):
+        <span class="text-primary">return</span> HttpResponse(<span class="text-secondary">"GET response here"</span>)
+
+    <span class="text-primary">def</span> post(self, request):
+        <span class="text-primary">return</span> HttpResponse(<span class="text-secondary">"POST response here"</span>)
+        </code></pre>
+        <ul class="list-unstyled mt-3">
+          <li>🔹 <strong>Function/Class Used:</strong> <code>get()</code>, <code>post()</code>, <code>View</code></li>
+          <li>📘 <strong>What You Learn:</strong> How CBVs handle multiple HTTP methods</li>
+          <li>♻️ <strong>Reusability:</strong> Replaces multiple function views with one class</li>
+          <li>💬 <strong>Inline Comments:</strong> Clean OOP design for both GET and POST</li>
+          <li>📌 <strong>Related Topics:</strong> REST APIs, view inheritance</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% include 'includes/comment_form.html' %}
+    </div>
+
+    <!-- Quiz Tab -->
+    <div class="tab-pane fade" id="quiz">
+        <div id="quizBox" class="mt-4"></div>
+        <div id="quizSummary" class="mt-4"></div>
+    </div>
+</div>
+
+
+
+</div>
+
+
+<audio id="correctSound" src="{% static 'sounds/correct.mp3' %}"></audio>
+<audio id="wrongSound" src="{% static 'sounds/wrong.mp3' %}"></audio>
+<script src="{% static 'js/quiz_engine.js' %}"></script>
+<script src="{% static 'js/quiz_engine.js' %}"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    loadQuizData("views_routing");
+    document.getElementById("exampleCount").textContent = document.querySelectorAll(".card").length;
+  });
+</script>
+
+
+{% endblock %}

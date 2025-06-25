@@ -1,0 +1,414 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="text-center mb-5">
+    <h1 class="display-4 fw-bold text-primary">Real-World Model-Based Template Examples</h1>
+    <p class="fs-5 text-muted"><strong>Dynamic Django templates with models, views, and context</strong></p>
+  </div>
+
+  <!-- Tabs -->
+  <ul class="nav nav-tabs mb-4" id="tabNavigation" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="examples-tab" data-bs-toggle="tab" data-bs-target="#examples" type="button" role="tab">
+        Examples <span class="badge bg-secondary" id="exampleCount">0</span>
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="quiz-tab" data-bs-toggle="tab" data-bs-target="#quiz" type="button" role="tab">
+        Quiz <span class="badge bg-info" id="quizCountText">10</span>
+      </button>
+    </li>
+  </ul>
+
+  <div class="tab-content" id="tabContent">
+  <!-- ✅ Examples Tab -->
+  <div class="tab-pane fade show active" id="examples" role="tabpanel">
+    <div class="row row-cols-1  g-4" id="exampleCards">
+
+
+<div class="col">
+      <div class="card shadow h-100">
+        <div class="card-header bg-secondary text-white fw-bold">1️⃣ Blog Post Rendering with Conditionals and URLs</div>
+        <div class="card-body">
+
+      <!-- ✅ models.py -->
+      <h6 class="fw-bold text-muted">📄 models.py</h6>
+      <div class="position-relative mb-3">
+        <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+          📋 Copy
+        </button>
+        <pre class="bg-light p-2 rounded"><code class="language-python">
+    <span class="text-info">from</span> django.db <span class="text-info">import</span> models
+    <span class="text-info">from</span> django.utils <span class="text-info">import</span> timezone
+
+    <span class="text-primary">class</span> BlogPost(models.Model):
+        title = models.CharField(max_length=100)
+        content = models.TextField()
+        is_published = models.BooleanField(default=False)
+        publish_date = models.DateField(default=timezone.now)
+
+        <span class="text-warning">def</span> __str__(self):
+            <span class="text-success">return</span> self.title
+        </code></pre>
+      </div>
+
+      <!-- ✅ views.py -->
+      <h6 class="fw-bold text-muted mt-3">📄 views.py</h6>
+      <div class="position-relative mb-3">
+        <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+          📋 Copy
+        </button>
+        <pre class="bg-light p-2 rounded"><code class="language-python">
+    <span class="text-info">from</span> django.shortcuts <span class="text-info">import</span> render
+    <span class="text-info">from</span> .models <span class="text-info">import</span> BlogPost
+
+    <span class="text-warning">def</span> blog_list(request):
+        posts = BlogPost.objects.filter(is_published=True)
+        <span class="text-success">return</span> render(request, <span class="text-secondary">'blog/list.html'</span>, {'posts': posts})
+        </code></pre>
+      </div>
+
+      <!-- ✅ list.html -->
+      <h6 class="fw-bold text-muted mt-3">📄 templates/blog/list.html</h6>
+      <div class="position-relative mb-3">
+        <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+          📋 Copy
+        </button>
+        <pre class="bg-light p-2 rounded"><code class="language-html">
+    &lt;h2&gt;Published Blog Posts&lt;/h2&gt;
+    &lt;ul&gt;
+      &#123;% for post in posts %&#125;
+        &lt;li&gt;
+          &lt;a href="&#123;% url 'blog_detail' post.id %&#125;"&gt;{{ post.title }}&lt;/a&gt; - {{ post.publish_date }}
+        &lt;/li&gt;
+      &#123;% empty %&#125;
+        &lt;li&gt;No blog posts available.&lt;/li&gt;
+      &#123;% endfor %&#125;
+    &lt;/ul&gt;
+        </code></pre>
+      </div>
+
+      <!-- ✅ Topic-Aligned Insights -->
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function/Class Used:</strong> <code>for</code>, <code>filter</code>, <code>&#123;% url %&#125;</code></li>
+        <li>📘 <strong>What You Learn:</strong> How to filter QuerySets, render templates with conditions, and build dynamic links</li>
+        <li>♻️ <strong>Reusability:</strong> Reuse this pattern in blogs, news portals, or any CMS that lists filtered content</li>
+        <li>💬 <strong>Inline Comments:</strong> Template loops only show posts where <code>is_published=True</code></li>
+        <li>📎 <strong>Related Topics:</strong> Detail views, custom slugs, class-based ListViews</li>
+        <li>🧸 <strong>Use Case:</strong> Blogs, CMS platforms, internal knowledge bases</li>
+      </ul>
+
+    </div>
+
+      </div>
+    </div>
+    <!-- ✅ Example 2: Product Catalogue with Categories -->
+<div class="col">
+  <div class="card shadow h-100">
+    <div class="card-header bg-info text-white fw-bold">2️⃣ Product Catalogue with Categories (Dynamic Loop + Template Filters)</div>
+    <div class="card-body">
+
+      <!-- ✅ models.py -->
+      <h6 class="fw-bold text-muted">📄 models.py</h6>
+      <div class="position-relative mb-3">
+        <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+          📋 Copy
+        </button>
+        <pre class="bg-light p-2 rounded"><code class="language-python">
+<span class="text-primary">class</span> Category(models.Model):
+    name = models.CharField(max_length=50)
+
+    <span class="text-warning">def</span> __str__(self):
+        <span class="text-success">return</span> self.name
+
+<span class="text-primary">class</span> Product(models.Model):
+    name = models.CharField(max_length=100)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+        </code></pre>
+      </div>
+
+      <!-- ✅ views.py -->
+      <h6 class="fw-bold text-muted mt-3">📄 views.py</h6>
+      <div class="position-relative mb-3">
+        <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+          📋 Copy
+        </button>
+        <pre class="bg-light p-2 rounded"><code class="language-python">
+<span class="text-info">from</span> .models <span class="text-info">import</span> Product
+
+<span class="text-warning">def</span> product_catalog(request):
+    products = Product.objects.all().order_by(<span class="text-secondary">'category__name'</span>)
+    <span class="text-success">return</span> render(request, <span class="text-secondary">'catalog/catalog.html'</span>, {'products': products})
+        </code></pre>
+      </div>
+
+      <!-- ✅ catalog.html -->
+      <h6 class="fw-bold text-muted mt-3">📄 templates/catalog/catalog.html</h6>
+      <div class="position-relative mb-3">
+        <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+          📋 Copy
+        </button>
+        <pre class="bg-light p-2 rounded"><code class="language-html">
+&lt;ul&gt;
+  &#123;% regroup products by category as grouped_products %&#125;
+
+  &#123;% for group in grouped_products %&#125;
+    &lt;h3&gt;&#123;&#123; group.grouper &#125;&#125;&lt;/h3&gt;
+    &lt;ul&gt;
+      &#123;% for item in group.list %&#125;
+        &lt;li&gt;&#123;&#123; item.name &#125;&#125; - $&#123;&#123; item.price &#125;&#125;&lt;/li&gt;
+      &#123;% endfor %&#125;
+    &lt;/ul&gt;
+  &#123;% endfor %&#125;
+&lt;/ul&gt;
+        </code></pre>
+      </div>
+
+      <!-- ✅ Topic-Aligned Insights -->
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function/Class Used:</strong> <code>ForeignKey</code>, <code>regroup</code>, <code>order_by</code></li>
+        <li>📘 <strong>What You Learn:</strong> Grouping, filtering, nested loops</li>
+        <li>♻️ <strong>Reusability:</strong> Perfect for e-commerce, inventory dashboards</li>
+        <li>💬 <strong>Inline Comments:</strong> Loops dynamically per category</li>
+        <li>📎 <strong>Related Topics:</strong> QuerySets, ORM, aggregate filters</li>
+        <li>🧸 <strong>Use Case:</strong> Shopping sites, equipment databases, catalogs</li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+      <!-- ✅ Example 3: User Dashboard with Auth & Conditional UI -->
+<div class="col">
+  <div class="card shadow h-100">
+    <div class="card-header bg-warning text-white fw-bold">3️⃣ User Dashboard with Auth & Conditional UI</div>
+    <div class="card-body">
+
+      <!-- ✅ views.py (Auth Dashboard) -->
+      <h6 class="fw-bold text-muted">📄 views.py</h6>
+      <div class="position-relative mb-3">
+        <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+          📋 Copy
+        </button>
+        <pre class="bg-light p-2 rounded"><code class="language-python">
+<span class="text-info">from</span> django.contrib.auth.decorators <span class="text-info">import</span> login_required
+
+@login_required
+<span class="text-warning">def</span> dashboard(request):
+    <span class="text-success">return</span> render(request, <span class="text-secondary">'users/dashboard.html'</span>, {'user': request.user})
+        </code></pre>
+      </div>
+
+      <!-- ✅ dashboard.html -->
+      <h6 class="fw-bold text-muted mt-3">📄 templates/users/dashboard.html</h6>
+      <div class="position-relative mb-3">
+        <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+          📋 Copy
+        </button>
+        <pre class="bg-light p-2 rounded"><code class="language-html">
+&#123;% if user.is_authenticated %&#125;
+  &lt;p&gt;Welcome, &#123;&#123; user.username &#125;&#125;! &lt;a href="&#123;% url 'logout' %&#125;"&gt;Logout&lt;/a&gt;&lt;/p&gt;
+&#123;% else %&#125;
+  &lt;p&gt;Please &lt;a href="&#123;% url 'login' %&#125;"&gt;log in&lt;/a&gt;.&lt;/p&gt;
+&#123;% endif %&#125;
+        </code></pre>
+      </div>
+
+      <!-- ✅ Topic-Aligned Insights (Auth) -->
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function/Class Used:</strong> <code>is_authenticated</code>, <code>@login_required</code>, <code>&#123;% url %&#125;</code></li>
+        <li>📘 <strong>What You Learn:</strong> Auth-based rendering and access control</li>
+        <li>♻️ <strong>Reusability:</strong> Applies to any SaaS dashboard or user panel</li>
+        <li>💬 <strong>Inline Comments:</strong> User-based conditional views</li>
+        <li>📎 <strong>Related Topics:</strong> Django auth, sessions, decorators</li>
+        <li>🧸 <strong>Use Case:</strong> Learning portals, account dashboards, client panels</li>
+      </ul>
+
+      <!-- ✅ models.py (Patient) -->
+      <h6 class="fw-bold text-muted mt-5">📄 models.py – Patient Model</h6>
+      <div class="position-relative mb-3">
+        <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+          📋 Copy
+        </button>
+        <pre class="bg-light p-2 rounded"><code class="language-python">
+<span class="text-primary">class</span> Patient(models.Model):
+    GENDER_CHOICES = [('M', 'Male'), ('F', 'Female'), ('O', 'Other')]
+
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+    age = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(120)])
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
+    heartrate = models.IntegerField(default=60, validators=[MinValueValidator(1), MaxValueValidator(300)])
+    last_visit = models.DateField(auto_now=True)
+    is_critical = models.BooleanField(default=False)
+
+    <span class="text-warning">def</span> __str__(self):
+        <span class="text-success">return</span> f"{self.last_name}, {self.first_name} ({self.age}y)"
+        </code></pre>
+      </div>
+
+      <!-- ✅ views.py (Critical Patients) -->
+      <h6 class="fw-bold text-muted mt-3">📄 views.py – Critical Patient Filter</h6>
+      <div class="position-relative mb-3">
+        <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+          📋 Copy
+        </button>
+        <pre class="bg-light p-2 rounded"><code class="language-python">
+<span class="text-warning">def</span> list_patients(request):
+    critical_patients = Patient.objects.filter(is_critical=True)
+    <span class="text-success">return</span> render(request, <span class="text-secondary">'office/list_critical.html'</span>, {'patients': critical_patients})
+        </code></pre>
+      </div>
+
+      <!-- ✅ list_critical.html -->
+      <h6 class="fw-bold text-muted mt-3">📄 templates/office/list_critical.html</h6>
+      <div class="position-relative mb-3">
+        <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+          📋 Copy
+        </button>
+        <pre class="bg-light p-2 rounded"><code class="language-html">
+&lt;h2&gt;🚨 Critical Patients&lt;/h2&gt;
+&lt;ul&gt;
+  &#123;% for p in patients %&#125;
+    &lt;li&gt;&#123;&#123; p.first_name &#125;&#125; &#123;&#123; p.last_name &#125;&#125; - &#123;&#123; p.age &#125;&#125; yrs | HR: &#123;&#123; p.heartrate &#125;&#125;&lt;/li&gt;
+  &#123;% empty %&#125;
+    &lt;li&gt;✅ No patients in critical condition.&lt;/li&gt;
+  &#123;% endfor %&#125;
+&lt;/ul&gt;
+        </code></pre>
+      </div>
+
+      <!-- ✅ Topic-Aligned Insights (Clinic) -->
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function/Class Used:</strong> <code>filter()</code>, <code>BooleanField</code>, <code>DateField</code></li>
+        <li>📘 <strong>What You Learn:</strong> Dynamic filtering in templates</li>
+        <li>♻️ <strong>Reusability:</strong> For hospitals, diagnostics, emergency systems</li>
+        <li>💬 <strong>Inline Comments:</strong> <code>is_critical=True</code> determines filtering</li>
+        <li>📎 <strong>Related Topics:</strong> Query optimization, admin search filters</li>
+        <li>🧸 <strong>Use Case:</strong> Real-time patient monitoring UI</li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+        <!-- ✅ Example 4: Cloud-Based Data Pipeline Job Monitor -->
+<div class="col">
+  <div class="card shadow h-100">
+    <div class="card-header bg-success text-white fw-bold">
+      4️⃣ Cloud-Based Data Pipeline Job Monitor&nbsp;(Snowflake / Airflow Simulation)
+    </div>
+    <div class="card-body">
+
+      <!-- ✅ models.py -->
+      <h6 class="fw-bold text-muted">📄 models.py</h6>
+      <div class="position-relative mb-3">
+        <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn"
+                data-bs-toggle="tooltip" title="Copy code">📋 Copy</button>
+        <pre class="bg-light p-2 rounded"><code class="language-python">
+<span class="text-primary">class</span> DataPipelineJob(models.Model):
+    JOB_STATUS = [
+        (<span class="text-secondary">'PENDING'</span>, <span class="text-secondary">'Pending'</span>),
+        (<span class="text-secondary">'RUNNING'</span>, <span class="text-secondary">'Running'</span>),
+        (<span class="text-secondary">'FAILED'</span>,  <span class="text-secondary">'Failed'</span>),
+        (<span class="text-secondary">'SUCCESS'</span>, <span class="text-secondary">'Success'</span>),
+    ]
+
+    job_name       = models.CharField(max_length=100)
+    triggered_by   = models.CharField(max_length=100)
+    status         = models.CharField(max_length=10, choices=JOB_STATUS, default=<span class="text-secondary">'PENDING'</span>)
+    runtime_seconds = models.IntegerField()
+    executed_at    = models.DateTimeField(auto_now_add=True)
+
+    <span class="text-warning">def</span> __str__(self):
+        <span class="text-success">return</span> f<span class="text-secondary">"{self.job_name} - {self.status}"</span>
+        </code></pre>
+      </div>
+
+      <!-- ✅ views.py -->
+      <h6 class="fw-bold text-muted mt-3">📄 views.py</h6>
+      <div class="position-relative mb-3">
+        <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn"
+                data-bs-toggle="tooltip" title="Copy code">📋 Copy</button>
+        <pre class="bg-light p-2 rounded"><code class="language-python">
+<span class="text-warning">def</span> pipeline_status(request):
+    jobs = DataPipelineJob.objects.all().order_by(<span class="text-secondary">'-executed_at'</span>)[:10]
+    <span class="text-success">return</span> render(request, <span class="text-secondary">'monitor/pipelines.html'</span>, {'jobs': jobs})
+        </code></pre>
+      </div>
+
+      <!-- ✅ pipelines.html -->
+      <h6 class="fw-bold text-muted mt-3">📄 templates/monitor/pipelines.html</h6>
+      <div class="position-relative mb-3">
+        <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn"
+                data-bs-toggle="tooltip" title="Copy code">📋 Copy</button>
+        <pre class="bg-light p-2 rounded"><code class="language-html">
+&lt;h2&gt;⛓️ Recent Data Pipeline Jobs&lt;/h2&gt;
+&lt;table class="table"&gt;
+  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Job&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;th&gt;Triggered By&lt;/th&gt;&lt;th&gt;Duration&lt;/th&gt;&lt;th&gt;Date&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+  &lt;tbody&gt;
+    &#123;% for job in jobs %&#125;
+      &lt;tr class="&#123;% if job.status == 'FAILED' %&#125;table-danger&#123;% elif job.status == 'SUCCESS' %&#125;table-success&#123;% endif %&#125;"&gt;
+        &lt;td&gt;&#123;&#123; job.job_name &#125;&#125;&lt;/td&gt;
+        &lt;td&gt;&#123;&#123; job.status &#125;&#125;&lt;/td&gt;
+        &lt;td&gt;&#123;&#123; job.triggered_by &#125;&#125;&lt;/td&gt;
+        &lt;td&gt;&#123;&#123; job.runtime_seconds &#125;&#125;s&lt;/td&gt;
+        &lt;td&gt;&#123;&#123; job.executed_at|date:"Y-m-d H:i" &#125;&#125;&lt;/td&gt;
+      &lt;/tr&gt;
+    &#123;% endfor %&#125;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+        </code></pre>
+      </div>
+
+      <!-- ✅ Insights -->
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function/Class Used:</strong> <code>DateTimeField</code>, <code>choices</code>, table filters</li>
+        <li>📘 <strong>What You Learn:</strong> Status tracking, real-time monitoring UI</li>
+        <li>♻️ <strong>Reusability:</strong> Great for ETL jobs, Airflow UI clones, Snowflake monitors</li>
+        <li>💬 <strong>Inline Comments:</strong> Color-coded rows based on job status</li>
+        <li>📎 <strong>Related Topics:</strong> Cron jobs, Snowflake status APIs, Airflow UI</li>
+        <li>🧸 <strong>Use Case:</strong> Cloud infrastructure, FinTech ETL pipelines</li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+      <!-- ✅ Add more examples below if needed -->
+
+    </div>
+       {% include 'includes/comment_form.html' %}
+  </div>
+
+  <!-- ✅ Quiz Tab -->
+  <div class="tab-pane fade" id="quiz" role="tabpanel">
+    <div id="quizBox" class="p-3 bg-white rounded shadow"></div>
+    <div id="quizSummary" class="mt-4"></div>
+  </div>
+</div>
+
+
+
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    loadQuizData("django_models_templates");
+    document.getElementById("exampleCount").textContent = document.querySelectorAll(".card").length;
+  });
+</script>
+<audio id="correctSound" src="{% static 'sounds/correct.mp3' %}"></audio>
+<audio id="wrongSound" src="{% static 'sounds/wrong.mp3' %}"></audio>
+<script src="{% static 'js/quiz_engine.js' %}"></script>
+<script src="{% static 'js/copy.js' %}"></script>
+
+{% endblock %}

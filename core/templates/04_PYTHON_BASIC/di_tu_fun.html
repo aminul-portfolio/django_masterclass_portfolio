@@ -1,0 +1,312 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="text-center mb-5">
+    <h1 class="display-4 fw-bold text-primary">Professional Use of Dictionaries, Tuples, and Functions</h1>
+    <p class="fs-5 text-muted"><strong>This module combines practical examples of Python dictionaries, tuple operations, and functions to solve industry-level tasks.</strong></p>
+  </div>
+
+  <ul class="nav nav-tabs mb-4" id="contentTabs" role="tablist">
+    <li class="nav-item">
+      <button class="nav-link active" id="examples-tab" data-bs-toggle="tab" data-bs-target="#examples" type="button" role="tab">Examples (<span id="exampleCount">0</span>)</button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" id="quiz-tab" data-bs-toggle="tab" data-bs-target="#quiz" type="button" role="tab">Quiz (<span id="quizCountText">10</span>)</button>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="examples" role="tabpanel">
+      <div class="row row-cols-1 row-cols-md-2 g-4" id="exampleCards">
+
+        <!-- Example 1 -->
+        <div class="col">
+          <div class="card shadow h-100">
+            <div class="card-header bg-primary text-white fw-bold">1️⃣ Creating and Accessing a Dictionary</div>
+            <div class="card-body">
+              <pre class="bg-light p-3 rounded">
+<code class="language-python">
+my_dict = {'key1': 'value1', 'key2': 'value2'}
+print(my_dict['key2'])
+</code></pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function Used:</strong> <code>dict()</code></li>
+                <li>📘 <strong>What You Learn:</strong> Basic dictionary creation and key access</li>
+                <li>♻️ <strong>Reusability:</strong> Common in config setup, key-value APIs</li>
+                <li>💬 <strong>Inline Comments:</strong> Defines key-value pairs, accesses value via key</li>
+                <li>📎 <strong>Related Topics:</strong> JSON, config files, NoSQL</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Example 2 -->
+        <div class="col">
+          <div class="card shadow h-100">
+            <div class="card-header bg-success text-white fw-bold">2️⃣ Nested Dictionary Access</div>
+            <div class="card-body">
+              <pre class="bg-light p-3 rounded">
+<code class="language-python">
+d = {'key1': {'nestkey': {'subnestkey': 'value'}}}
+print(d['key1']['nestkey']['subnestkey'])
+</code></pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function Used:</strong> <code>dict nesting</code></li>
+                <li>📘 <strong>What You Learn:</strong> Accessing deeply nested values</li>
+                <li>♻️ <strong>Reusability:</strong> Useful in JSON APIs and hierarchical data</li>
+                <li>💬 <strong>Inline Comments:</strong> Traverses multiple levels of nested dictionaries</li>
+                <li>📎 <strong>Related Topics:</strong> JSON parsing, MongoDB</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Example 3 -->
+        <div class="col">
+          <div class="card shadow h-100">
+            <div class="card-header bg-info text-white fw-bold">3️⃣ Dictionary with Lists and Methods</div>
+            <div class="card-body">
+              <pre class="bg-light p-3 rounded">
+<code class="language-python">
+my_dict = {'key1': 123, 'key2': [12, 23, 33], 'key3': ['item0', 'item1']}
+print(my_dict['key3'][0].upper())
+</code></pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function Used:</strong> <code>upper()</code></li>
+                <li>📘 <strong>What You Learn:</strong> Combining data structures and string methods</li>
+                <li>♻️ <strong>Reusability:</strong> Dynamic access and processing of API results</li>
+                <li>💬 <strong>Inline Comments:</strong> Access nested list element and apply string method</li>
+                <li>📎 <strong>Related Topics:</strong> NLP, web scraping</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Example 4 -->
+        <div class="col">
+          <div class="card shadow h-100">
+            <div class="card-header bg-warning text-white fw-bold">4️⃣ Dictionary Key Assignment</div>
+            <div class="card-body">
+              <pre class="bg-light p-3 rounded">
+<code class="language-python">
+d = {}
+d['animal'] = 'Dog'
+d['answer'] = 42
+print(d)
+</code></pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function Used:</strong> <code>dict assignment</code></li>
+                <li>📘 <strong>What You Learn:</strong> Dynamically create dictionary entries</li>
+                <li>♻️ <strong>Reusability:</strong> Populating objects in real-time apps</li>
+                <li>💬 <strong>Inline Comments:</strong> Adds keys and values on the fly</li>
+                <li>📎 <strong>Related Topics:</strong> session state, data pipelines</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Example 5 -->
+        <div class="col">
+          <div class="card shadow h-100">
+            <div class="card-header bg-danger text-white fw-bold">5️⃣ Dictionary Keys and Values</div>
+            <div class="card-body">
+              <pre class="bg-light p-3 rounded">
+<code class="language-python">
+d = {'key1': 1, 'key2': 2, 'key3': 3}
+print(d.keys())
+print(d.values())
+</code></pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function Used:</strong> <code>keys(), values()</code></li>
+                <li>📘 <strong>What You Learn:</strong> Retrieve keys/values from a dict</li>
+                <li>♻️ <strong>Reusability:</strong> Parsing and mapping dictionary contents</li>
+                <li>💬 <strong>Inline Comments:</strong> Returns dict views of keys and values</li>
+                <li>📎 <strong>Related Topics:</strong> iteration, list generation</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Example 6 -->
+        <div class="col">
+          <div class="card shadow h-100">
+            <div class="card-header bg-secondary text-white fw-bold">6️⃣ Tuple Unpacking in Loops</div>
+            <div class="card-body">
+              <pre class="bg-light p-3 rounded">
+<code class="language-python">
+pairs = [(1, 'a'), (2, 'b'), (3, 'c')]
+for num, char in pairs:
+    print(num, char)
+</code></pre>
+              <ul class="list-unstyled mt-3">
+                <li>🔹 <strong>Function Used:</strong> <code>tuple unpacking</code></li>
+                <li>📘 <strong>What You Learn:</strong> Clean iteration over paired data</li>
+                <li>♻️ <strong>Reusability:</strong> Useful in data pipelines, CSV parsing</li>
+                <li>💬 <strong>Inline Comments:</strong> Automatically separates tuple values in loop</li>
+                <li>📎 <strong>Related Topics:</strong> zip, pandas iterrows()</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Example 7 -->
+<div class="col">
+  <div class="card shadow h-100">
+    <div class="card-header bg-primary text-white fw-bold">7️⃣ Tuple Index Access</div>
+    <div class="card-body">
+      <pre class="bg-light p-3 rounded">
+<code class="language-python">
+coordinates = (45.4215, -75.6995)
+print("Latitude:", coordinates[0])
+</code></pre>
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function Used:</strong> Tuple indexing</li>
+        <li>📘 <strong>What You Learn:</strong> Access values in a tuple</li>
+        <li>♻️ <strong>Reusability:</strong> Geolocation, coordinate systems</li>
+        <li>💬 <strong>Inline Comments:</strong> Retrieves first item from a fixed-size tuple</li>
+        <li>📎 <strong>Related Topics:</strong> GPS APIs, data coordinates</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Example 8 -->
+<div class="col">
+  <div class="card shadow h-100">
+    <div class="card-header bg-success text-white fw-bold">8️⃣ Dictionary Update Method</div>
+    <div class="card-body">
+      <pre class="bg-light p-3 rounded">
+<code class="language-python">
+info = {'name': 'Alice'}
+info.update({'age': 30})
+print(info)
+</code></pre>
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function Used:</strong> <code>update()</code></li>
+        <li>📘 <strong>What You Learn:</strong> How to modify dict data efficiently</li>
+        <li>♻️ <strong>Reusability:</strong> Updating dynamic user or config data</li>
+        <li>💬 <strong>Inline Comments:</strong> Merges new key-value pair into existing dict</li>
+        <li>📎 <strong>Related Topics:</strong> patch requests, mutable data</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Example 9 -->
+<div class="col">
+  <div class="card shadow h-100">
+    <div class="card-header bg-info text-white fw-bold">9️⃣ Function Returning Boolean</div>
+    <div class="card-body">
+      <pre class="bg-light p-3 rounded">
+<code class="language-python">
+def is_even(n):
+    return n % 2 == 0
+
+print(is_even(8))
+</code></pre>
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function Used:</strong> <code>return</code></li>
+        <li>📘 <strong>What You Learn:</strong> Create boolean-returning logic</li>
+        <li>♻️ <strong>Reusability:</strong> Filtering, validation pipelines</li>
+        <li>💬 <strong>Inline Comments:</strong> Returns True only if number is divisible by 2</li>
+        <li>📎 <strong>Related Topics:</strong> Lambda, filters, testing</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Example 10 -->
+<div class="col">
+  <div class="card shadow h-100">
+    <div class="card-header bg-warning text-white fw-bold">🔟 Using *args in a Function</div>
+    <div class="card-body">
+      <pre class="bg-light p-3 rounded">
+<code class="language-python">
+def add_all(*nums):
+    return sum(nums)
+
+print(add_all(1, 2, 3, 4))
+</code></pre>
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function Used:</strong> <code>*args</code></li>
+        <li>📘 <strong>What You Learn:</strong> Accept variable number of arguments</li>
+        <li>♻️ <strong>Reusability:</strong> Useful in financial calculations and logging</li>
+        <li>💬 <strong>Inline Comments:</strong> Passes all values as tuple to the function</li>
+        <li>📎 <strong>Related Topics:</strong> decorators, logging, unpacking</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Example 11 -->
+<div class="col">
+  <div class="card shadow h-100">
+    <div class="card-header bg-danger text-white fw-bold">1️⃣1️⃣ Dictionary with List Comprehension</div>
+    <div class="card-body">
+      <pre class="bg-light p-3 rounded">
+<code class="language-python">
+names = ['Anna', 'Bob', 'Cara']
+lengths = {name: len(name) for name in names}
+print(lengths)
+</code></pre>
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function Used:</strong> Dictionary comprehension</li>
+        <li>📘 <strong>What You Learn:</strong> Build dictionaries dynamically</li>
+        <li>♻️ <strong>Reusability:</strong> Report generation, API summarization</li>
+        <li>💬 <strong>Inline Comments:</strong> Maps each name to its character count</li>
+        <li>📎 <strong>Related Topics:</strong> comprehension, pandas, functional programming</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Example 12 -->
+<div class="col">
+  <div class="card shadow h-100">
+    <div class="card-header bg-secondary text-white fw-bold">1️⃣2️⃣ Tuple as Dictionary Key</div>
+    <div class="card-body">
+      <pre class="bg-light p-3 rounded">
+<code class="language-python">
+location = {(40.7128, -74.0060): "New York"}
+print(location[(40.7128, -74.0060)])
+</code></pre>
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function Used:</strong> Tuple as immutable key</li>
+        <li>📘 <strong>What You Learn:</strong> Use tuples in lookup operations</li>
+        <li>♻️ <strong>Reusability:</strong> GIS systems, financial tickers</li>
+        <li>💬 <strong>Inline Comments:</strong> Tuples can serve as unique keys in dictionaries</li>
+        <li>📎 <strong>Related Topics:</strong> database keys, caching</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+      </div>
+        {% include 'includes/comment_form.html' %}
+    </div>
+
+    <!-- Quiz Section -->
+    <div class="tab-pane fade" id="quiz" role="tabpanel">
+      <div id="quizBox" class="my-4"></div>
+      <div id="quizSummary" class="alert alert-info d-none"></div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    loadQuizData("di_tu_fun");
+    document.getElementById("exampleCount").textContent = document.querySelectorAll(".card").length;
+  });
+</script>
+<audio id="correctSound" src="{% static 'sounds/correct.mp3' %}"></audio>
+<audio id="wrongSound" src="{% static 'sounds/wrong.mp3' %}"></audio>
+<script src="{% static 'js/quiz_engine.js' %}"></script>
+{% endblock %}

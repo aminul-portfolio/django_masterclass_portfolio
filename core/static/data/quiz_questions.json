@@ -1,0 +1,1117 @@
+{
+    "html": [
+        {
+            "question": "What does HTML stand for?",
+            "options": [
+                "Hyper Text Markup Language",
+                "Home Tool Markup Language",
+                "Hyperlinks and Text Mark Language",
+                "Hyperlinking Text Mark Language"
+            ],
+            "answer": "Hyper Text Markup Language",
+            "hint": "It's a language used for creating webpages."
+        },
+        {
+            "question": "Which tag is used to create a list with bullet points?",
+            "options": [
+                "<ol>",
+                "<ul>",
+                "<li>",
+                "<list>"
+            ],
+            "answer": "<ul>",
+            "hint": "Unordered lists use this tag."
+        },
+        {
+            "question": "What attribute specifies an alternate text for an image, if the image cannot be displayed?",
+            "options": [
+                "src",
+                "alt",
+                "href",
+                "title"
+            ],
+            "answer": "alt",
+            "hint": "Think of what appears when the image fails to load."
+        },
+        {
+            "question": "Which tag is used to create a hyperlink in HTML?",
+            "options": [
+                "<a>",
+                "<link>",
+                "<href>",
+                "<url>"
+            ],
+            "answer": "<a>",
+            "hint": "Anchor tag is the correct answer."
+        },
+        {
+            "question": "Which tag is used to insert a line break in HTML?",
+            "options": [
+                "<break>",
+                "<lb>",
+                "<br>",
+                "<hr>"
+            ],
+            "answer": "<br>",
+            "hint": "It's a self-closing tag."
+        },
+        {
+            "question": "Which tag is used to define a form in HTML?",
+            "options": [
+                "<form>",
+                "<input>",
+                "<fieldset>",
+                "<submit>"
+            ],
+            "answer": "<form>",
+            "hint": "It wraps all the input elements."
+        },
+        {
+            "question": "Which input type is used for entering an email address?",
+            "options": [
+                "text",
+                "email",
+                "password",
+                "address"
+            ],
+            "answer": "email",
+            "hint": "This input type validates email format."
+        },
+        {
+            "question": "Which HTML tag is used to define a dropdown list?",
+            "options": [
+                "<select>",
+                "<dropdown>",
+                "<option>",
+                "<input>"
+            ],
+            "answer": "<select>",
+            "hint": "It works with <option> tags inside."
+        },
+        {
+            "question": "Which element is used to group related data in a form?",
+            "options": [
+                "<fieldset>",
+                "<label>",
+                "<group>",
+                "<section>"
+            ],
+            "answer": "<fieldset>",
+            "hint": "It\u2019s used to visually group inputs."
+        },
+        {
+            "question": "Which tag is used to define a comment in HTML?",
+            "options": [
+                "<!-- comment -->",
+                "// comment",
+                "# comment",
+                "/* comment */"
+            ],
+            "answer": "<!-- comment -->",
+            "hint": "It's the only valid HTML comment format."
+        }
+    ],
+
+
+    "errors_and_exception_handling": [
+  {
+    "question": "What type of error occurs when dividing a number by zero in Python?",
+    "options": ["ValueError", "TypeError", "ZeroDivisionError", "SyntaxError"],
+    "answer": "ZeroDivisionError",
+    "hint": "It's a specific arithmetic error caused by invalid division."
+  },
+  {
+    "question": "Which block is always executed regardless of whether an error occurs?",
+    "options": ["try", "except", "else", "finally"],
+    "answer": "finally",
+    "hint": "It's used for cleanup operations like closing files or DB connections."
+  },
+  {
+    "question": "What is the purpose of the `else` block in a try-except structure?",
+    "options": [
+      "To catch all types of errors",
+      "To run code only if an error occurs",
+      "To run code if no error occurs",
+      "To define a custom error"
+    ],
+    "answer": "To run code if no error occurs",
+    "hint": "It complements try-except and only runs when the try block succeeds."
+  },
+  {
+    "question": "Which keyword is used to manually throw an exception in Python?",
+    "options": ["throw", "error", "raise", "assert"],
+    "answer": "raise",
+    "hint": "You use it to force an exception to occur."
+  },
+  {
+    "question": "What exception is raised when trying to open a file that does not exist?",
+    "options": ["KeyError", "IOError", "FileNotFoundError", "IndexError"],
+    "answer": "FileNotFoundError",
+    "hint": "It's specific to missing file operations."
+  },
+  {
+    "question": "Which of these statements is TRUE about try-except blocks?",
+    "options": [
+      "try must always be followed by else",
+      "except is optional",
+      "finally will not execute if an exception occurs",
+      "else is executed only if try does not raise an exception"
+    ],
+    "answer": "else is executed only if try does not raise an exception",
+    "hint": "It runs only when no errors are thrown in try."
+  },
+  {
+    "question": "What will this code raise: `int('abc')`?",
+    "options": ["ValueError", "TypeError", "SyntaxError", "KeyError"],
+    "answer": "ValueError",
+    "hint": "It happens when a value is of the correct type but has an inappropriate value."
+  },
+  {
+    "question": "Why is exception handling useful in Python?",
+    "options": [
+      "To slow down execution",
+      "To avoid writing tests",
+      "To handle unexpected errors and continue execution",
+      "To skip error checking"
+    ],
+    "answer": "To handle unexpected errors and continue execution",
+    "hint": "It prevents programs from crashing unexpectedly."
+  },
+  {
+    "question": "Which of these is NOT a valid built-in exception in Python?",
+    "options": ["MemoryError", "ConnectionError", "NameError", "CompileError"],
+    "answer": "CompileError",
+    "hint": "Python does not have this specific compile-time error."
+  },
+  {
+    "question": "What is the output of this code? \n\n```python\ntry:\n    print(1 / 0)\nexcept:\n    print(\"Error\")\nfinally:\n    print(\"Cleanup\")\n```",
+    "options": [
+      "Error\nCleanup",
+      "Cleanup\nError",
+      "Division by zero\nCleanup",
+      "No output"
+    ],
+    "answer": "Error\nCleanup",
+    "hint": "finally runs no matter what; except catches the division error."
+  }
+],
+
+  "css": [
+    {
+      "question": "What does the 'box model' in CSS consist of?",
+      "options": ["Margin, Border, Padding, Content", "Header, Footer, Body, Title", "Top, Bottom, Left, Right", "Block, Inline, Flex, Grid"],
+      "answer": "Margin, Border, Padding, Content",
+      "hint": "It's a layered model defining space around content."
+    },
+    {
+      "question": "Which CSS selector targets elements by class name?",
+      "options": [".classname", "#idname", "*", "::after"],
+      "answer": ".classname",
+      "hint": "It starts with a dot (.)"
+    },
+    {
+      "question": "How do you center text inside a div in CSS?",
+      "options": ["text-align: center;", "margin: 0 auto;", "align: center;", "display: center;"],
+      "answer": "text-align: center;",
+      "hint": "Use a property that aligns inline content."
+    },
+    {
+      "question": "Which property sets the background color of an element?",
+      "options": ["color", "font-style", "background-color", "bg"],
+      "answer": "background-color",
+      "hint": "It's specifically used for background styling."
+    },
+    {
+      "question": "What is the default position of a span element?",
+      "options": ["inline", "block", "flex", "absolute"],
+      "answer": "inline",
+      "hint": "Span behaves like text."
+    },
+    {
+      "question": "How do you apply styles only to an element with a specific ID?",
+      "options": ["#elementId", ".elementId", "::elementId", "*elementId"],
+      "answer": "#elementId",
+      "hint": "IDs are selected using the hash symbol."
+    },
+    {
+      "question": "Which CSS property controls the font used in an element?",
+      "options": ["font-family", "font-type", "text-font", "font-style"],
+      "answer": "font-family",
+      "hint": "You can set it to Arial, Verdana, etc."
+    },
+    {
+      "question": "What does 'em' measure in CSS?",
+      "options": ["Relative to the parent element's font size", "Fixed pixels", "Screen width", "Character height"],
+      "answer": "Relative to the parent element's font size",
+      "hint": "It's a relative unit."
+    },
+    {
+      "question": "Which property is used to reduce the space inside an element’s border?",
+      "options": ["padding", "margin", "spacing", "border-width"],
+      "answer": "padding",
+      "hint": "It’s the inner spacing."
+    },
+    {
+      "question": "How do you include an external CSS file in HTML?",
+      "options": ["<link rel='stylesheet' href='style.css'>", "<script src='style.css'>", "<style src='style.css'>", "<css-link file='style.css'>"],
+      "answer": "<link rel='stylesheet' href='style.css'>",
+      "hint": "Use the `<link>` tag in the `<head>`."
+    }
+  ],
+
+  "css_bootstrap": [
+    {
+      "question": "What Bootstrap class creates a green-colored button?",
+      "options": ["btn-primary", "btn-success", "btn-danger", "btn-info"],
+      "answer": "btn-success",
+      "hint": "Think of success indicators in Bootstrap color scheme."
+    },
+    {
+      "question": "Which Bootstrap class disables a link in a navigation bar?",
+      "options": ["nav-link-active", "nav-disabled", "disabled", "nav-link disabled"],
+      "answer": "nav-link disabled",
+      "hint": "You need two classes combined."
+    },
+    {
+      "question": "What is the total number of columns in a Bootstrap grid row?",
+      "options": ["10", "12", "6", "8"],
+      "answer": "12",
+      "hint": "Bootstrap uses a 12-column layout system."
+    },
+    {
+      "question": "Which class combination gives a dark navbar with light text?",
+      "options": ["navbar-dark bg-dark", "navbar-light bg-dark", "navbar-dark bg-light", "navbar bg-primary"],
+      "answer": "navbar-dark bg-dark",
+      "hint": "Both navbar and background need to be dark."
+    },
+    {
+      "question": "What is the purpose of the class `btn-link`?",
+      "options": ["Makes buttons rounded", "Makes buttons look like hyperlinks", "Disables buttons", "Adds icons to buttons"],
+      "answer": "Makes buttons look like hyperlinks",
+      "hint": "It's a button that looks like an anchor tag."
+    },
+    {
+      "question": "What attribute is required to toggle the collapse menu in a navbar?",
+      "options": ["data-toggle", "data-toggle-menu", "data-bs-toggle", "toggle-data"],
+      "answer": "data-bs-toggle",
+      "hint": "Bootstrap 5 uses a new prefix."
+    },
+    {
+      "question": "What does the `disabled` class do in Bootstrap?",
+      "options": ["Removes the element", "Hides the element", "Fades appearance and disables interaction", "Adds a red border"],
+      "answer": "Fades appearance and disables interaction",
+      "hint": "Visually dim + pointer-events: none."
+    },
+    {
+      "question": "Which class creates a horizontal layout in Bootstrap grid?",
+      "options": ["row", "container", "form-group", "col"],
+      "answer": "row",
+      "hint": "It's used to group columns together."
+    },
+    {
+      "question": "Which class allows the brand name to appear in the navbar?",
+      "options": ["navbar-brand", "brand-text", "navbar-title", "nav-link-brand"],
+      "answer": "navbar-brand",
+      "hint": "Used specifically to place branding."
+    },
+    {
+      "question": "What Bootstrap utility class would you use for spacing between grid columns?",
+      "options": ["g-2", "m-2", "p-3", "row-gap"],
+      "answer": "g-2",
+      "hint": "It's short for gutter."
+    }
+  ],
+
+  "python_basic": [
+    {
+      "question": "What will be the output of: print(2 + 3 * 2)?",
+      "options": ["10", "7", "12", "5"],
+      "answer": "8",
+      "hint": "Follow order of operations (PEMDAS)."
+    },
+    {
+      "question": "Which operator is used to calculate powers in Python?",
+      "options": ["^", "**", "//", "^^"],
+      "answer": "**",
+      "hint": "It's a double asterisk."
+    },
+    {
+      "question": "How do you access the first character of a string `s = 'Hello'`?",
+      "options": ["s[1]", "s[0]", "s[-1]", "s[first]"],
+      "answer": "s[0]",
+      "hint": "Indexing starts from 0 in Python."
+    },
+    {
+      "question": "What does `len('Python')` return?",
+      "options": ["5", "6", "7", "Error"],
+      "answer": "6",
+      "hint": "It counts all characters including letters."
+    },
+    {
+      "question": "What is the output of `len([1, 2, 3, 4])`?",
+      "options": ["3", "4", "5", "None"],
+      "answer": "4",
+      "hint": "Counts total elements in the list."
+    },
+    {
+      "question": "What does `my_list.pop()` do?",
+      "options": ["Adds an item", "Removes first item", "Removes last item", "Sorts the list"],
+      "answer": "Removes last item",
+      "hint": "It removes the last element by default."
+    }
+  ],
+
+  "di_tu_fun": [
+    {
+      "question": "What does the index [0] return in the tuple coordinates = (45.4215, -75.6995)?",
+      "options": ["Latitude", "Longitude", "Both values", "Error"],
+      "answer": "Latitude",
+      "hint": "Tuples are zero-indexed like lists."
+    },
+    {
+      "question": "What does the update() method do in a Python dictionary?",
+      "options": [
+        "Deletes all items",
+        "Adds or updates key-value pairs",
+        "Returns keys only",
+        "Sorts the dictionary"
+      ],
+      "answer": "Adds or updates key-value pairs",
+      "hint": "It's used to merge or insert data."
+    },
+    {
+      "question": "What will is_even(8) return in the boolean-returning function?",
+      "options": ["True", "False", "8", "None"],
+      "answer": "True",
+      "hint": "Check if 8 is divisible by 2."
+    },
+    {
+      "question": "What does *args allow in a Python function?",
+      "options": [
+        "Returning multiple values",
+        "Passing variable number of arguments",
+        "Creating a dictionary",
+        "Returning a tuple"
+      ],
+      "answer": "Passing variable number of arguments",
+      "hint": "It collects all extra arguments into a tuple."
+    },
+    {
+      "question": "What is the output of this dictionary comprehension: {name: len(name) for name in ['Anna', 'Bob']}?",
+      "options": [
+        "{'Anna': 4, 'Bob': 3}",
+        "{'Anna': 'Bob'}",
+        "[4, 3]",
+        "An error"
+      ],
+      "answer": "{'Anna': 4, 'Bob': 3}",
+      "hint": "Each name maps to its length."
+    },
+    {
+      "question": "Can a tuple be used as a dictionary key in Python?",
+      "options": ["Yes", "No", "Only with strings", "Only in lists"],
+      "answer": "Yes",
+      "hint": "Tuples are immutable and hashable."
+    },
+    {
+      "question": "What does print(info) display after info.update({'age': 30}) when info = {'name': 'Alice'}?",
+      "options": [
+        "{'name': 'Alice', 'age': 30}",
+        "{'age': 30}",
+        "{'name': 'Alice'}",
+        "Error"
+      ],
+      "answer": "{'name': 'Alice', 'age': 30}",
+      "hint": "The update method adds new pairs."
+    },
+    {
+      "question": "What is the result of sum(nums) when nums = (1, 2, 3, 4)?",
+      "options": ["10", "6", "Error", "24"],
+      "answer": "10",
+      "hint": "Sum adds all numeric values."
+    },
+    {
+      "question": "Which is NOT a correct use of tuple?",
+      "options": [
+        "Using as a dictionary key",
+        "Indexing like a list",
+        "Modifying an element",
+        "Iterating over it"
+      ],
+      "answer": "Modifying an element",
+      "hint": "Tuples are immutable."
+    },
+    {
+      "question": "Which of the following functions returns True for even numbers?",
+      "options": [
+        "def is_even(n): return n % 2 == 0",
+        "def is_even(n): return n * 2 == 0",
+        "def is_even(n): return n % 3 == 0",
+        "def is_even(n): return n % 5 == 0"
+      ],
+      "answer": "def is_even(n): return n % 2 == 0",
+      "hint": "Even numbers have zero remainder when divided by 2."
+    }
+  ],
+
+  "oop_8_examples": [
+    {
+      "question": "What is the purpose of the `__init__` method in a Python class?",
+      "options": [
+        "To destroy an instance",
+        "To return string representation",
+        "To initialize a new object",
+        "To print object info"
+      ],
+      "answer": "To initialize a new object",
+      "hint": "It's called automatically when a class instance is created."
+    },
+    {
+      "question": "How do you access instance variables inside a class?",
+      "options": [
+        "By using `this`",
+        "By calling the variable directly",
+        "Using the `self` keyword",
+        "You can't access them"
+      ],
+      "answer": "Using the `self` keyword",
+      "hint": "`self.variable_name` refers to instance-specific data."
+    },
+    {
+      "question": "Which method allows you to print a user-friendly version of an object?",
+      "options": [
+        "`__repr__`",
+        "`__print__`",
+        "`__str__`",
+        "`__init__`"
+      ],
+      "answer": "`__str__`",
+      "hint": "Used when the object is passed to `print()`."
+    },
+    {
+      "question": "Which of the following defines a class attribute?",
+      "options": [
+        "Inside a method",
+        "With `self.`",
+        "Outside all methods using `ClassName.attribute`",
+        "Inside `__str__`"
+      ],
+      "answer": "Outside all methods using `ClassName.attribute`",
+      "hint": "It's shared by all instances of the class."
+    },
+    {
+      "question": "What does `self.radius` represent in a class?",
+      "options": [
+        "A static variable",
+        "A local variable",
+        "An instance variable",
+        "A global variable"
+      ],
+      "answer": "An instance variable",
+      "hint": "`self.radius` is tied to the specific object instance."
+    },
+    {
+      "question": "What does the `return` keyword do in a class method?",
+      "options": [
+        "Returns a class",
+        "Prints data",
+        "Terminates the method",
+        "Sends data back to the caller"
+      ],
+      "answer": "Sends data back to the caller",
+      "hint": "Use `return` to make your method output usable elsewhere."
+    },
+    {
+      "question": "Why would you use magic methods like `__str__`?",
+      "options": [
+        "To hide variables",
+        "To perform string conversion automatically",
+        "To inherit from other classes",
+        "To define private methods"
+      ],
+      "answer": "To perform string conversion automatically",
+      "hint": "`__str__` controls how your object is printed."
+    },
+    {
+      "question": "How would you create an instance of a class named `Dog`?",
+      "options": [
+        "`Dog()`",
+        "`class Dog()`",
+        "`new Dog`",
+        "`Dog.new()`"
+      ],
+      "answer": "`Dog()`",
+      "hint": "You call the class name followed by parentheses."
+    },
+    {
+      "question": "Which method is automatically called when an object is created?",
+      "options": [
+        "`__new__`",
+        "`__init__`",
+        "`__str__`",
+        "`__repr__`"
+      ],
+      "answer": "`__init__`",
+      "hint": "It initializes your object's attributes."
+    },
+    {
+      "question": "What will `print(agent.real_name)` display if `agent = Agent('Bob')`?",
+      "options": [
+        "Agent",
+        "real_name",
+        "Bob",
+        "None"
+      ],
+      "answer": "Bob",
+      "hint": "The value assigned to `self.real_name` is printed."
+    }
+  ],
+
+  "views_routing": [
+    {
+      "question": "Which function is used to render a template in a Django view?",
+      "options": [
+        "render()",
+        "HttpResponse()",
+        "redirect()",
+        "get_template()"
+      ],
+      "answer": "render()",
+      "hint": "It's a shortcut that combines template loading and response creation."
+    },
+    {
+      "question": "How do you pass parameters in Django URLs?",
+      "options": [
+        "Using GET method",
+        "Through form",
+        "By defining in path() with converters",
+        "Using cookies"
+      ],
+      "answer": "By defining in path() with converters",
+      "hint": "You use angle brackets in path(), like <int:id>."
+    },
+    {
+      "question": "What does reverse() function in Django do?",
+      "options": [
+        "Redirects to a view",
+        "Reverses a string",
+        "Finds URL from a named URL pattern",
+        "Changes method to POST"
+      ],
+      "answer": "Finds URL from a named URL pattern",
+      "hint": "It's useful for decoupling URLs from logic."
+    },
+    {
+      "question": "What response type is used to send JSON data in Django?",
+      "options": [
+        "HttpResponse",
+        "render",
+        "JsonResponse",
+        "StreamingHttpResponse"
+      ],
+      "answer": "JsonResponse",
+      "hint": "It serializes a dictionary automatically to JSON."
+    },
+    {
+      "question": "Which HTTP methods are usually handled in CBVs?",
+      "options": [
+        "GET",
+        "POST",
+        "Both GET and POST",
+        "None of these"
+      ],
+      "answer": "Both GET and POST",
+      "hint": "You can define get() and post() methods inside a class."
+    },
+    {
+      "question": "What is returned if a dictionary lookup fails in the article view example?",
+      "options": [
+        "HttpResponse with empty string",
+        "HttpResponse with 'None'",
+        "HttpResponseNotFound",
+        "Redirect to homepage"
+      ],
+      "answer": "HttpResponseNotFound",
+      "hint": "It returns a 404 status code."
+    },
+    {
+      "question": "What does request.GET.get('q') return?",
+      "options": [
+        "The query string passed in URL with key 'q'",
+        "The HTTP method",
+        "The path of the request",
+        "The CSRF token"
+      ],
+      "answer": "The query string passed in URL with key 'q'",
+      "hint": "Used to extract parameters from the URL like /search?q=python"
+    },
+    {
+      "question": "Which module is required to define class-based views?",
+      "options": [
+        "django.template",
+        "django.views",
+        "django.middleware",
+        "django.conf"
+      ],
+      "answer": "django.views",
+      "hint": "You typically import View from this module."
+    },
+    {
+      "question": "What does HttpResponseRedirect do?",
+      "options": [
+        "Displays a 404 page",
+        "Loads a template",
+        "Redirects to another URL",
+        "Handles JSON data"
+      ],
+      "answer": "Redirects to another URL",
+      "hint": "It's often used to redirect after form submission."
+    },
+    {
+      "question": "In which case would you use a dynamic path parameter?",
+      "options": [
+        "To redirect based on form POST",
+        "To identify a page using its number or slug",
+        "To send static files",
+        "To protect a route"
+      ],
+      "answer": "To identify a page using its number or slug",
+      "hint": "Dynamic segments help map /article/1/ or /user/john/"
+    }
+  ],
+
+  "django_and_templates": [
+    {
+      "question": "What is the purpose of the {% raw %}{% block content %}{% endblock %}{% endraw %} tag in Django templates?",
+      "options": [
+        "It includes a JavaScript block",
+        "It allows child templates to override sections of HTML",
+        "It defines a static file path",
+        "It loads context variables"
+      ],
+      "answer": "It allows child templates to override sections of HTML",
+      "hint": "Blocks are used in template inheritance"
+    },
+    {
+      "question": "Which tag would you use to loop through a list of items in a Django template?",
+      "options": [
+        "{% raw %}{% if item in items %}{% endraw %}",
+        "{% raw %}{% loop items %}{% endraw %}",
+        "{% raw %}{% for item in items %}{% endfor %}{% endraw %}",
+        "{% raw %}{% iterate items %}{% endraw %}"
+      ],
+      "answer": "{% raw %}{% for item in items %}{% endfor %}{% endraw %}",
+      "hint": "Django uses a `for` loop with `endfor`"
+    },
+    {
+      "question": "What does {% raw %}{% load static %}{% endraw %} do in a Django template?",
+      "options": [
+        "Loads static HTML content",
+        "Displays the static context data",
+        "Makes static files (CSS, JS, images) accessible via `{% static %}`",
+        "Includes JavaScript code inline"
+      ],
+      "answer": "Makes static files (CSS, JS, images) accessible via `{% static %}`",
+      "hint": "Required for linking external assets"
+    },
+    {
+      "question": "What will this code output if the user is not logged in? {% raw %}{% if user.is_authenticated %}Welcome!{% else %}Login{% endif %}{% endraw %}",
+      "options": [
+        "Login",
+        "Welcome!",
+        "Error",
+        "True"
+      ],
+      "answer": "Login",
+      "hint": "`is_authenticated` is False when not logged in"
+    },
+    {
+      "question": "How do you refer to a named URL in Django templates?",
+      "options": [
+        "{% raw %}{{ url:'home' }}{% endraw %}",
+        "{% raw %}<a href='home'>{% endraw %}",
+        "{% raw %}{% url 'home' %}{% endraw %}",
+        "{% raw %}{% get_url 'home' %}{% endraw %}"
+      ],
+      "answer": "{% raw %}{% url 'home' %}{% endraw %}",
+      "hint": "Use `{% url %}` with the name of the path"
+    },
+    {
+      "question": "Which file should contain {% raw %}{% block content %}{% endblock %}{% endraw %}?",
+      "options": [
+        "base.html",
+        "admin.py",
+        "urls.py",
+        "settings.py"
+      ],
+      "answer": "base.html",
+      "hint": "Template blocks are defined in the base layout"
+    },
+    {
+      "question": "Why use `{% raw %}{% static 'images/logo.png' %}{% endraw %}` in templates?",
+      "options": [
+        "To download the image",
+        "To fetch an image from a CDN",
+        "To link to a static image stored in the project",
+        "To cache the image"
+      ],
+      "answer": "To link to a static image stored in the project",
+      "hint": "Static files are served using `{% static %}`"
+    },
+    {
+      "question": "Which of these is required in a child template that extends `base.html`?",
+      "options": [
+        "{% raw %}{% load static %}{% endraw %}",
+        "{% raw %}{% block content %}{% endblock %}{% endraw %}",
+        "{% raw %}{% include 'base.html' %}{% endraw %}",
+        "{% raw %}{% block base %}{% endblock %}{% endraw %}"
+      ],
+      "answer": "{% raw %}{% block content %}{% endblock %}{% endraw %}",
+      "hint": "You override the content block in the child"
+    },
+    {
+      "question": "What will this render in the browser? {% raw %}<p>{{ username }}</p>{% endraw %}",
+      "options": [
+        "The value of the `username` variable from context",
+        "The string 'username'",
+        "An error",
+        "Nothing"
+      ],
+      "answer": "The value of the `username` variable from context",
+      "hint": "Variables are wrapped in `{{ }}`"
+    },
+    {
+      "question": "What is the main purpose of template inheritance in Django?",
+      "options": [
+        "To speed up Python logic",
+        "To allow templates to load faster",
+        "To avoid code duplication and enforce consistent layout",
+        "To reuse database models"
+      ],
+      "answer": "To avoid code duplication and enforce consistent layout",
+      "hint": "Reusability and DRY principle"
+    }
+  ],
+
+  "django_models_templates": [
+    {
+      "question": "Which model field type is best for storing blog post content?",
+      "options": ["CharField", "TextField", "DateField", "EmailField"],
+      "answer": "TextField"
+    },
+    {
+      "question": "Which template tag is used to loop over QuerySet objects in Django templates?",
+      "options": ["{% loop %}", "{% for %}", "{% repeat %}", "{% while %}"],
+      "answer": "{% for %}"
+    },
+    {
+      "question": "In the Product Catalogue example, what Django tag is used to group items by category?",
+      "options": ["{% group %}", "{% by_category %}", "{% regroup %}", "{% with %}"],
+      "answer": "{% regroup %}"
+    },
+    {
+      "question": "Which Django decorator is used to protect views for authenticated users only?",
+      "options": ["@admin_required", "@auth_required", "@login_required", "@user_check"],
+      "answer": "@login_required"
+    },
+    {
+      "question": "In the clinic model, which field ensures values like heart rate remain within a safe range?",
+      "options": ["DecimalField", "TextField", "BooleanField", "IntegerField with validators"],
+      "answer": "IntegerField with validators"
+    },
+    {
+      "question": "Which Django model field would you use for logging exact date and time of a job execution?",
+      "options": ["DateField", "CharField", "DateTimeField", "TimeField"],
+      "answer": "DateTimeField"
+    },
+    {
+      "question": "What CSS class is used to mark a job row red when status is 'FAILED' in the pipeline monitor?",
+      "options": ["table-error", "danger-row", "table-danger", "bg-failed"],
+      "answer": "table-danger"
+    },
+    {
+      "question": "Which field type is best suited to track GB usage in cloud billing models?",
+      "options": ["IntegerField", "TextField", "FloatField", "DecimalField"],
+      "answer": "FloatField"
+    },
+    {
+      "question": "What is the purpose of the Django template filter `|date:\"Y-m-d H:i\"`?",
+      "options": [
+        "Formats the date in a friendly way",
+        "Converts time to UTC",
+        "Sorts the data",
+        "Displays datetime in YYYY-MM-DD HH:MM format"
+      ],
+      "answer": "Displays datetime in YYYY-MM-DD HH:MM format"
+    },
+    {
+      "question": "What does `is_critical=True` help filter in the patient listing view?",
+      "options": [
+        "Only female patients",
+        "Patients under 18",
+        "Patients in a critical state",
+        "All discharged patients"
+      ],
+      "answer": "Patients in a critical state"
+    }
+  ],
+
+  "admin_form_validation": [
+    {
+      "question": "What will happen if you define `readonly_fields = ['brand']` and try to use `form.save()` in the admin?",
+      "options": [
+        "The brand field will be excluded from the form entirely",
+        "The brand field will throw a validation error",
+        "The field will appear disabled in the form but still retain its original value upon save",
+        "Django will ignore `readonly_fields` when saving"
+      ],
+      "answer": "The field will appear disabled in the form but still retain its original value upon save",
+      "hint": "`readonly_fields` doesn't remove fields\u2014it just disables input in the UI."
+    },
+    {
+      "question": "In Example 2, what\u2019s the purpose of using `short_description` for the `set_current_year` admin action?",
+      "options": [
+        "To define the success message",
+        "To customize the label shown in the action dropdown",
+        "To restrict the action to superusers",
+        "To log the action automatically"
+      ],
+      "answer": "To customize the label shown in the action dropdown",
+      "hint": "Django uses `short_description` as the visible name in the UI."
+    },
+    {
+      "question": "When using a custom `SimpleListFilter` (Example 3), what does `parameter_name` control?",
+      "options": [
+        "The template used",
+        "The GET parameter used in the admin URL",
+        "The display name of the filter",
+        "The order of filter rendering"
+      ],
+      "answer": "The GET parameter used in the admin URL",
+      "hint": "This name is reflected in the query string (?age=modern)."
+    },
+    {
+      "question": "If you use `extra = 1` in `TabularInline`, how many inline forms will be rendered by default?",
+      "options": [
+        "0",
+        "1",
+        "All related records",
+        "One per user session"
+      ],
+      "answer": "1",
+      "hint": "`extra` means how many empty slots are shown for new records."
+    },
+    {
+      "question": "In the Chart Integration (Example 6), what does `change_list_template` override?",
+      "options": [
+        "Admin form view",
+        "Model registration",
+        "Default changelist HTML template for the model",
+        "Admin URL routing"
+      ],
+      "answer": "Default changelist HTML template for the model",
+      "hint": "It swaps the base changelist page with a custom one."
+    },
+    {
+      "question": "What is a critical **security measure** when exporting CSV in admin (Example 7)?",
+      "options": [
+        "Use `post_save` signals",
+        "Wrap export logic in a try-except",
+        "Validate permissions before writing to HttpResponse",
+        "Always export to JSON instead"
+      ],
+      "answer": "Validate permissions before writing to HttpResponse",
+      "hint": "Admin actions are powerful\u2014limit access when needed."
+    },
+    {
+      "question": "In Example 8, why is `slug` generated only if not already present?",
+      "options": [
+        "To improve security",
+        "To avoid overwriting existing slugs on updates",
+        "Because `slugify` is expensive",
+        "It's required by `save()` function"
+      ],
+      "answer": "To avoid overwriting existing slugs on updates",
+      "hint": "You don't want to break URLs after editing a record."
+    },
+    {
+      "question": "Which HTML utility function is used in Example 9 for conditional coloring?",
+      "options": [
+        "`render_to_string`",
+        "`format_html`",
+        "`safe`",
+        "`escape`"
+      ],
+      "answer": "`format_html`",
+      "hint": "`format_html()` safely injects HTML into the admin."
+    },
+    {
+      "question": "In Example 10, what will happen if you don\u2019t call `super().save(*args, **kwargs)` in the `Car.save()` method?",
+      "options": [
+        "Nothing will break",
+        "The object won\u2019t be saved to the database",
+        "It will automatically rollback",
+        "Only custom fields will save"
+      ],
+      "answer": "The object won\u2019t be saved to the database",
+      "hint": "Omitting `super().save()` stops Django from saving the model."
+    },
+    {
+      "question": "What is a best practice when using `post_save` signal for audit logging?",
+      "options": [
+        "Use `print()` instead of `logger`",
+        "Always check `created` to avoid false logs",
+        "Use inline logging in views",
+        "Avoid signals in models"
+      ],
+      "answer": "Always check `created` to avoid false logs",
+      "hint": "Checking `created` helps distinguish between insert vs update."
+    }
+  ],
+
+  "django_forms": [
+    {
+      "question": "What method should you override for validating a single field in Django forms?",
+      "options": ["clean()", "is_valid()", "validate_field()", "clean_<field_name>()"],
+      "answer": "clean_<field_name>()"
+    },
+    {
+      "question": "Which method handles cross-field validation logic in a Django form?",
+      "options": ["__init__", "clean()", "save()", "full_clean()"],
+      "answer": "clean()"
+    },
+    {
+      "question": "How can you safely render Django form fields inside a template?",
+      "options": ["{{ form.render }}", "{{ form.show }}", "{{ form.as_p }}", "{{ form.all }}"],
+      "answer": "{{ form.as_p }}"
+    },
+    {
+      "question": "What Django utility is used to display error messages during validation?",
+      "options": ["raise Exception", "ValidationError", "form.errors", "raise ValueError"],
+      "answer": "ValidationError"
+    },
+    {
+      "question": "Which Python module helps connect Django to Snowflake for cloud data syncing?",
+      "options": ["snowflake.connector", "snowflake.api", "django.snowflake", "cloud.snowflake"],
+      "answer": "snowflake.connector"
+    },
+    {
+      "question": "What’s the benefit of using `{% extends 'base.html' %}` in form templates?",
+      "options": [
+        "Avoid CSRF token",
+        "Inherit shared layout",
+        "Disable form auto-rendering",
+        "Run forms in admin only"
+      ],
+      "answer": "Inherit shared layout"
+    },
+    {
+      "question": "In Django tests, which class is commonly used to test forms?",
+      "options": ["SimpleTestCase", "Client", "TestCase", "FormCase"],
+      "answer": "TestCase"
+    },
+    {
+      "question": "Which function sends SQL insert queries to Snowflake in the provided example?",
+      "options": ["write_log()", "insert_data()", "log_review_to_snowflake()", "push_review()"],
+      "answer": "log_review_to_snowflake()"
+    },
+    {
+      "question": "What does `form.is_valid()` return?",
+      "options": ["True if valid data", "HTML form", "Cleaned data only", "Validation error"],
+      "answer": "True if valid data"
+    },
+    {
+      "question": "How can you conditionally show a form field only to authenticated users?",
+      "options": [
+        "{% if user.active %}",
+        "{% if form.is_bound %}",
+        "{% if user.is_authenticated %}",
+        "{% if request.user == admin %}"
+      ],
+      "answer": "{% if user.is_authenticated %}"
+    }
+  ],
+
+  "cbv_examples": [
+    {
+      "question": "Which Django class-based view is used to simplify the creation of a model instance with an HTML form?",
+      "options": ["DetailView", "ListView", "CreateView", "FormView"],
+      "answer": "CreateView",
+      "hint": "This view handles form submission and saving to the model automatically."
+    },
+    {
+      "question": "In Example 2, which method is overridden to filter feedback by rating in a ListView?",
+      "options": ["get_context_data", "form_valid", "get_queryset", "get_object"],
+      "answer": "get_queryset",
+      "hint": "This method is used to customize what data is shown in the view."
+    },
+    {
+      "question": "Which of the following fields was deliberately excluded from the editable form in the TeacherProfileUpdateView?",
+      "options": ["name", "subject", "bio", "email"],
+      "answer": "email",
+      "hint": "It was displayed read-only and not part of the 'fields' list."
+    },
+    {
+      "question": "What attribute allows the `Teacher` model to access its related `Course` models?",
+      "options": ["related_name='teacher'", "related_name='courses'", "ForeignKey", "get_context_data"],
+      "answer": "related_name='courses'",
+      "hint": "This attribute was set in the ForeignKey from Course to Teacher."
+    },
+    {
+      "question": "Which Django view class is best for filtering and displaying lists of model instances using GET query parameters?",
+      "options": ["FormView", "ListView", "CreateView", "TemplateView"],
+      "answer": "ListView",
+      "hint": "Used when displaying multiple records with optional filtering or pagination."
+    },
+    {
+      "question": "In a FormView like DocumentUploadView, which method is overridden to handle successful form submissions?",
+      "options": ["get_queryset", "form_valid", "dispatch", "render_to_response"],
+      "answer": "form_valid",
+      "hint": "This method is called when the submitted form is valid."
+    },
+    {
+      "question": "How does JobLogListView restrict records to the last 24 hours?",
+      "options": [
+        "By filtering on 'executed_at__lte=timezone.now()'",
+        "Using 'order_by(\"-executed_at\")'",
+        "By filtering on 'executed_at__gte=timezone.now() - timedelta(days=1)'",
+        "With a pagination class"
+      ],
+      "answer": "By filtering on 'executed_at__gte=timezone.now() - timedelta(days=1)'",
+      "hint": "It uses Django's timezone-aware filtering with timedelta."
+    },
+    {
+      "question": "What does DatasetUploadView use to store the client’s IP address?",
+      "options": [
+        "self.request.user",
+        "self.request.POST['ip']",
+        "self.request.META.get('REMOTE_ADDR')",
+        "get_context_data()"
+      ],
+      "answer": "self.request.META.get('REMOTE_ADDR')",
+      "hint": "The request object contains HTTP headers in this dictionary."
+    },
+    {
+      "question": "Which aggregation function is used in UsageReportView to compute total cloud usage?",
+      "options": ["Avg", "Max", "Sum", "Count"],
+      "answer": "Sum",
+      "hint": "Used to total hours and cost in the ORM query."
+    },
+    {
+      "question": "Which Django template filter safely embeds structured JSON for use in JavaScript?",
+      "options": ["safe", "escapejs", "jsonify", "json_script"],
+      "answer": "json_script",
+      "hint": "This filter safely escapes and embeds JSON in a <script> tag."
+    }
+  ]
+
+
+
+
+
+
+
+
+
+
+}

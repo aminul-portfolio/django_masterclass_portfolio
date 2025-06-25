@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-4">
+    <h1 class="display-5 fw-bold mb-4 text-primary text-center">📁 Django Full-Stack Masterclass</h1>
+    <p class="fs-5 text-muted mb-5 text-center">Explore each section below. Click any folder to view its tutorials and exercises.</p>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+
+        <!-- Folder 01 - HTML -->
+        <div class="col">
+            <a href="{% url 'html' %}" class="text-decoration-none">
+                <div class="card h-100 shadow-sm folder-card">
+                    <div class="card-body text-center">
+                        <h1>🌐</h1>
+                        <h5 class="card-title">HTML</h5>
+                        <p class="card-text text-muted">Structure the web with semantic tags.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Folder 02 - CSS -->
+        <div class="col">
+            <a href="{% url 'css' %}" class="text-decoration-none">
+                <div class="card h-100 shadow-sm folder-card">
+                    <div class="card-body text-center">
+                        <h1>🎨</h1>
+                        <h5 class="card-title">CSS</h5>
+                        <p class="card-text text-muted">Style with precision and creativity.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Folder 03 - Bootstrap -->
+        <div class="col">
+            <a href="{% url 'bootstrap' %}" class="text-decoration-none">
+                <div class="card h-100 shadow-sm folder-card">
+                    <div class="card-body text-center">
+                        <h1>📦</h1>
+                        <h5 class="card-title">Bootstrap</h5>
+                        <p class="card-text text-muted">Design responsive layouts easily.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Folder 04 - Python Basic -->
+        <div class="col">
+            <a href="{% url 'python_basic' %}" class="text-decoration-none">
+                <div class="card h-100 shadow-sm folder-card">
+                    <div class="card-body text-center">
+                        <h1>🐍</h1>
+                        <h5 class="card-title">Python (Basic)</h5>
+                        <p class="card-text text-muted">Master the core Python foundations.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Folder 05 - Python Advanced -->
+        <div class="col">
+            <a href="{% url 'python_advanced' %}" class="text-decoration-none">
+                <div class="card h-100 shadow-sm folder-card">
+                    <div class="card-body text-center">
+                        <h1>⚙️</h1>
+                        <h5 class="card-title">Python (Advanced)</h5>
+                        <p class="card-text text-muted">Deep dive into OOP and beyond.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Folder 06 - Django Intro -->
+        <div class="col">
+            <a href="{% url 'introduction_to_django' %}" class="text-decoration-none">
+                <div class="card h-100 shadow-sm folder-card">
+                    <div class="card-body text-center">
+                        <h1>🚀</h1>
+                        <h5 class="card-title">Django Intro</h5>
+                        <p class="card-text text-muted">Start your backend development journey.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Folder 07 - Views & URLs -->
+        <div class="col">
+            <a href="{% url 'django_views_routing_urls' %}" class="text-decoration-none">
+                <div class="card h-100 shadow-sm folder-card">
+                    <div class="card-body text-center">
+                        <h1>🔀</h1>
+                        <h5 class="card-title">Views & URLs</h5>
+                        <p class="card-text text-muted">Navigate Django with routes and logic.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Folder 08 - Templates -->
+        <div class="col">
+            <a href="{% url 'django_and_templates' %}" class="text-decoration-none">
+                <div class="card h-100 shadow-sm folder-card">
+                    <div class="card-body text-center">
+                        <h1>📄</h1>
+                        <h5 class="card-title">Templates</h5>
+                        <p class="card-text text-muted">Create dynamic pages using Django templating.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Folder 09 - Models & DB -->
+        <div class="col">
+            <a href="{% url 'django_models_databases' %}" class="text-decoration-none">
+                <div class="card h-100 shadow-sm folder-card">
+                    <div class="card-body text-center">
+                        <h1>🗃️</h1>
+                        <h5 class="card-title">Models & DB</h5>
+                        <p class="card-text text-muted">Manage data efficiently with ORM.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Folder 10 - Admin Panel -->
+        <div class="col">
+            <a href="{% url 'django_admin_portal' %}" class="text-decoration-none">
+                <div class="card h-100 shadow-sm folder-card">
+                    <div class="card-body text-center">
+                        <h1>🛠️</h1>
+                        <h5 class="card-title">Admin Panel</h5>
+                        <p class="card-text text-muted">Customize Django admin for efficiency.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Folder 11 - Forms -->
+        <div class="col">
+            <a href="{% url 'django_forms' %}" class="text-decoration-none">
+                <div class="card h-100 shadow-sm folder-card">
+                    <div class="card-body text-center">
+                        <h1>📋</h1>
+                        <h5 class="card-title">Forms</h5>
+                        <p class="card-text text-muted">Build forms for user input and logic.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Folder 12 - Class-Based Views -->
+        <div class="col">
+            <a href="{% url 'django_class_based_views' %}" class="text-decoration-none">
+                <div class="card h-100 shadow-sm folder-card">
+                    <div class="card-body text-center">
+                        <h1>🏗️</h1>
+                        <h5 class="card-title">Class Views</h5>
+                        <p class="card-text text-muted">Organize views the OOP way in Django.</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

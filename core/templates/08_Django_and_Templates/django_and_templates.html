@@ -1,0 +1,260 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="text-center mb-5">
+    <h1 class="display-4 fw-bold text-primary">Django Templates in Action</h1>
+    <p class="fs-5 text-muted"><strong>Master Django templates, inheritance, filters, blocks, and dynamic rendering with real-world examples.</strong></p>
+</div>
+
+<ul class="nav nav-tabs mb-4" id="templateTabs">
+    <li class="nav-item">
+        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#examples">Examples <span class="badge bg-primary" id="exampleCount">0</span></button>
+    </li>
+    <li class="nav-item">
+        <button class="nav-link" data-bs-toggle="tab" data-bs-target="#quiz">Quiz <span class="badge bg-success" id="quizCountText">10</span></button>
+    </li>
+</ul>
+
+<div class="tab-content" id="templateTabContent">
+    <div class="tab-pane fade show active" id="examples">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4" id="exampleCards">
+            <div class="col">
+                <div class="card shadow h-100">
+                    <div class="card-header bg-secondary text-white fw-bold">1️⃣ Template Inheritance with base.html</div>
+                    <div class="card-body">
+                        <pre class="bg-light p-3 rounded"><code class="language-django">
+&#123;% extends "base.html" %&#125;
+<br>
+&#123;% block content %&#125;<br>
+&nbsp;&nbsp;&lt;h1&gt;Welcome&lt;/h1&gt;<br>
+&#123;% endblock %&#125;
+</code></pre>
+
+                        <ul class="list-unstyled mt-3">
+                            <li>🔹 <strong>Function/Class Used:</strong> <code> extends , block </code></li>
+                            <li>📘 <strong>What You Learn:</strong> Use of template inheritance to create DRY layouts</li>
+                            <li>♻️ <strong>Reusability:</strong> Standard layout for consistent pages across the site</li>
+                            <li>💬 <strong>Inline Comments:</strong> Ensures reusable and maintainable template structure</li>
+                            <li>📌 <strong>Related Topics:</strong> Template inheritance, layout reuse</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card shadow h-100">
+                    <div class="card-header bg-secondary text-white fw-bold">2️⃣ Rendering Context Data in Templates</div>
+                    <div class="card-body">
+                       <pre class="bg-light p-3 rounded"><code class="language-django">&lt;h1&gt;Welcome, &#123;&#123; first_name &#125;&#125; &#123;&#123; last_name &#125;&#125;&lt;/h1&gt;
+&lt;p&gt;Your list: &#123;&#123; some_list &#125;&#125;&lt;/p&gt;
+&lt;p&gt;First item: &#123;&#123; some_list.0 &#125;&#125;&lt;/p&gt;
+&lt;p&gt;Nested Dict: &#123;&#123; some_dict.inside_key &#125;&#125;&lt;/p&gt;</code></pre>
+
+                        <ul class="list-unstyled mt-3">
+                            <li>🔹 <strong>Function/Class Used:</strong> <code>brakets</code></li>
+                            <li>📘 <strong>What You Learn:</strong> Access variables and nested structures from context</li>
+                            <li>♻️ <strong>Reusability:</strong> Common for personalized UI and dynamic data rendering</li>
+                            <li>💬 <strong>Inline Comments:</strong> Injects data passed from views into templates</li>
+                            <li>📌 <strong>Related Topics:</strong> Context, rendering, personalization</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col">
+                <div class="card shadow h-100">
+                    <div class="card-header bg-secondary text-white fw-bold">3️⃣ Using Django Filters and Tags</div>
+                    <div class="card-body">
+                        <pre class="bg-light p-3 rounded"><code class="language-django">&lt;h2&gt;&#123;&#123; first_name|upper &#125;&#125;&lt;/h2&gt;
+&lt;p&gt;&#123;% lorem %&#125;&lt;/p&gt;
+&lt;p&gt;Date: &#123;% now "jS F Y" %&#125;&lt;/p&gt;</code></pre>
+
+                        <ul class="list-unstyled mt-3">
+                            <li>🔹 <strong>Function/Class Used:</strong> <code>Filters (|) and tags (&#123;% ... %&#125;)</code></li>
+                            <li>📘 <strong>What You Learn:</strong> Format strings, generate dummy text, insert dates</li>
+                            <li>♻️ <strong>Reusability:</strong> Used across UI for formatting and development</li>
+                            <li>💬 <strong>Inline Comments:</strong> Improves display and UX through simple tools</li>
+                            <li>📌 <strong>Related Topics:</strong> Filters, template tags, now, lorem</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card shadow h-100">
+                    <div class="card-header bg-secondary text-white fw-bold">4️⃣ Conditional and Looping Logic</div>
+                    <div class="card-body">
+                       <pre class="bg-light p-3 rounded"><code class="language-django">&lt;ul&gt;
+  &#123;% for item in some_list %&#125;
+    &#123;% if item == 2 %&#125;
+      &lt;li&gt;Two&lt;/li&gt;
+    &#123;% else %&#125;
+      &lt;li&gt;&#123;&#123; item &#125;&#125;&lt;/li&gt;
+    &#123;% endif %&#125;
+  &#123;% endfor %&#125;
+&lt;/ul&gt;
+</code></pre>
+
+                        <ul class="list-unstyled mt-3">
+                            <li>🔹 <strong>Function/Class Used:</strong> <code>&#123;% for %&#125;, &#123;% if %&#125;</code></li>
+
+                            <li>📘 <strong>What You Learn:</strong> Render lists with conditional logic</li>
+                            <li>♻️ <strong>Reusability:</strong> Great for menus, listings, and filters</li>
+                            <li>💬 <strong>Inline Comments:</strong> Combines iteration with logic for dynamic views</li>
+                            <li>📌 <strong>Related Topics:</strong> Loops, conditionals, dynamic rendering</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col">
+                <div class="card shadow h-100">
+                    <div class="card-header bg-secondary text-white fw-bold">5️⃣ Custom 404 Page</div>
+                    <div class="card-body">
+                        <pre class="bg-light p-3 rounded"><code class="language-django">&lt;html&gt;
+              &lt;head&gt;&lt;title&gt;Page Not Found&lt;/title&gt;&lt;/head&gt;
+              &lt;body&gt;
+                &lt;h1&gt;Oops! This page does not exist.&lt;/h1&gt;
+                &lt;p&gt;Return to the &lt;a href="/"&gt;home page&lt;/a&gt;.&lt;/p&gt;
+              &lt;/body&gt;
+            &lt;/html&gt;</code></pre>
+                        <ul class="list-unstyled mt-3">
+                            <li>🔹 <strong>Function/Class Used:</strong> <code>HTML template for error handling</code></li>
+                            <li>📘 <strong>What You Learn:</strong> Customize 404 error user experience</li>
+                            <li>♻️ <strong>Reusability:</strong> Helps in branding and user retention</li>
+                            <li>💬 <strong>Inline Comments:</strong> Friendly fallback for broken URLs</li>
+                            <li>📌 <strong>Related Topics:</strong> 404 page, custom error templates</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card shadow h-100">
+                    <div class="card-header bg-secondary text-white fw-bold">6️⃣ Template Linking with &#123;% url %&#125; Tag</div>
+
+                    <div class="card-body">
+                        <pre class="bg-light p-3 rounded"><code class="language-django">
+&lt;a href=&#123;% url 'my_app:home' %&#125;&gt;Home&lt;/a&gt;
+&lt;a href=&#123;% url 'my_app:about' %&#125;&gt;About Us&lt;/a&gt;
+</code></pre>
+
+                        <ul class="list-unstyled mt-3">
+                            <li>🔹 <strong>Function/Class Used:</strong> <code>&#123;% url %&#125; </code></li>
+                            <li>📘 <strong>What You Learn:</strong> Generate internal links dynamically using named routes</li>
+                            <li>♻️ <strong>Reusability:</strong> Keeps links valid even when URL patterns change</li>
+                            <li>💬 <strong>Inline Comments:</strong> Centralizes routing for better maintainability</li>
+                            <li>📌 <strong>Related Topics:</strong> Named URLs, reverse resolution, URL dispatcher</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+  <div class="card shadow h-100">
+    <div class="card-header bg-secondary text-white fw-bold">8️⃣ Base Template with Header/Footer Blocks</div>
+    <div class="card-body">
+      <pre class="bg-light p-3 rounded"><code class="language-django">
+&lt;!-- base.html --&gt;
+&lt;body&gt;
+  &lt;header&gt;&#123;% block header %&#125;&#123;% endblock %&#125;&lt;/header&gt;
+  &lt;main&gt;&#123;% block content %&#125;&#123;% endblock %&#125;&lt;/main&gt;
+  &lt;footer&gt;&#123;% block footer %&#125;&#123;% endblock %&#125;&lt;/footer&gt;
+&lt;/body&gt;
+</code></pre>
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function/Class Used:</strong>
+        <code>&#123;% block content %&#125;&#123;% endblock %&#125;</code></li>
+
+        <li>📘 <strong>What You Learn:</strong> Modularize layout into header, content, and footer</li>
+        <li>♻️ <strong>Reusability:</strong> Enables consistent sitewide layout with unique content per view</li>
+        <li>💬 <strong>Inline Comments:</strong> Reduces duplication and improves maintainability</li>
+        <li>📌 <strong>Related Topics:</strong> Template inheritance, site structure</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+            <div class="col">
+  <div class="card shadow h-100">
+    <div class="card-header bg-secondary text-white fw-bold">9️⃣ Dynamic List Rendering from Context</div>
+    <div class="card-body">
+      <pre class="bg-light p-3 rounded"><code class="language-django">
+&lt;ul&gt;
+  &#123;% for item in categories %&#125;
+    &lt;li&gt;&#123;&#123; item &#125;&#125;&lt;/li&gt;
+  &#123;% endfor %&#125;
+&lt;/ul&gt;
+</code></pre>
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function/Class Used:</strong>
+        <code>&#123;% for item in categories %&#125;</code></li>
+
+        <li>📘 <strong>What You Learn:</strong> Display dynamic content like categories or product lists</li>
+        <li>♻️ <strong>Reusability:</strong> Essential in loops for blogs, menus, e-commerce, etc.</li>
+        <li>💬 <strong>Inline Comments:</strong> Clean logic for UI loops</li>
+        <li>📌 <strong>Related Topics:</strong> Loops, data context, template logic</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+            <div class="col">
+              <div class="card shadow h-100">
+                <div class="card-header bg-secondary text-white fw-bold">🔟 Conditional Rendering with Authentication</div>
+                <div class="card-body">
+                  <pre class="bg-light p-3 rounded"><code class="language-django">
+&#123;% if user.is_authenticated %&#125;
+  &lt;p&gt;Welcome, &#123;&#123; user.username &#125;&#125;!&lt;/p&gt;
+&#123;% else %&#125;
+  &lt;p&gt;&lt;a href=&quot;/login/&quot;&gt;Login&lt;/a&gt; to continue.&lt;/p&gt;
+&#123;% endif %&#125;
+</code></pre>
+
+                  <ul class="list-unstyled mt-3">
+                    <li>🔹 <strong>Function/Class Used:</strong> <code>&#123;% if %&#125;</code></li>
+
+                    <li>📘 <strong>What You Learn:</strong> Conditionally show content based on auth status</li>
+                    <li>♻️ <strong>Reusability:</strong> Used across user dashboards and secure pages</li>
+                    <li>💬 <strong>Inline Comments:</strong> Implements basic access control in UI</li>
+                    <li>📌 <strong>Related Topics:</strong> Authentication, role-based access, session state</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+
+        </div>
+        {% include 'includes/comment_form.html' %}
+    </div>
+
+    <div class="tab-pane fade" id="quiz">
+        <div id="quizBox"></div>
+        <div id="quizSummary" class="mt-4"></div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    loadQuizData("django_and_templates");
+    document.getElementById("exampleCount").textContent = document.querySelectorAll(".card").length;
+});
+</script>
+<audio id="correctSound" src="{% static 'sounds/correct.mp3' %}"></audio>
+<audio id="wrongSound" src="{% static 'sounds/wrong.mp3' %}"></audio>
+<script src="{% static 'js/quiz_engine.js' %}"></script>
+{% endblock %}

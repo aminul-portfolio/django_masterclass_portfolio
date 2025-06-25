@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+        <div class="text-center mb-5">
+                <h1 class="display-4 fw-bold text-primary">Python Error & Exception Handling</h1>
+                <p class="fs-5 text-muted"><strong>Learn professional real-world error handling strategies using try-except-finally in Python.</strong></p>
+        </div>
+
+    <ul class="nav nav-tabs mb-4" id="htmlTabs">
+        <li class="nav-item">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#examples">Examples <span class="badge bg-primary" id="exampleCount">0</span></button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#quiz">Quiz <span class="badge bg-success" id="quizCountText">10</span></button>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="examples">
+            <div class="row row-cols-1 row-cols-md-2 g-4" id="exampleCards">
+
+<div class="col">
+  <div class="card h-100 shadow">
+    <div class="card-header bg-primary text-white fw-bold">1️⃣ TypeError with Logging</div>
+    <div class="card-body">
+      <pre class="bg-light p-3 rounded"><code class="language-python"><span class="text-warning fw-bold">try</span>:
+    total = <span class="text-secondary">'20'</span> + 5
+<span class="text-danger fw-bold">except</span> TypeError as e:
+    <span class="text-success">print</span>(f<span class="text-secondary">"Type Error occurred: {{e}}"</span>)</code></pre>
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function/Class Used:</strong> TypeError, try, except</li>
+        <li>📘 <strong>What You Learn:</strong> Prevents crashes from improper type operations.</li>
+        <li>♻️ <strong>Reusability Insight:</strong> Useful in user-input processing, API responses.</li>
+        <li>💬 <strong>Inline Comments:</strong> Validate or cast types before arithmetic.</li>
+        <li>📎 <strong>Related Topics:</strong> str(), int(), input validation</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col">
+  <div class="card h-100 shadow">
+    <div class="card-header bg-success text-white fw-bold">2️⃣ Safe Division Handling</div>
+    <div class="card-body">
+      <pre class="bg-light p-3 rounded"><code class="language-python"><span class="text-primary fw-bold">def</span> safe_divide(x, y):
+    <span class="text-warning fw-bold">try</span>:
+        <span class="text-keyword">return</span> x / y
+    <span class="text-danger fw-bold">except</span> ZeroDivisionError:
+        <span class="text-keyword">return</span> <span class="text-secondary">"Cannot divide by zero"</span>
+
+<span class="text-success">print</span>(safe_divide(10, 0))</code></pre>
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function/Class Used:</strong> ZeroDivisionError, try</li>
+        <li>📘 <strong>What You Learn:</strong> Avoiding runtime errors in math.</li>
+        <li>♻️ <strong>Reusability Insight:</strong> Good for financial calculators or metrics.</li>
+        <li>💬 <strong>Inline Comments:</strong> Always check divisors before division.</li>
+        <li>📎 <strong>Related Topics:</strong> math, float(), validation</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col">
+  <div class="card h-100 shadow">
+    <div class="card-header bg-info text-white fw-bold">3️⃣ FileNotFoundError Catch</div>
+    <div class="card-body">
+      <pre class="bg-light p-3 rounded"><code class="language-python"><span class="text-warning fw-bold">try</span>:
+    with <span class="text-warning fw-bold">open</span>(<span class="text-secondary">"nofile.txt"</span>) as f:
+        content = f.read()
+<span class="text-danger fw-bold">except</span> FileNotFoundError:
+    <span class="text-success">print</span>(<span class="text-secondary">"File does not exist"</span>)</code></pre>
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function/Class Used:</strong> FileNotFoundError</li>
+        <li>📘 <strong>What You Learn:</strong> Preventing crashes from missing files.</li>
+        <li>♻️ <strong>Reusability Insight:</strong> Applies to file handling, logging, uploads.</li>
+        <li>💬 <strong>Inline Comments:</strong> Ensure files exist before reading.</li>
+        <li>📎 <strong>Related Topics:</strong> os.path.exists(), IOError</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col">
+  <div class="card h-100 shadow">
+    <div class="card-header bg-danger text-white fw-bold">4️⃣ Try-Except-Else Demo</div>
+    <div class="card-body">
+      <pre class="bg-light p-3 rounded"><code class="language-python"><span class="text-warning fw-bold">try</span>:
+    value = 10 + 5
+<span class="text-danger fw-bold">except</span> Exception:
+    <span class="text-success">print</span>(<span class="text-secondary">"An error occurred"</span>)
+<span class="text-keyword">else</span>:
+    <span class="text-success">print</span>(<span class="text-secondary">"Addition successful:"</span>, value)</code></pre>
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function/Class Used:</strong> try, except, else</li>
+        <li>📘 <strong>What You Learn:</strong> else executes only when no exception.</li>
+        <li>♻️ <strong>Reusability Insight:</strong> Helpful in APIs, scripts, UI actions.</li>
+        <li>💬 <strong>Inline Comments:</strong> Use else for clean logic post-try.</li>
+        <li>📎 <strong>Related Topics:</strong> exception flow control, conditional logic</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col">
+  <div class="card h-100 shadow">
+    <div class="card-header bg-warning text-white fw-bold">5️⃣ Finally Usage Example</div>
+    <div class="card-body">
+      <pre class="bg-light p-3 rounded"><code class="language-python"><span class="text-warning fw-bold">try</span>:
+    risky = 1 / 1
+<span class="text-danger fw-bold">except</span>:
+    <span class="text-success">print</span>(<span class="text-secondary">"Error happened"</span>)
+<span class="text-keyword">finally</span>:
+    <span class="text-success">print</span>(<span class="text-secondary">"Cleanup done"</span>)</code></pre>
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function/Class Used:</strong> finally</li>
+        <li>📘 <strong>What You Learn:</strong> Ensures cleanup always runs.</li>
+        <li>♻️ <strong>Reusability Insight:</strong> Ideal for closing DB/files/connections.</li>
+        <li>💬 <strong>Inline Comments:</strong> Always runs regardless of errors.</li>
+        <li>📎 <strong>Related Topics:</strong> resource cleanup, with context</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="col">
+  <div class="card h-100 shadow">
+    <div class="card-header bg-secondary text-white fw-bold">6️⃣ Raise Custom Exception</div>
+    <div class="card-body">
+      <pre class="bg-light p-3 rounded"><code class="language-python"><span class="text-primary fw-bold">def</span> validate_age(age):
+    <span class="text-warning fw-bold">if</span> age < 0:
+        <span class="text-warning fw-bold">raise</span> ValueError(<span class="text-secondary">"Age must be positive"</span>)
+    <span class="text-success">print</span>(<span class="text-secondary">"Valid age"</span>)
+
+validate_age(-1)</code></pre>
+      <ul class="list-unstyled mt-3">
+        <li>🔹 <strong>Function/Class Used:</strong> raise, ValueError</li>
+        <li>📘 <strong>What You Learn:</strong> How to raise custom exceptions.</li>
+        <li>♻️ <strong>Reusability Insight:</strong> Input validation, parameter checks.</li>
+        <li>💬 <strong>Inline Comments:</strong> Alert users to invalid input early.</li>
+        <li>📎 <strong>Related Topics:</strong> assertions, custom exception classes</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+            </div>
+             {% include 'includes/comment_form.html' %}
+        </div>
+
+        <div class="tab-pane fade" id="quiz">
+            <div id="quizBox"></div>
+            <div id="quizSummary" class="mt-4"></div>
+        </div>
+    </div>
+</div>
+<audio id="correctSound" src="{% static 'sounds/correct.mp3' %}" preload="auto"></audio>
+<audio id="wrongSound" src="{% static 'sounds/wrong.mp3' %}" preload="auto"></audio>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/quiz_engine.js' %}"></script>
+<script>
+
+
+    loadQuizData("errors_and_exception_handling");
+    document.getElementById("exampleCount").innerText = document.querySelectorAll("#exampleCards .card").length;
+</script>
+{% endblock %}

@@ -1,0 +1,793 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container my-5">
+  <h1 class="display-4 fw-bold text-primary text-center mb-4">Django Class-Based Views - Real World Examples</h1>
+
+  <ul class="nav nav-tabs mb-4" id="cbvTabs" role="tablist">
+    <li class="nav-item">
+      <button class="nav-link active" id="examples-tab" data-bs-toggle="tab" data-bs-target="#examples" type="button" role="tab">
+        Examples <span class="badge bg-secondary" id="exampleCount">0</span>
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" id="quiz-tab" data-bs-toggle="tab" data-bs-target="#quiz" type="button" role="tab">
+        Quiz <span class="badge bg-secondary" id="quizCountText">10</span>
+      </button>
+    </li>
+  </ul>
+
+  <div class="tab-content" id="cbvTabContent">
+    <div class="tab-pane fade show active" id="examples" role="tabpanel">
+      <div id="exampleCards">
+
+        <!-- ✅ Example 1: Student Enrollment System -->
+        <div class="card">
+          <div class="card-header bg-primary text-white fw-bold">🔸 Example 1: Student Enrollment System</div>
+          <div class="card-body">
+              <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+          📋 Copy
+        </button>
+            <pre class="bg-light p-3 rounded"><code class="language-python"># models.py
+from django.db import models
+
+class Student(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    enrolled_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+# views.py
+from django.views.generic.edit import CreateView
+from .models import Student
+from django.urls import reverse_lazy
+
+class StudentCreateView(CreateView):
+    model = Student
+    fields = ['name', 'email']
+    template_name = 'classroom/student_form.html'
+    success_url = reverse_lazy('classroom:student_thank_you')
+
+# urls.py
+from django.urls import path
+from .views import StudentCreateView
+from django.views.generic import TemplateView
+
+app_name = 'classroom'
+
+urlpatterns = [
+    path('create_student/', StudentCreateView.as_view(), name='create_student'),
+    path('thank_you/', TemplateView.as_view(template_name='classroom/thank_you.html'), name='student_thank_you'),
+]
+
+# student_form.html
+&lt;h2&gt;🎓 Enroll a Student&lt;/h2&gt;
+&lt;form method="POST"&gt;
+  &#123;% csrf_token %&#125;
+  &#123;&#123; form.as_p &#125;&#125;
+  &lt;input type="submit" value="Enroll"&gt;
+&lt;/form&gt;
+
+# thank_you.html
+&lt;h2&gt;✅ Thank You!&lt;/h2&gt;
+&lt;p&gt;The student has been successfully enrolled.&lt;/p&gt;
+&lt;a href="&#123;% url 'classroom:create_student' %&#125;"&gt;Enroll another student&lt;/a&gt;
+</code></pre>
+
+            <ul class="list-unstyled mt-3">
+              <li>🔹 <strong>Function/Class Used:</strong> <code>CreateView</code>, <code>reverse_lazy</code>, <code>TemplateView</code></li>
+              <li>📘 <strong>What You Learn:</strong> How to use CreateView to simplify form rendering and success handling</li>
+              <li>♻️ <strong>Reusability:</strong> Easily adapted for user registration, contact forms, applications</li>
+              <li>💬 <strong>Inline Comments:</strong> <code>success_url</code> redirects user after successful form submission</li>
+              <li>📎 <strong>Related Topics:</strong> ModelForms, URLConf, template handling, success feedback</li>
+              <li>🧸 <strong>Use Case:</strong> Add students and auto-enroll them into a course</li>
+            </ul>
+          </div>
+        </div>
+          <div class="card">
+  <div class="card-header bg-info text-white fw-bold">🔸 Example 2: Feedback Dashboard with Pagination and Filtering</div>
+  <div class="card-body">
+      <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+          📋 Copy
+        </button>
+    <pre class="bg-light p-3 rounded"><code class="language-python"># models.py
+from django.db import models
+
+class Feedback(models.Model):
+    user_name = models.CharField(max_length=100)
+    message = models.TextField()
+    rating = models.IntegerField()
+    submitted_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user_name} - {self.rating}★"
+
+# views.py
+from django.views.generic import ListView
+from .models import Feedback
+
+class FeedbackListView(ListView):
+    model = Feedback
+    template_name = 'classroom/feedback_list.html'
+    context_object_name = 'feedbacks'
+    paginate_by = 5  # Show 5 feedbacks per page
+
+    def get_queryset(self):
+        queryset = Feedback.objects.all().order_by('-submitted_at')
+        rating_filter = self.request.GET.get('rating')
+        if rating_filter:
+            queryset = queryset.filter(rating=rating_filter)
+        return queryset
+
+# urls.py
+from django.urls import path
+from .views import FeedbackListView
+
+app_name = 'classroom'
+
+urlpatterns = [
+    path('feedbacks/', FeedbackListView.as_view(), name='feedback_list'),
+]
+
+# feedback_list.html
+&lt;h2&gt;📋 User Feedback&lt;/h2&gt;
+
+&lt;form method="get"&gt;
+  &lt;label for="rating"&gt;Filter by rating:&lt;/label&gt;
+  &lt;select name="rating" onchange="this.form.submit()"&gt;
+    &lt;option value=""&gt;All&lt;/option&gt;
+    &lt;option value="5"&gt;5 Stars&lt;/option&gt;
+    &lt;option value="4"&gt;4 Stars&lt;/option&gt;
+    &lt;option value="3"&gt;3 Stars&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/form&gt;
+
+&lt;ul&gt;
+  &#123;% for fb in feedbacks %&#125;
+    &lt;li&gt;
+      &lt;strong&gt;&#123;&#123; fb.user_name &#125;&#125;&lt;/strong&gt; - &#123;&#123; fb.rating &#125;&#125;★&lt;br&gt;
+      &#123;&#123; fb.message &#125;&#125;&lt;br&gt;
+      &lt;em&gt;&#123;&#123; fb.submitted_at &#125;&#125;&lt;/em&gt;
+    &lt;/li&gt;
+  &#123;% empty %&#125;
+    &lt;li&gt;No feedbacks yet.&lt;/li&gt;
+  &#123;% endfor %&#125;
+&lt;/ul&gt;
+
+&lt;div class="pagination"&gt;
+  &#123;% if feedbacks.has_previous %&#125;
+    &lt;a href="?page=&#123;&#123; feedbacks.previous_page_number &#125;&#125;"&gt;Previous&lt;/a&gt;
+  &#123;% endif %&#125;
+
+  &lt;span&gt;Page &#123;&#123; feedbacks.number &#125;&#125; of &#123;&#123; feedbacks.paginator.num_pages &#125;&#125;&lt;/span&gt;
+
+  &#123;% if feedbacks.has_next %&#125;
+    &lt;a href="?page=&#123;&#123; feedbacks.next_page_number &#125;&#125;"&gt;Next&lt;/a&gt;
+  &#123;% endif %&#125;
+&lt;/div&gt;
+</code></pre>
+
+    <ul class="list-unstyled mt-3">
+      <li>🔹 <strong>Function/Class Used:</strong> <code>ListView</code>, <code>get_queryset()</code>, <code>paginate_by</code></li>
+      <li>📘 <strong>What You Learn:</strong> Dynamic filtering using GET parameters and paginating result sets</li>
+      <li>♻️ <strong>Reusability:</strong> Useful in feedback dashboards, product reviews, support inboxes</li>
+      <li>💬 <strong>Inline Comments:</strong> Filters feedbacks by rating and paginates them 5 per page</li>
+      <li>📎 <strong>Related Topics:</strong> Django pagination, querysets, CBV overrides, list templates</li>
+      <li>🧸 <strong>Use Case:</strong> Display user feedbacks sorted by date, with optional filtering</li>
+    </ul>
+  </div>
+</div>
+          <div class="card">
+  <div class="card-header bg-warning text-white fw-bold">🔸 Example 3: Teacher Profile Editor (Email Locked)</div>
+  <div class="card-body">
+      <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+          📋 Copy
+        </button>
+    <pre class="bg-light p-3 rounded"><code class="language-python"># models.py
+from django.db import models
+
+class Teacher(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    subject = models.CharField(max_length=50)
+    bio = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.name
+
+# views.py
+from django.views.generic.edit import UpdateView
+from .models import Teacher
+from django.urls import reverse_lazy
+
+class TeacherProfileUpdateView(UpdateView):
+    model = Teacher
+    fields = ['name', 'subject', 'bio']  # Email is locked (excluded)
+    template_name = 'classroom/teacher_profile_edit.html'
+    success_url = reverse_lazy('classroom:thank_you')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['email'] = self.object.email  # Inject read-only email
+        return context
+
+# urls.py
+from django.urls import path
+from .views import TeacherProfileUpdateView
+from django.http import HttpResponse
+
+app_name = 'classroom'
+
+urlpatterns = [
+    path('teacher/profile/edit/&lt;int:pk&gt;/', TeacherProfileUpdateView.as_view(), name='edit_teacher_profile'),
+    path('thank-you/', lambda request: HttpResponse('&lt;h2&gt;Thank You!&lt;/h2&gt;'), name='thank_you'),
+]
+
+# teacher_profile_edit.html
+&lt;h2&gt;👨‍🏫 Edit Teacher Profile&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Registered Email (Locked):&lt;/strong&gt; &#123;&#123; email &#125;&#125;&lt;/p&gt;
+
+&lt;form method="POST"&gt;
+  &#123;% csrf_token %&#125;
+  &#123;&#123; form.as_p &#125;&#125;
+  &lt;button type="submit"&gt;Update Profile&lt;/button&gt;
+&lt;/form&gt;
+</code></pre>
+
+    <ul class="list-unstyled mt-3">
+      <li>🔹 <strong>Function/Class Used:</strong> <code>UpdateView</code>, <code>get_context_data()</code>, <code>reverse_lazy</code></li>
+      <li>📘 <strong>What You Learn:</strong> How to exclude fields from forms and render them read-only in the template</li>
+      <li>♻️ <strong>Reusability:</strong> Reusable for editing profiles where email or ID is fixed</li>
+      <li>💬 <strong>Inline Comments:</strong> <code>get_context_data()</code> exposes <code>email</code> separately while keeping the form secure</li>
+      <li>📎 <strong>Related Topics:</strong> Profile editing, secure form rendering, user settings pages</li>
+      <li>🧸 <strong>Use Case:</strong> Teacher profile editor in LMS or admin portals with locked credentials</li>
+    </ul>
+  </div>
+</div>
+          <div class="card">
+  <div class="card-header bg-success text-white fw-bold">🔸 Example 4: Teacher Detail View with Assigned Courses</div>
+  <div class="card-body">
+      <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+          📋 Copy
+        </button>
+    <pre class="bg-light p-3 rounded"><code class="language-python"># models.py
+from django.db import models
+
+class Teacher(models.Model):
+    name = models.CharField(max_length=100)
+    subject = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+class Course(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    teacher = models.ForeignKey(
+        Teacher,
+        related_name='courses',
+        on_delete=models.CASCADE
+    )
+
+    def __str__(self):
+        return self.title
+
+# views.py
+from django.views.generic.detail import DetailView
+from .models import Teacher
+
+class TeacherDetailWithCoursesView(DetailView):
+    model = Teacher
+    template_name = 'classroom/teacher_detail_courses.html'
+    context_object_name = 'teacher'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['courses'] = self.object.courses.all()  # Reverse FK lookup via related_name
+        return context
+
+# urls.py
+from django.urls import path
+from .views import TeacherDetailWithCoursesView
+
+app_name = 'classroom'
+
+urlpatterns = [
+    path('teacher/&lt;int:pk&gt;/courses/', TeacherDetailWithCoursesView.as_view(), name='teacher_detail_courses'),
+]
+
+# teacher_detail_courses.html
+&lt;h2&gt;👩‍🏫 &#123;&#123; teacher.name &#125;&#125; — &#123;&#123; teacher.subject &#125;&#125;&lt;/h2&gt;
+
+&lt;h4&gt;📚 Courses Taught:&lt;/h4&gt;
+&lt;ul&gt;
+  &#123;% for course in courses %&#125;
+    &lt;li&gt;&lt;strong&gt;&#123;&#123; course.title &#125;&#125;&lt;/strong&gt;: &#123;&#123; course.description &#125;&#125;&lt;/li&gt;
+  &#123;% empty %&#125;
+    &lt;li&gt;No courses assigned yet.&lt;/li&gt;
+  &#123;% endfor %&#125;
+&lt;/ul&gt;
+</code></pre>
+
+    <ul class="list-unstyled mt-3">
+      <li>🔹 <strong>Function/Class Used:</strong> <code>DetailView</code>, <code>related_name</code>, <code>get_context_data()</code></li>
+      <li>📘 <strong>What You Learn:</strong> How to use reverse relationships to fetch child objects linked to a parent model</li>
+      <li>♻️ <strong>Reusability:</strong> Works for all parent-child models like author → books, company → employees</li>
+      <li>💬 <strong>Inline Comments:</strong> <code>self.object.courses.all()</code> used to retrieve all related Course objects</li>
+      <li>📎 <strong>Related Topics:</strong> ForeignKey, reverse lookups, template context injection, CBVs</li>
+      <li>🧸 <strong>Use Case:</strong> School admin panel, teacher dashboards, instructor-course assignment viewers</li>
+    </ul>
+  </div>
+</div>
+          <div class="card">
+  <div class="card-header bg-info text-white fw-bold">🔸 Example 5: Filtered Course List (Multi-Field Querying)</div>
+  <div class="card-body">
+      <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+          📋 Copy
+        </button>
+    <pre class="bg-light p-3 rounded"><code class="language-python"># models.py
+from django.db import models
+
+class Course(models.Model):
+    title = models.CharField(max_length=100)
+    subject = models.CharField(max_length=50)
+    start_date = models.DateField()
+    end_date = models.DateField()
+
+    def __str__(self):
+        return self.title
+
+# views.py
+from django.views.generic import ListView
+from .models import Course
+
+class FilteredCourseListView(ListView):
+    model = Course
+    template_name = 'classroom/course_filtered_list.html'
+    context_object_name = 'courses'
+
+    def get_queryset(self):
+        queryset = Course.objects.all()
+        subject = self.request.GET.get('subject')
+        start = self.request.GET.get('start')
+        end = self.request.GET.get('end')
+
+        if subject:
+            queryset = queryset.filter(subject__icontains=subject)
+        if start:
+            queryset = queryset.filter(start_date__gte=start)
+        if end:
+            queryset = queryset.filter(end_date__lte=end)
+
+        return queryset
+
+# urls.py
+from django.urls import path
+from .views import FilteredCourseListView
+
+app_name = 'classroom'
+
+urlpatterns = [
+    path('courses/filter/', FilteredCourseListView.as_view(), name='filtered_course_list'),
+]
+
+# course_filtered_list.html
+&lt;h2&gt;📘 Filtered Courses&lt;/h2&gt;
+
+&lt;form method="get" class="mb-4"&gt;
+  &lt;label&gt;Subject:&lt;/label&gt;
+  &lt;input type="text" name="subject" placeholder="e.g. Math"&gt;
+  &lt;label&gt;Start Date:&lt;/label&gt;
+  &lt;input type="date" name="start"&gt;
+  &lt;label&gt;End Date:&lt;/label&gt;
+  &lt;input type="date" name="end"&gt;
+  &lt;button type="submit"&gt;Filter&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;ul&gt;
+  &#123;% for course in courses %&#125;
+    &lt;li&gt;
+      &lt;strong&gt;&#123;&#123; course.title &#125;&#125;&lt;/strong&gt; (&#123;&#123; course.subject &#125;&#125;) —
+      &#123;&#123; course.start_date &#125;&#125; to &#123;&#123; course.end_date &#125;&#125;
+    &lt;/li&gt;
+  &#123;% empty %&#125;
+    &lt;li&gt;No courses match your criteria.&lt;/li&gt;
+  &#123;% endfor %&#125;
+&lt;/ul&gt;
+</code></pre>
+
+    <ul class="list-unstyled mt-3">
+      <li>🔹 <strong>Function/Class Used:</strong> <code>ListView</code>, <code>.filter()</code>, <code>request.GET</code></li>
+      <li>📘 <strong>What You Learn:</strong> How to dynamically query based on URL parameters using Django ORM</li>
+      <li>♻️ <strong>Reusability:</strong> Great for building search and filter forms for any kind of data viewer</li>
+      <li>💬 <strong>Inline Comments:</strong> Uses conditional filters (<code>icontains</code>, <code>gte</code>, <code>lte</code>) based on GET params</li>
+      <li>📎 <strong>Related Topics:</strong> Search filters, CBVs, querysets, frontend-to-backend interaction</li>
+      <li>🧸 <strong>Use Case:</strong> Online course finder, training calendars, searchable admin dashboards</li>
+    </ul>
+  </div>
+</div>
+          <div class="card">
+  <div class="card-header bg-dark text-white fw-bold">🔸 Example 6: Document Upload Manager (FormView)</div>
+  <div class="card-body">
+      <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+          📋 Copy
+        </button>
+    <pre class="bg-light p-3 rounded"><code class="language-python"># models.py
+from django.db import models
+
+class Document(models.Model):
+    title = models.CharField(max_length=100)
+    file = models.FileField(upload_to='documents/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+# forms.py
+from django import forms
+from .models import Document
+
+class DocumentForm(forms.ModelForm):
+    class Meta:
+        model = Document
+        fields = ['title', 'file']
+
+# views.py
+from django.views.generic.edit import FormView
+from .forms import DocumentForm
+from django.urls import reverse_lazy
+
+class DocumentUploadView(FormView):
+    form_class = DocumentForm
+    template_name = 'classroom/document_upload.html'
+    success_url = reverse_lazy('classroom:upload_success')
+
+    def form_valid(self, form):
+        form.save()  # Save the uploaded file to storage
+        return super().form_valid(form)
+
+# urls.py
+from django.urls import path
+from .views import DocumentUploadView
+from django.views.generic import TemplateView
+
+app_name = 'classroom'
+
+urlpatterns = [
+    path('upload/', DocumentUploadView.as_view(), name='upload_document'),
+    path('upload_success/', TemplateView.as_view(template_name='classroom/upload_success.html'), name='upload_success'),
+]
+
+# document_upload.html
+&lt;h2&gt;📄 Upload a Document&lt;/h2&gt;
+&lt;form method="POST" enctype="multipart/form-data"&gt;
+  &#123;% csrf_token %&#125;
+  &#123;&#123; form.as_p &#125;&#125;
+  &lt;input type="submit" value="Upload"&gt;
+&lt;/form&gt;
+
+# upload_success.html
+&lt;h2&gt;✅ Upload Successful!&lt;/h2&gt;
+&lt;p&gt;Your document has been uploaded.&lt;/p&gt;
+&lt;a href="&#123;% url 'classroom:upload_document' %&#125;"&gt;Upload Another&lt;/a&gt;
+</code></pre>
+
+    <ul class="list-unstyled mt-3">
+      <li>🔹 <strong>Function/Class Used:</strong> <code>FormView</code>, <code>ModelForm</code>, <code>form_valid()</code>, <code>reverse_lazy</code></li>
+      <li>📘 <strong>What You Learn:</strong> Handling file uploads with CBV and saving uploaded files securely</li>
+      <li>♻️ <strong>Reusability:</strong> Excellent for CV upload, document portals, legal forms, S3 integrations</li>
+      <li>💬 <strong>Inline Comments:</strong> Overridden <code>form_valid()</code> saves the uploaded document before redirecting</li>
+      <li>📎 <strong>Related Topics:</strong> FileField, MEDIA_URL, S3 upload, secure upload patterns</li>
+      <li>🧸 <strong>Use Case:</strong> HR portals, research repositories, e-learning platforms</li>
+    </ul>
+  </div>
+</div>
+          <div class="card">
+  <div class="card-header bg-info text-white fw-bold">🔸 Example 7: Snowflake Job Log Viewer (ListView)</div>
+  <div class="card-body">
+      <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+          📋 Copy
+        </button>
+    <pre class="bg-light p-3 rounded"><code class="language-python"># models.py
+from django.db import models
+
+class SnowflakeJob(models.Model):
+    job_name = models.CharField(max_length=100)
+    status = models.CharField(max_length=20)
+    executed_at = models.DateTimeField()
+    duration_ms = models.IntegerField()
+
+    def __str__(self):
+        return f"{self.job_name} - {self.status}"
+
+# views.py
+from django.views.generic import ListView
+from .models import SnowflakeJob
+from django.utils import timezone
+from datetime import timedelta
+
+class JobLogListView(ListView):
+    model = SnowflakeJob
+    template_name = 'cloud/job_logs.html'
+    context_object_name = 'jobs'
+
+    def get_queryset(self):
+        now = timezone.now()
+        return SnowflakeJob.objects.filter(
+            executed_at__gte=now - timedelta(days=1)
+        ).order_by('-executed_at')
+
+# urls.py
+from django.urls import path
+from .views import JobLogListView
+
+app_name = 'cloud'
+
+urlpatterns = [
+    path('snowflake/job-logs/', JobLogListView.as_view(), name='snowflake_job_logs'),
+]
+
+# job_logs.html
+&lt;h2&gt;❄️ Snowflake Job Logs (Last 24 Hours)&lt;/h2&gt;
+&lt;ul&gt;
+  &#123;% for job in jobs %&#125;
+    &lt;li&gt;
+      &lt;strong&gt;&#123;&#123; job.job_name &#125;&#125;&lt;/strong&gt; - &#123;&#123; job.status &#125;&#125;&lt;br&gt;
+      Executed at: &#123;&#123; job.executed_at &#125;&#125; | Duration: &#123;&#123; job.duration_ms &#125;&#125; ms
+    &lt;/li&gt;
+  &#123;% empty %&#125;
+    &lt;li&gt;No jobs found in the last 24 hours.&lt;/li&gt;
+  &#123;% endfor %&#125;
+&lt;/ul&gt;
+</code></pre>
+
+    <ul class="list-unstyled mt-3">
+      <li>🔹 <strong>Function/Class Used:</strong> ListView, .filter(), timezone, timedelta</li>
+      <li>📘 <strong>What You Learn:</strong> Dynamic time filtering of database entries using Django ORM</li>
+      <li>♻️ <strong>Reusability:</strong> Ideal for job logs, task schedulers, audit trails</li>
+      <li>💬 <strong>Inline Comments:</strong> Filters jobs that ran within last 24 hours using timedelta logic</li>
+      <li>📎 <strong>Related Topics:</strong> Cron monitoring, time-aware queries, Snowflake logging</li>
+      <li>🧸 <strong>Use Case:</strong> CloudOps dashboards, Snowflake job tracking, CI/CD job log history</li>
+    </ul>
+  </div>
+</div>
+          <div class="card">
+  <div class="card-header bg-primary text-white fw-bold">🔸 Example 8: Cloud Dataset Uploader with IP Capture (CreateView)</div>
+  <div class="card-body">
+      <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+          📋 Copy
+        </button>
+    <pre class="bg-light p-3 rounded"><code class="language-python"># models.py
+from django.db import models
+
+class DatasetUpload(models.Model):
+    dataset_name = models.CharField(max_length=100)
+    file = models.FileField(upload_to='datasets/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+    uploaded_by = models.GenericIPAddressField()
+
+    def __str__(self):
+        return self.dataset_name
+
+# views.py
+from django.views.generic import CreateView
+from .models import DatasetUpload
+from django.urls import reverse_lazy
+
+class DatasetUploadView(CreateView):
+    model = DatasetUpload
+    fields = ['dataset_name', 'file']
+    template_name = 'cloud/upload_dataset.html'
+    success_url = reverse_lazy('cloud:upload_success')
+
+    def form_valid(self, form):
+        form.instance.uploaded_by = self.request.META.get('REMOTE_ADDR', '0.0.0.0')
+        return super().form_valid(form)
+
+# urls.py
+from django.urls import path
+from .views import DatasetUploadView
+from django.views.generic import TemplateView
+
+app_name = 'cloud'
+
+urlpatterns = [
+    path('upload/', DatasetUploadView.as_view(), name='upload_dataset'),
+    path('upload_success/', TemplateView.as_view(template_name='cloud/upload_success.html'), name='upload_success'),
+]
+
+# upload_dataset.html
+&lt;h2&gt;☁️ Upload Cloud Dataset&lt;/h2&gt;
+&lt;form method="POST" enctype="multipart/form-data"&gt;
+  &#123;% csrf_token %&#125;
+  &#123;&#123; form.as_p &#125;&#125;
+  &lt;input type="submit" value="Upload Dataset"&gt;
+&lt;/form&gt;
+
+# upload_success.html
+&lt;h3&gt;✅ Upload Successful!&lt;/h3&gt;
+&lt;p&gt;Your dataset has been uploaded and logged with your IP address.&lt;/p&gt;
+&lt;a href="&#123;% url 'cloud:upload_dataset' %&#125;"&gt;Upload Another&lt;/a&gt;
+</code></pre>
+
+    <ul class="list-unstyled mt-3">
+      <li>🔹 <strong>Function/Class Used:</strong> CreateView, form_valid(), FileField, REMOTE_ADDR</li>
+      <li>📘 <strong>What You Learn:</strong> Secure file upload handling and capturing user IP</li>
+      <li>♻️ <strong>Reusability:</strong> CV uploaders, document portals, log capture systems</li>
+      <li>💬 <strong>Inline Comments:</strong> form_valid() captures uploader IP via request.META</li>
+      <li>📎 <strong>Related Topics:</strong> FileField, MEDIA_ROOT, S3, logging with metadata</li>
+      <li>🧸 <strong>Use Case:</strong> Data lake ingestion, cloud ops tools, audit file submissions</li>
+    </ul>
+  </div>
+</div>
+          <div class="card">
+  <div class="card-header bg-info text-white fw-bold">🔸 Example 9: Cloud Usage Report Dashboard (Daily Aggregation)</div>
+  <div class="card-body">
+      <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+          📋 Copy
+        </button>
+    <pre class="bg-light p-3 rounded"><code class="language-python"># models.py
+from django.db import models
+
+class CloudUsage(models.Model):
+    service = models.CharField(max_length=100)
+    usage_hours = models.DecimalField(max_digits=10, decimal_places=2)
+    cost_usd = models.DecimalField(max_digits=10, decimal_places=2)
+    date = models.DateField()
+
+    def __str__(self):
+        return f"{self.service} - {self.date}"
+
+# views.py
+from django.views.generic import TemplateView
+from .models import CloudUsage
+from django.db.models import Sum
+from datetime import date
+
+class UsageReportView(TemplateView):
+    template_name = 'cloud/usage_report.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        today = date.today()
+        stats = CloudUsage.objects.filter(date=today).aggregate(
+            total_hours=Sum('usage_hours'),
+            total_cost=Sum('cost_usd')
+        )
+        context['stats'] = stats
+        return context
+
+# urls.py
+from django.urls import path
+from .views import UsageReportView
+
+app_name = 'cloud'
+
+urlpatterns = [
+    path('usage-report/', UsageReportView.as_view(), name='usage_report'),
+]
+
+# usage_report.html
+&lt;h2&gt;📊 Today's Cloud Usage Report&lt;/h2&gt;
+&#123;% if stats.total_hours and stats.total_cost %&#125;
+  &lt;p&gt;&lt;strong&gt;Total Hours:&lt;/strong&gt; &#123;&#123; stats.total_hours &#125;&#125;&lt;/p&gt;
+  &lt;p&gt;&lt;strong&gt;Total Cost:&lt;/strong&gt; $&#123;&#123; stats.total_cost &#125;&#125;&lt;/p&gt;
+&#123;% else %&#125;
+  &lt;p&gt;No usage data available for today.&lt;/p&gt;
+&#123;% endif %&#125;
+</code></pre>
+
+    <ul class="list-unstyled mt-3">
+      <li>🔹 <strong>Function/Class Used:</strong> TemplateView, aggregate(), Sum</li>
+      <li>📘 <strong>What You Learn:</strong> Perform aggregate calculations using Django ORM</li>
+      <li>♻️ <strong>Reusability:</strong> Works for SaaS reports, energy tracking, usage billing</li>
+      <li>💬 <strong>Inline Comments:</strong> Aggregates today's data via `filter(date=today)` + `Sum()`</li>
+      <li>📎 <strong>Related Topics:</strong> ORM aggregation, Sum, analytics views, dashboard logic</li>
+      <li>🧸 <strong>Use Case:</strong> Cloud billing reports, admin dashboards, cost analysis tools</li>
+    </ul>
+  </div>
+</div>
+          <div class="card">
+  <div class="card-header bg-dark text-white fw-bold">🔸 Example 10: API Query Detail Viewer (JSONField Rendering)</div>
+  <div class="card-body">
+      <button class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 m-2 copy-btn" data-bs-toggle="tooltip" title="Copy code">
+          📋 Copy
+        </button>
+    <pre class="bg-light p-3 rounded"><code class="language-python"># models.py
+from django.db import models
+
+class ApiQueryLog(models.Model):
+    endpoint = models.URLField()
+    request_payload = models.JSONField()
+    response_time_ms = models.IntegerField()
+    logged_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.endpoint
+
+# views.py
+from django.views.generic import DetailView
+from .models import ApiQueryLog
+
+class ApiQueryDetailView(DetailView):
+    model = ApiQueryLog
+    template_name = 'cloud/query_detail.html'
+    context_object_name = 'log'
+
+# urls.py
+from django.urls import path
+from .views import ApiQueryDetailView
+
+app_name = 'cloud'
+
+urlpatterns = [
+    path('query/&lt;int:pk&gt;/', ApiQueryDetailView.as_view(), name='query_detail'),
+]
+
+# query_detail.html
+&lt;h2&gt;🔍 API Query Log Detail&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Endpoint:&lt;/strong&gt; &#123;&#123; log.endpoint &#125;&#125;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Logged At:&lt;/strong&gt; &#123;&#123; log.logged_at &#125;&#125;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Response Time:&lt;/strong&gt; &#123;&#123; log.response_time_ms &#125;&#125; ms&lt;/p&gt;
+
+&lt;h4&gt;📦 Request Payload:&lt;/h4&gt;
+&lt;pre&gt;&#123;&#123; log.request_payload|safe|json_script:"queryPayload" &#125;&#125;&lt;/pre&gt;
+
+&lt;script&gt;
+  const payload = JSON.parse(document.getElementById("queryPayload").textContent);
+  console.log("Parsed Payload:", payload);
+&lt;/script&gt;
+</code></pre>
+
+    <ul class="list-unstyled mt-3">
+      <li>🔹 <strong>Function/Class Used:</strong> DetailView, JSONField, <code>|json_script</code></li>
+      <li>📘 <strong>What You Learn:</strong> Securely embed and render JSON in templates using Django’s built-in filters</li>
+      <li>♻️ <strong>Reusability:</strong> Great for request logs, webhook event viewers, ML payload auditors</li>
+      <li>💬 <strong>Inline Comments:</strong> <code>json_script</code> ensures safe JSON for use with JavaScript</li>
+      <li>📎 <strong>Related Topics:</strong> JSONField rendering, safe script tags, CBV DetailView</li>
+      <li>🧸 <strong>Use Case:</strong> API monitoring, analytics event debugging, frontend API payload inspectors</li>
+    </ul>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+      {% include 'includes/comment_form.html' %}
+    </div>
+
+    <div class="tab-pane fade" id="quiz" role="tabpanel">
+      <div id="quizBox"></div>
+      <div id="quizSummary"></div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<audio id="correctSound" src="{% static 'sounds/correct.mp3' %}"></audio>
+<audio id="wrongSound" src="{% static 'sounds/wrong.mp3' %}"></audio>
+<script src="{% static 'js/quiz_engine.js' %}"></script>
+<script src="{% static 'js/copy.js' %}"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    loadQuizData("cbv_examples");
+    document.getElementById("exampleCount").textContent = document.querySelectorAll(".card").length;
+  });
+</script>
+{% endblock %}
