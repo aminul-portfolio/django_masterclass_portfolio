@@ -89,7 +89,7 @@ This project can be deployed on [https://www.pythonanywhere.com](https://www.pyt
 Make sure to place the screenshot image in:
 
 ```
-images/django_masterclass.JPG
+images/django_masterclass.jpg
 ```
 
 ---
